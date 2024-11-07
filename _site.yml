@@ -1,0 +1,36 @@
+name: "Data Analysis (3 ETCS)"
+
+author:  "Pierre Pelletier"
+email: "[p.pelletier@unistra.fr]"
+navbar:
+  title: "M1 ETIC/MPE - Data Analysis"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Basics"
+      href: 2_Basics.html
+    - text: "Arrays/Vectors"
+      href: 3_Arrays_Vectors.html
+    - text: "Data Analysis"
+      href: 5_Data_Analysis_R.html
+    - text: "Regex"
+      href: 4_Regex.html
+    - text: "Best Pratices"
+      href: 7_Best_practices.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/master-ds2e/
+output:
+  html_document:
+    theme: united
+    highlight: haddock
+    toc: true
+    number_sections: true
+    toc_float: 
+      collapsed: false
+      smooth_scroll: true
+      number_sections: true
+      toc_depth: 3
+    _disableToc: true
+    css: custom.css
+        

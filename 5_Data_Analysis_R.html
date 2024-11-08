@@ -615,7 +615,7 @@ dataset %&gt;% function1(arg1) %&gt;% function2(arg2)</p></li>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> <span class="fu">filter</span>(covid_papers,doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()<span class="sc">-</span>t</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 0.04281783 secs</span></span></code></pre></div>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 0.05029321 secs</span></span></code></pre></div>
 <p><b> Using Pipes </b></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -627,12 +627,12 @@ dataset %&gt;% function1(arg1) %&gt;% function2(arg2)</p></li>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 0.04081988 secs</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 0.04332685 secs</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers[<span class="fu">which</span>(covid_papers<span class="sc">$</span>doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>),]</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 0.04433298 secs</span></span></code></pre></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 0.04878688 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="select-columns" class="section level3" number="1.1.2">
@@ -1754,7 +1754,7 @@ dataset %&gt;% function1(arg1) %&gt;% function2(arg2)</p></li>
 <span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character),</span>
 <span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>         toupper))</span>
 <span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 10.96971 secs</span></span></code></pre></div>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 10.90471 secs</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1779,7 +1779,7 @@ dataset %&gt;% function1(arg1) %&gt;% function2(arg2)</p></li>
 <span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span>  <span class="fu">which</span>(<span class="fu">sapply</span>(cp_datatable, class)<span class="sc">==</span><span class="st">&#39;character&#39;</span>)){<span class="fu">set</span>(cp_datatable, <span class="at">i=</span><span class="cn">NULL</span>, <span class="at">j=</span>j, <span class="at">value=</span><span class="fu">toupper</span>(cp_datatable[[j]]))}</span>
 <span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t </span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 10.24586 secs</span></span></code></pre></div>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Time difference of 9.977895 secs</span></span></code></pre></div>
 </div>
 </div>
 </div>

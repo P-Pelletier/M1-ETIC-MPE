@@ -2384,7 +2384,7 @@ rbindlist(lapply(c("cp_datatable.csv", "cp_datatable.csv"), fread))
 ```{r,echo=F}
 library(downloadthis)
 download_link(
-  link = "https://github.com/master-ds2e/M1-Programming/raw/gh-pages/data/data.zip",
+  link = "https://github.com/P-Pelletier/M1-ETIC-MPE/raw/gh-pages/data/data.zip",
   button_label = "Download Data",
   button_type = "danger",
   has_icon = TRUE,

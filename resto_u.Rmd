@@ -12,9 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(httr)
 library(stringr)
+library(xml2)
+library(stringr)
 
 res = GET('https://www.whatismybrowser.com/detect/what-is-my-user-agent/')
-str_match_all(content(res, "text"), '<div class="value" id="detected_value">(.*?)</div>')
+str_match_all(content(res, "text"), '<div class="value" id="detected_value">(.*?)</div>')[[1]][,2]
  
 user_agent = user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0")
 res = GET('https://www.whatismybrowser.com/detect/what-is-my-user-agent/', user_agent)
@@ -48,6 +50,39 @@ menus = str_match_all(clean_soup,  '<div class="menu">(.*?)</ul></div> *</div>')
 menus
 ```
 
+
+- Let's first create a function to get the webpage, the arguments to get a flexible function could be url of the page
+
+
+```{r}
+get_page = function(urlpage,user_agent){
+  res = GET(urlpage, user_agent)
+  soup = read_html(content(res, "text"))
+  clean_soup = str_replace_all(as.character(soup),'[\\t\\r\\n\\f]','')
+  return(clean_soup)
+}
+
+user_agent = user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0")
+urlpage = 'https://www.crous-strasbourg.fr/restaurant/resto-u-esplanade-2/'
+clean_soup = get_page(urlpage = urlpage, user_agent = user_agent)
+
+
+menus = str_match_all(clean_soup,  '<div class="menu">(.*?)</ul></div> *</div>')[[1]][,2]
+menus[1]
+```
+
+
+
+
+- We want everything between ```<time class="menu_date_title">Menu du ``` and the first ```</time>``` that appears, we can just catch the group of character between these two entities. Create a group with ```()``` to extract this part with ```re.findall``` :
+    - This group can be composed of everything so specify a ```.```
+    - We can have 0 or more charater so put a ```*```after the ```.```
+    - Finally the ```?``` will control for the repetition ```</time>```, so when it will meet the first ```</time>```, it will stop.
+ 
+- You will then try to find if there is some stuff in your string that match this condition. The regex will be written ```'<time class="menu_date_title">Menu du (.*?)</time>'```. Of course it doen't mean there are no other way of doing it or even writting it, but it works and it's pretty simple to read.
+
+
+
 ```{r}
 meals = str_split(menus, '<div class="meal">')
 
@@ -63,6 +98,53 @@ clean_meals
 
 
 ```
+
+ - Lets focus on one day
+ 
+```{r}
+
+meal = clean_meals[[1]]
+
+meal_foodies = str_split(meal, '</ul></li>')
+meal_foodies
+meal_type = str_match(meal, '<div class="meal_title">(.*?)</div>')[, 2]
+meal_type
+```
+ 
+- Split between the different poles
+```{r}
+
+meal_foodie = meal_foodies[[1]]
+meal_foodie = meal_foodie[-length(meal_foodie)]
+meal_foodie
+
+
+split_parts = str_split(meal_foodie, '<ul>')
+split_parts
+```
+- It's still very dirty down there, let's clean it up!
+
+- Let's retrieve everything within ```<li></li>``` in the element of meal_foodies
+
+```{r}
+
+poles = lapply(split_parts,FUN = function(split_part){str_match(split_part[1], '<li>(.+)')[, 2]})
+poles
+
+details = lapply(split_parts,FUN = function(split_part){str_match_all(split_part[-1], '<li>(.*?)</li>')[[1]][, 2]})
+details
+```
+- Remove unwanted poles
+
+```{r}
+idx = str_detect(poles, "Origine")
+if(any(idx)){
+  poles = poles[-which(idx)]
+  details = details[-which(idx)]
+}
+```
+
+- Putting everything together:
 
 ```{r}
 # Initialiser un dictionnaire pour les repas

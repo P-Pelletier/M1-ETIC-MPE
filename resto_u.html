@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>resto_u</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">M1 ETIC/MPE - Data Analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="2_Basics.html">Basics</a>
+</li>
+<li>
+  <a href="3_Arrays_Vectors.html">Arrays/Vectors</a>
+</li>
+<li>
+  <a href="5_Data_Analysis_R.html">Data Analysis</a>
+</li>
+<li>
+  <a href="4_Regex.html">Regex</a>
+</li>
+<li>
+  <a href="7_Best_practices.html">Best Pratices</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/master-ds2e/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">resto_u</h1>
+
+</div>
+
+
+<div id="set-up-user-agent" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Set up user-agent</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span></code></pre></div>
+<pre><code>## 
+## Attachement du package : &#39;httr&#39;</code></pre>
+<pre><code>## L&#39;objet suivant est masqué depuis &#39;package:plotly&#39;:
+## 
+##     config</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">=</span> <span class="fu">GET</span>(<span class="st">&#39;https://www.whatismybrowser.com/detect/what-is-my-user-agent/&#39;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match_all</span>(<span class="fu">content</span>(res, <span class="st">&quot;text&quot;</span>), <span class="st">&#39;&lt;div class=&quot;value&quot; id=&quot;detected_value&quot;&gt;(.*?)&lt;/div&gt;&#39;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+##      [,1]                                                                                     
+## [1,] &quot;&lt;div class=\&quot;value\&quot; id=\&quot;detected_value\&quot;&gt;libcurl/7.64.1 r-curl/4.3.2 httr/1.4.2&lt;/div&gt;&quot;
+##      [,2]                                    
+## [1,] &quot;libcurl/7.64.1 r-curl/4.3.2 httr/1.4.2&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>user_agent <span class="ot">=</span> <span class="fu">user_agent</span>(<span class="st">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">=</span> <span class="fu">GET</span>(<span class="st">&#39;https://www.whatismybrowser.com/detect/what-is-my-user-agent/&#39;</span>, user_agent)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match_all</span>(<span class="fu">content</span>(res, <span class="st">&quot;text&quot;</span>), <span class="st">&#39;&lt;div class=&quot;value&quot; id=&quot;detected_value&quot;&gt;(.*?)&lt;/div&gt;&#39;</span>)[[<span class="dv">1</span>]][,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0&quot;</code></pre>
+<ul>
+<li>Select one page as an example, here we use esplanade’s restaurant</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>urlpage <span class="ot">=</span> <span class="st">&#39;https://www.crous-strasbourg.fr/restaurant/resto-u-esplanade-2/&#39;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>urlpage</span></code></pre></div>
+<pre><code>## [1] &quot;https://www.crous-strasbourg.fr/restaurant/resto-u-esplanade-2/&quot;</code></pre>
+<ul>
+<li><p>Get the html content using requests with your own user_agent header</p></li>
+<li><p>parse the html with BeautifulSoup</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">=</span> <span class="fu">GET</span>(urlpage, user_agent)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>soup <span class="ot">=</span> xml2<span class="sc">::</span><span class="fu">read_html</span>(httr<span class="sc">::</span><span class="fu">content</span>(res, <span class="st">&quot;text&quot;</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(<span class="fu">as.character</span>(soup), <span class="dv">1</span>, <span class="dv">2000</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;&lt;!DOCTYPE html&gt;\n&lt;html lang=\&quot;fr-FR\&quot; prefix=\&quot;og: https://ogp.me/ns#\&quot;&gt;\n&lt;head&gt;\n&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=UTF-8\&quot;&gt;\n&lt;meta charset=\&quot;utf-8\&quot;&gt;\n&lt;title&gt;Resto U&#39; Esplanade - Crous de Strasbourg&lt;/title&gt;\n&lt;meta name=\&quot;viewport\&quot; content=\&quot;width=device-width, initial-scale=1.0,user-scalable=yes,minimal-ui\&quot;&gt;\n&lt;!-- Optimisation des moteurs de recherche par Rank Math PRO - https://rankmath.com/ --&gt;&lt;meta name=\&quot;robots\&quot; content=\&quot;follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large\&quot;&gt;\n&lt;link rel=\&quot;canonical\&quot; href=\&quot;https://www.crous-strasbourg.fr/restaurant/resto-u-esplanade-2/\&quot;&gt;\n&lt;meta property=\&quot;og:locale\&quot; content=\&quot;fr_FR\&quot;&gt;\n&lt;meta property=\&quot;og:type\&quot; content=\&quot;article\&quot;&gt;\n&lt;meta property=\&quot;og:title\&quot; content=\&quot;Resto U&#39; Esplanade - Crous de Strasbourg\&quot;&gt;\n&lt;meta property=\&quot;og:url\&quot; content=\&quot;https://www.crous-strasbourg.fr/restaurant/resto-u-esplanade-2/\&quot;&gt;\n&lt;meta property=\&quot;og:site_name\&quot; content=\&quot;Lyon\&quot;&gt;\n&lt;meta property=\&quot;og:image\&quot; content=\&quot;https://www.crous-strasbourg.fr/wp-content/uploads/sites/29/2022/11/Logo.jpg\&quot;&gt;\n&lt;meta property=\&quot;og:image:secure_url\&quot; content=\&quot;https://www.crous-strasbourg.fr/wp-content/uploads/sites/29/2022/11/Logo.jpg\&quot;&gt;\n&lt;meta property=\&quot;og:image:width\&quot; content=\&quot;1200\&quot;&gt;\n&lt;meta property=\&quot;og:image:height\&quot; content=\&quot;630\&quot;&gt;\n&lt;meta property=\&quot;og:image:alt\&quot; content=\&quot;Resto U’ Esplanade\&quot;&gt;\n&lt;meta property=\&quot;og:image:type\&quot; content=\&quot;image/jpeg\&quot;&gt;\n&lt;meta name=\&quot;twitter:card\&quot; content=\&quot;summary_large_image\&quot;&gt;\n&lt;meta name=\&quot;twitter:title\&quot; content=\&quot;Resto U&#39; Esplanade - Crous de Strasbourg\&quot;&gt;\n&lt;meta name=\&quot;twitter:image\&quot; content=\&quot;https://www.crous-strasbourg.fr/wp-content/uploads/sites/29/2022/11/Logo.jpg\&quot;&gt;\n&lt;!-- /Extension Rank Math WordPress SEO --&gt;&lt;link rel=\&quot;dns-prefetch\&quot; href=\&quot;//cdn.jsdelivr.net\&quot;&gt;\n&lt;link rel=\&quot;dns-prefetch\&quot; href=\&quot;//unpkg.com\&quot;&gt;\n&lt;link href=\&quot;https://fonts.gstatic.com\&quot; crossorigin rel=\&quot;preconnect\&quot;&gt;\n&lt;link rel=\&quot;stylesheet\&quot; id=\&quot;tec-tickets-seating-frontend-style-css\&quot; href=\&quot;https://www.crous-strasbourg.fr/wp-content/plugins/event-tickets/build/Seating/frontend/ticketsB&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>clean_soup <span class="ot">=</span> <span class="fu">str_replace_all</span>(<span class="fu">as.character</span>(soup),<span class="st">&#39;[</span><span class="sc">\\</span><span class="st">t</span><span class="sc">\\</span><span class="st">r</span><span class="sc">\\</span><span class="st">n</span><span class="sc">\\</span><span class="st">f]&#39;</span>,<span class="st">&#39;&#39;</span>)</span></code></pre></div>
+<ul>
+<li><p>Find out how we can get the information needed: with a right click, inspect the webpage in your navigator. See that <code>'menu'</code> seems to be a good option to get meals in a structured way.</p></li>
+<li><p><code>'menu'</code> is the html class and <code>'div'</code>is the element: <code>&lt;div class="menu"&gt;</code></p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>menus <span class="ot">=</span> <span class="fu">str_match_all</span>(clean_soup,  <span class="st">&#39;&lt;div class=&quot;menu&quot;&gt;(.*?)&lt;/ul&gt;&lt;/div&gt; *&lt;/div&gt;&#39;</span>)[[<span class="dv">1</span>]][,<span class="dv">2</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>menus</span></code></pre></div>
+<pre><code>## [1] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du mercredi 20 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;JOURNEE VERTE&lt;/li&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Pané au fromage, sauce forestière maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Pancakes maison olives et féta, sauce forestière maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Boulettes de blé thaï, raïta aux herbes maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Penne, sauce aux 3 fromages maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de pommes de terre maison, raïta aux herbes maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Soupe de légumes du jour :&lt;/li&gt;&lt;li&gt;Chou-fleur&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Donut&lt;/li&gt;&lt;li&gt;Cake nature&lt;/li&gt;&lt;li&gt;Cocktail de fruits&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Boulettes de blé thaï, raïta de concombre&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de pommes de terre maison, bibeleskaes&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Curry de légumes maison BIO&lt;/li&gt;&lt;li&gt;Ebly safrané BIO&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de lentilles BIO&lt;/li&gt;&lt;li&gt;Haricots BIO&lt;/li&gt;&lt;li&gt;Ebly safrané BIO&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan au chocolat BIO&lt;/li&gt;&lt;li&gt;Tarte aux pommes BIO&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                           
+## [2] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du jeudi 21 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Viennoise, sauce tomate&lt;/li&gt;&lt;li&gt;Carottes&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Gratin de légumes et lentilles corail maison&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Colombo de porc maison&lt;/li&gt;&lt;li&gt;Carottes&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Penne, sauce à la volaille maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Gratin de légumes et lentilles corail maison&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Flan litchis framboises&lt;/li&gt;&lt;li&gt;Beignet au chocolat et noisettes&lt;/li&gt;&lt;li&gt;Tarte aux pommes et à la rhubarbe&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Colombo de porc maison&lt;/li&gt;&lt;li&gt;Carottes&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Gratin de légumes et lentilles corail maison&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Echine de porc aux cacahuètes maison&lt;/li&gt;&lt;li&gt;Riz cantonnais&lt;/li&gt;&lt;li&gt;Pommes de terre au four&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes, sauce au miel&lt;/li&gt;&lt;li&gt;Riz cantonnais&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan litchis framboises&lt;/li&gt;&lt;li&gt;Beignet au chocolat et noisettes&lt;/li&gt;&lt;li&gt;Tarte aux pommes et à la rhubarbe&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                     
+## [3] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du vendredi 22 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Saucisse de volaille, jus corsé&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux pommes de terre, poireaux et épinards maison&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Fricadelle de boeuf, jus corsé&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Penne, sauce arrabiata maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux pommes de terre, poireaux et épinards maison&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Blondie aux framboises&lt;/li&gt;&lt;li&gt;Cocktail de fruits exotiques&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Fricadelle de boeuf, jus corsé&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux pommes de terre, poireaux et épinards maison&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Cuisse de poulet à l&#39;américaine maison&lt;/li&gt;&lt;li&gt;Trio de légumes&lt;/li&gt;&lt;li&gt;Pommes de terre au four&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche au fromage&lt;/li&gt;&lt;li&gt;Trio de légumes&lt;/li&gt;&lt;li&gt;Pommes de terre au four&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Blondie aux framboises&lt;/li&gt;&lt;li&gt;Cocktail de fruits exotiques&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;
+## [4] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du lundi 25 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Saucisse de Toulouse, jus corsé au thym&lt;/li&gt;&lt;li&gt;Haricots verts à l&#39;ail&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Mafé aux légumes, sauce au sésame maison&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Fish and chips, sauce rémoulade&lt;/li&gt;&lt;li&gt;Haricots verts à l&#39;ail&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce bolognaise maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Mafé aux légumes, sauce au sésame maison&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Paris-Brest&lt;/li&gt;&lt;li&gt;Tarte au citron&lt;/li&gt;&lt;li&gt;Compote de pommes aux spéculoos&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Fish and chips, sauce rémoulade&lt;/li&gt;&lt;li&gt;Haricots verts à l&#39;ail&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Mafé aux légumes, sauce au sésame maison&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Cordon bleu, sauce crème aux champignons&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;li&gt;Purée de pommes de terre&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Coudes gratinés&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Paris-Brest&lt;/li&gt;&lt;li&gt;Tarte au citron&lt;/li&gt;&lt;li&gt;Compote de pommes aux spéculoos&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                         
+## [5] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du mardi 26 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Viennoise, sauce tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de quinoa provençale, sauce tomate&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Palette à la diable&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce aux 3 fromages maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de quinoa provençale, sauce tomate&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Clafoutis aux poires et pépites de chocolat&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;li&gt;Mini donut&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Palette à la diable&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de quinoa provençale, sauce tomate&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Filet de poulet, sauce crème&lt;/li&gt;&lt;li&gt;Haricots beurre&lt;/li&gt;&lt;li&gt;Blé safrané&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Dahl crémeux de pois cassés&lt;/li&gt;&lt;li&gt;Blé safrané&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Clafoutis aux poires et pépites de chocolat&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;li&gt;Mini donut&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                   
+## [6] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du mercredi 27 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;JOURNEE VERTE&lt;/li&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Poutine maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Lasagnes aux épinards et ricotta maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Chili aux légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Nouilles chinoises maison&lt;/li&gt;&lt;li&gt;Wok de légumes&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Lasagnes aux épinards et ricotta maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Tarte normande&lt;/li&gt;&lt;li&gt;Millefeuille&lt;/li&gt;&lt;li&gt;Cake nature&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Chili aux légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Lasagnes aux épinards et ricotta maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Galette de tofu BIO, sauce tomate&lt;/li&gt;&lt;li&gt;Gratin de chou-fleur&lt;/li&gt;&lt;li&gt;Pommes de terre BIO maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Omelette au fromage&lt;/li&gt;&lt;li&gt;Gratin de chou-fleur&lt;/li&gt;&lt;li&gt;Pommes de terre BIO maison&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan au caramel BIO&lt;/li&gt;&lt;li&gt;Tarte aux pommes BIO&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                              
+## [7] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du jeudi 28 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Merguez, sauce tomate&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Boulgour&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Paëlla maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce arrabiata maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Boulgour&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Beignet au chocolat&lt;/li&gt;&lt;li&gt;Tarte coco&lt;/li&gt;&lt;li&gt;Fromage blanc crème de marrons et vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Paëlla maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Boulgour&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Boulettes d&#39;agneau&lt;/li&gt;&lt;li&gt;Légumes couscous&lt;/li&gt;&lt;li&gt;Semoule&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Tajine de pois chiches, abricots et amandes maison&lt;/li&gt;&lt;li&gt;Semoule&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Beignet au chocolat&lt;/li&gt;&lt;li&gt;Tarte coco&lt;/li&gt;&lt;li&gt;Fromage blanc, crème de marrons et vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                  
+## [8] &quot;                &lt;div class=\&quot;menu_date\&quot;&gt;                    &lt;div class=\&quot;prev\&quot;&gt;&lt;/div&gt;                    &lt;time class=\&quot;menu_date_title\&quot;&gt;Menu du vendredi 29 novembre 2024&lt;/time&gt;&lt;div class=\&quot;next\&quot;&gt;&lt;/div&gt;                &lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Pilons de poulet, sauce marchand de vin&lt;/li&gt;&lt;li&gt;Duo de carottes&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Curry de légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Cordon bleu, sauce marchand de vin&lt;/li&gt;&lt;li&gt;Duo de carottes&lt;/li&gt;&lt;li&gt;Pommes de terre wedges&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce carbonara maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Curry de légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Flan chocolat et noisettes&lt;/li&gt;&lt;li&gt;Eclair au café&lt;/li&gt;&lt;li&gt;Tarte aux poires&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Cordon bleu, sauce marchand de vin&lt;/li&gt;&lt;li&gt;Duo de carottes&lt;/li&gt;&lt;li&gt;Pommes de terre wedges&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Curry de légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &lt;div class=\&quot;meal\&quot;&gt;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Farfalles bolognaises&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux poireaux&lt;/li&gt;&lt;li&gt;Farfalles&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan chocolat et noisettes&lt;/li&gt;&lt;li&gt;Eclair au café&lt;/li&gt;&lt;li&gt;Tarte aux poires&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>meals <span class="ot">=</span> <span class="fu">str_split</span>(menus, <span class="st">&#39;&lt;div class=&quot;meal&quot;&gt;&#39;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire la date</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>date <span class="ot">=</span> <span class="fu">str_match</span>(meals[[<span class="dv">1</span>]][<span class="dv">1</span>], <span class="st">&#39;&lt;time class=&quot;menu_date_title&quot;&gt;Menu du (.*?)&lt;/time&gt;&#39;</span>)[, <span class="dv">2</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>date</span></code></pre></div>
+<pre><code>## [1] &quot;mercredi 20 novembre 2024&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">=</span> <span class="fu">sapply</span>(meals,<span class="at">FUN =</span> <span class="cf">function</span>(x){<span class="fu">str_match</span>(x[<span class="dv">1</span>], <span class="st">&#39;&lt;time class=&quot;menu_date_title&quot;&gt;Menu du (.*?)&lt;/time&gt;&#39;</span>)[, <span class="dv">2</span>]})</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dates</span></code></pre></div>
+<pre><code>## [1] &quot;mercredi 20 novembre 2024&quot; &quot;jeudi 21 novembre 2024&quot;   
+## [3] &quot;vendredi 22 novembre 2024&quot; &quot;lundi 25 novembre 2024&quot;   
+## [5] &quot;mardi 26 novembre 2024&quot;    &quot;mercredi 27 novembre 2024&quot;
+## [7] &quot;jeudi 28 novembre 2024&quot;    &quot;vendredi 29 novembre 2024&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>clean_meals <span class="ot">=</span> <span class="fu">lapply</span>(meals,<span class="at">FUN =</span> <span class="cf">function</span>(x){x[<span class="sc">-</span><span class="dv">1</span>]})</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>clean_meals</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;JOURNEE VERTE&lt;/li&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Pané au fromage, sauce forestière maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Pancakes maison olives et féta, sauce forestière maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Boulettes de blé thaï, raïta aux herbes maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Penne, sauce aux 3 fromages maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de pommes de terre maison, raïta aux herbes maison&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Soupe de légumes du jour :&lt;/li&gt;&lt;li&gt;Chou-fleur&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Donut&lt;/li&gt;&lt;li&gt;Cake nature&lt;/li&gt;&lt;li&gt;Cocktail de fruits&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Boulettes de blé thaï, raïta de concombre&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de pommes de terre maison, bibeleskaes&lt;/li&gt;&lt;li&gt;Haricots verts&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Curry de légumes maison BIO&lt;/li&gt;&lt;li&gt;Ebly safrané BIO&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de lentilles BIO&lt;/li&gt;&lt;li&gt;Haricots BIO&lt;/li&gt;&lt;li&gt;Ebly safrané BIO&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan au chocolat BIO&lt;/li&gt;&lt;li&gt;Tarte aux pommes BIO&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+## 
+## [[2]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Viennoise, sauce tomate&lt;/li&gt;&lt;li&gt;Carottes&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Gratin de légumes et lentilles corail maison&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Colombo de porc maison&lt;/li&gt;&lt;li&gt;Carottes&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Penne, sauce à la volaille maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Gratin de légumes et lentilles corail maison&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Flan litchis framboises&lt;/li&gt;&lt;li&gt;Beignet au chocolat et noisettes&lt;/li&gt;&lt;li&gt;Tarte aux pommes et à la rhubarbe&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Colombo de porc maison&lt;/li&gt;&lt;li&gt;Carottes&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Gratin de légumes et lentilles corail maison&lt;/li&gt;&lt;li&gt;Penne&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Echine de porc aux cacahuètes maison&lt;/li&gt;&lt;li&gt;Riz cantonnais&lt;/li&gt;&lt;li&gt;Pommes de terre au four&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes, sauce au miel&lt;/li&gt;&lt;li&gt;Riz cantonnais&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan litchis framboises&lt;/li&gt;&lt;li&gt;Beignet au chocolat et noisettes&lt;/li&gt;&lt;li&gt;Tarte aux pommes et à la rhubarbe&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+## 
+## [[3]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Saucisse de volaille, jus corsé&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux pommes de terre, poireaux et épinards maison&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Fricadelle de boeuf, jus corsé&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Penne, sauce arrabiata maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux pommes de terre, poireaux et épinards maison&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Blondie aux framboises&lt;/li&gt;&lt;li&gt;Cocktail de fruits exotiques&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Fricadelle de boeuf, jus corsé&lt;/li&gt;&lt;li&gt;Haricots plats carottes&lt;/li&gt;&lt;li&gt;Boulgour aux épices&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux pommes de terre, poireaux et épinards maison&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Cuisse de poulet à l&#39;américaine maison&lt;/li&gt;&lt;li&gt;Trio de légumes&lt;/li&gt;&lt;li&gt;Pommes de terre au four&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche au fromage&lt;/li&gt;&lt;li&gt;Trio de légumes&lt;/li&gt;&lt;li&gt;Pommes de terre au four&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Blondie aux framboises&lt;/li&gt;&lt;li&gt;Cocktail de fruits exotiques&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+## 
+## [[4]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Saucisse de Toulouse, jus corsé au thym&lt;/li&gt;&lt;li&gt;Haricots verts à l&#39;ail&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Mafé aux légumes, sauce au sésame maison&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Fish and chips, sauce rémoulade&lt;/li&gt;&lt;li&gt;Haricots verts à l&#39;ail&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce bolognaise maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Mafé aux légumes, sauce au sésame maison&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Paris-Brest&lt;/li&gt;&lt;li&gt;Tarte au citron&lt;/li&gt;&lt;li&gt;Compote de pommes aux spéculoos&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Fish and chips, sauce rémoulade&lt;/li&gt;&lt;li&gt;Haricots verts à l&#39;ail&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Mafé aux légumes, sauce au sésame maison&lt;/li&gt;&lt;li&gt;Riz pilaf&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Cordon bleu, sauce crème aux champignons&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;li&gt;Purée de pommes de terre&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Coudes gratinés&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Paris-Brest&lt;/li&gt;&lt;li&gt;Tarte au citron&lt;/li&gt;&lt;li&gt;Compote de pommes aux spéculoos&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+## 
+## [[5]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Viennoise, sauce tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de quinoa provençale, sauce tomate&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Palette à la diable&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce aux 3 fromages maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de quinoa provençale, sauce tomate&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Clafoutis aux poires et pépites de chocolat&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;li&gt;Mini donut&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Palette à la diable&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Galette de quinoa provençale, sauce tomate&lt;/li&gt;&lt;li&gt;Blé à la tomate&lt;/li&gt;&lt;li&gt;Chou-fleur provençal&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Filet de poulet, sauce crème&lt;/li&gt;&lt;li&gt;Haricots beurre&lt;/li&gt;&lt;li&gt;Blé safrané&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Dahl crémeux de pois cassés&lt;/li&gt;&lt;li&gt;Blé safrané&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Clafoutis aux poires et pépites de chocolat&lt;/li&gt;&lt;li&gt;Eclair vanille&lt;/li&gt;&lt;li&gt;Mini donut&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+## 
+## [[6]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;JOURNEE VERTE&lt;/li&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Poutine maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Lasagnes aux épinards et ricotta maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Chili aux légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Nouilles chinoises maison&lt;/li&gt;&lt;li&gt;Wok de légumes&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Lasagnes aux épinards et ricotta maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Tarte normande&lt;/li&gt;&lt;li&gt;Millefeuille&lt;/li&gt;&lt;li&gt;Cake nature&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Chili aux légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Lasagnes aux épinards et ricotta maison&lt;/li&gt;&lt;li&gt;Brocolis&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Galette de tofu BIO, sauce tomate&lt;/li&gt;&lt;li&gt;Gratin de chou-fleur&lt;/li&gt;&lt;li&gt;Pommes de terre BIO maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Omelette au fromage&lt;/li&gt;&lt;li&gt;Gratin de chou-fleur&lt;/li&gt;&lt;li&gt;Pommes de terre BIO maison&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan au caramel BIO&lt;/li&gt;&lt;li&gt;Tarte aux pommes BIO&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+## 
+## [[7]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Merguez, sauce tomate&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Boulgour&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Paëlla maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce arrabiata maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Boulgour&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Beignet au chocolat&lt;/li&gt;&lt;li&gt;Tarte coco&lt;/li&gt;&lt;li&gt;Fromage blanc crème de marrons et vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Paëlla maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Samoussa aux légumes&lt;/li&gt;&lt;li&gt;Julienne de légumes et coriandre&lt;/li&gt;&lt;li&gt;Boulgour&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Boulettes d&#39;agneau&lt;/li&gt;&lt;li&gt;Légumes couscous&lt;/li&gt;&lt;li&gt;Semoule&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Tajine de pois chiches, abricots et amandes maison&lt;/li&gt;&lt;li&gt;Semoule&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Beignet au chocolat&lt;/li&gt;&lt;li&gt;Tarte coco&lt;/li&gt;&lt;li&gt;Fromage blanc, crème de marrons et vanille&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+## 
+## [[8]]
+## [1] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Déjeuner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 1er et 2ème étage&lt;ul&gt;&lt;li&gt;2ème étage :&lt;/li&gt;&lt;li&gt;Pilons de poulet, sauce marchand de vin&lt;/li&gt;&lt;li&gt;Duo de carottes&lt;/li&gt;&lt;li&gt;Frites&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Curry de légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;li&gt;1er étage :&lt;/li&gt;&lt;li&gt;Cordon bleu, sauce marchand de vin&lt;/li&gt;&lt;li&gt;Duo de carottes&lt;/li&gt;&lt;li&gt;Pommes de terre wedges&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Farfalles, sauce carbonara maison&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Curry de légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 1er et 2ème étage&lt;ul&gt;&lt;li&gt;Flan chocolat et noisettes&lt;/li&gt;&lt;li&gt;Eclair au café&lt;/li&gt;&lt;li&gt;Tarte aux poires&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Cristal Shop (RDC) Cafétéria&lt;ul&gt;&lt;li&gt;Plat à emporter en box en verre ou sur place&lt;/li&gt;&lt;li&gt;Cordon bleu, sauce marchand de vin&lt;/li&gt;&lt;li&gt;Duo de carottes&lt;/li&gt;&lt;li&gt;Pommes de terre wedges&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Curry de légumes&lt;/li&gt;&lt;li&gt;Riz&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;Volaille origine France&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &lt;/ul&gt;&lt;/div&gt;                                &quot;
+## [2] &quot;                    &lt;div class=\&quot;meal_title\&quot;&gt;Dîner&lt;/div&gt;                    &lt;ul class=\&quot;meal_foodies\&quot;&gt;&lt;li&gt;Menus étudiants 2ème étage&lt;ul&gt;&lt;li&gt;Farfalles bolognaises&lt;/li&gt;&lt;li&gt;-&lt;/li&gt;&lt;li&gt;Quiche aux poireaux&lt;/li&gt;&lt;li&gt;Farfalles&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Desserts 2ème étage&lt;ul&gt;&lt;li&gt;Flan chocolat et noisettes&lt;/li&gt;&lt;li&gt;Eclair au café&lt;/li&gt;&lt;li&gt;Tarte aux poires&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;Origines de nos viandes du jour&lt;ul&gt;&lt;li&gt;menu non communiqué&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;                                            &quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialiser un dictionnaire pour les repas</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>all_meals <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(clean_meals)) {</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  meal <span class="ot">=</span> clean_meals[[i]]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  poles_all_infos <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Séparer les différentes parties des repas</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  meal_foodies <span class="ot">=</span> <span class="fu">str_split</span>(meal, <span class="st">&#39;&lt;/ul&gt;&lt;/li&gt;&#39;</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Identifier le type de repas (Déjeuner/Dîner)</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  meal_type <span class="ot">=</span> <span class="fu">str_match</span>(meal, <span class="st">&#39;&lt;div class=&quot;meal_title&quot;&gt;(.*?)&lt;/div&gt;&#39;</span>)[, <span class="dv">2</span>]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(meal_foodies)) {</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    meal_foodie <span class="ot">=</span> meal_foodies[[j]]</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    meal_foodie <span class="ot">=</span> meal_foodie[<span class="sc">-</span><span class="fu">length</span>(meal_foodie)]</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Diviser entre pôle et détails</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    split_parts <span class="ot">=</span> <span class="fu">str_split</span>(meal_foodie, <span class="st">&#39;&lt;ul&gt;&#39;</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    poles <span class="ot">=</span> <span class="fu">lapply</span>(split_parts,<span class="at">FUN =</span> <span class="cf">function</span>(split_part){<span class="fu">str_match</span>(split_part[<span class="dv">1</span>], <span class="st">&#39;&lt;li&gt;(.+)&#39;</span>)[, <span class="dv">2</span>]})</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    details <span class="ot">=</span> <span class="fu">lapply</span>(split_parts,<span class="at">FUN =</span> <span class="cf">function</span>(split_part){<span class="fu">str_match_all</span>(split_part[<span class="sc">-</span><span class="dv">1</span>], <span class="st">&#39;&lt;li&gt;(.*?)&lt;/li&gt;&#39;</span>)[[<span class="dv">1</span>]][, <span class="dv">2</span>]})</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclure les pôles avec &quot;Origine de nos viandes ..&quot;</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    idx <span class="ot">=</span> <span class="fu">str_detect</span>(poles, <span class="st">&quot;Origine&quot;</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">any</span>(idx)){</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>      poles <span class="ot">=</span> poles[<span class="sc">-</span><span class="fu">which</span>(idx)]</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>      details <span class="ot">=</span> details[<span class="sc">-</span><span class="fu">which</span>(idx)]</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    poles_details <span class="ot">=</span> <span class="fu">setNames</span>(details,poles)</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    poles_all_infos[[meal_type[[j]]]] <span class="ot">=</span> poles_details</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  all_meals[[dates[[i]]]] <span class="ot">=</span> poles_all_infos</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>all_meals</span></code></pre></div>
+<pre><code>## $`mercredi 20 novembre 2024`
+## $`mercredi 20 novembre 2024`$Déjeuner
+## $`mercredi 20 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;JOURNEE VERTE&quot;                                             
+##  [2] &quot;2ème étage :&quot;                                              
+##  [3] &quot;Pané au fromage, sauce forestière maison&quot;                  
+##  [4] &quot;Haricots verts&quot;                                            
+##  [5] &quot;Frites&quot;                                                    
+##  [6] &quot;-&quot;                                                         
+##  [7] &quot;Pancakes maison olives et féta, sauce forestière maison&quot;   
+##  [8] &quot;Haricots verts&quot;                                            
+##  [9] &quot;1er étage :&quot;                                               
+## [10] &quot;Boulettes de blé thaï, raïta aux herbes maison&quot;            
+## [11] &quot;Haricots verts&quot;                                            
+## [12] &quot;Blé à la tomate&quot;                                           
+## [13] &quot;-&quot;                                                         
+## [14] &quot;Penne, sauce aux 3 fromages maison&quot;                        
+## [15] &quot;-&quot;                                                         
+## [16] &quot;Galette de pommes de terre maison, raïta aux herbes maison&quot;
+## [17] &quot;Haricots verts&quot;                                            
+## [18] &quot;Soupe de légumes du jour :&quot;                                
+## [19] &quot;Chou-fleur&quot;                                                
+## 
+## $`mercredi 20 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Donut&quot;              &quot;Cake nature&quot;        &quot;Cocktail de fruits&quot;
+## 
+## $`mercredi 20 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;  
+## [2] &quot;Boulettes de blé thaï, raïta de concombre&quot;     
+## [3] &quot;Haricots verts&quot;                                
+## [4] &quot;Blé à la tomate&quot;                               
+## [5] &quot;-&quot;                                             
+## [6] &quot;Galette de pommes de terre maison, bibeleskaes&quot;
+## [7] &quot;Haricots verts&quot;                                
+## 
+## 
+## $`mercredi 20 novembre 2024`$Dîner
+## $`mercredi 20 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Curry de légumes maison BIO&quot; &quot;Ebly safrané BIO&quot;           
+## [3] &quot;-&quot;                           &quot;Galette de lentilles BIO&quot;   
+## [5] &quot;Haricots BIO&quot;                &quot;Ebly safrané BIO&quot;           
+## 
+## $`mercredi 20 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Flan au chocolat BIO&quot; &quot;Tarte aux pommes BIO&quot;
+## 
+## 
+## 
+## $`jeudi 21 novembre 2024`
+## $`jeudi 21 novembre 2024`$Déjeuner
+## $`jeudi 21 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;2ème étage :&quot;                                
+##  [2] &quot;Viennoise, sauce tomate&quot;                     
+##  [3] &quot;Carottes&quot;                                    
+##  [4] &quot;Frites&quot;                                      
+##  [5] &quot;-&quot;                                           
+##  [6] &quot;Gratin de légumes et lentilles corail maison&quot;
+##  [7] &quot;Penne&quot;                                       
+##  [8] &quot;1er étage :&quot;                                 
+##  [9] &quot;Colombo de porc maison&quot;                      
+## [10] &quot;Carottes&quot;                                    
+## [11] &quot;Penne&quot;                                       
+## [12] &quot;-&quot;                                           
+## [13] &quot;Penne, sauce à la volaille maison&quot;           
+## [14] &quot;-&quot;                                           
+## [15] &quot;Gratin de légumes et lentilles corail maison&quot;
+## [16] &quot;Penne&quot;                                       
+## 
+## $`jeudi 21 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Flan litchis framboises&quot;           &quot;Beignet au chocolat et noisettes&quot; 
+## [3] &quot;Tarte aux pommes et à la rhubarbe&quot;
+## 
+## $`jeudi 21 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;
+## [2] &quot;Colombo de porc maison&quot;                      
+## [3] &quot;Carottes&quot;                                    
+## [4] &quot;Penne&quot;                                       
+## [5] &quot;-&quot;                                           
+## [6] &quot;Gratin de légumes et lentilles corail maison&quot;
+## [7] &quot;Penne&quot;                                       
+## 
+## 
+## $`jeudi 21 novembre 2024`$Dîner
+## $`jeudi 21 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Echine de porc aux cacahuètes maison&quot;
+## [2] &quot;Riz cantonnais&quot;                      
+## [3] &quot;Pommes de terre au four&quot;             
+## [4] &quot;-&quot;                                   
+## [5] &quot;Samoussa aux légumes, sauce au miel&quot; 
+## [6] &quot;Riz cantonnais&quot;                      
+## 
+## $`jeudi 21 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Flan litchis framboises&quot;           &quot;Beignet au chocolat et noisettes&quot; 
+## [3] &quot;Tarte aux pommes et à la rhubarbe&quot;
+## 
+## 
+## 
+## $`vendredi 22 novembre 2024`
+## $`vendredi 22 novembre 2024`$Déjeuner
+## $`vendredi 22 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;2ème étage :&quot;                                           
+##  [2] &quot;Saucisse de volaille, jus corsé&quot;                        
+##  [3] &quot;Haricots plats carottes&quot;                                
+##  [4] &quot;Frites&quot;                                                 
+##  [5] &quot;-&quot;                                                      
+##  [6] &quot;Quiche aux pommes de terre, poireaux et épinards maison&quot;
+##  [7] &quot;Haricots plats carottes&quot;                                
+##  [8] &quot;Boulgour aux épices&quot;                                    
+##  [9] &quot;1er étage :&quot;                                            
+## [10] &quot;Fricadelle de boeuf, jus corsé&quot;                         
+## [11] &quot;Haricots plats carottes&quot;                                
+## [12] &quot;Boulgour aux épices&quot;                                    
+## [13] &quot;-&quot;                                                      
+## [14] &quot;Penne, sauce arrabiata maison&quot;                          
+## [15] &quot;-&quot;                                                      
+## [16] &quot;Quiche aux pommes de terre, poireaux et épinards maison&quot;
+## [17] &quot;Haricots plats carottes&quot;                                
+## [18] &quot;Boulgour aux épices&quot;                                    
+## 
+## $`vendredi 22 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Blondie aux framboises&quot;       &quot;Cocktail de fruits exotiques&quot;
+## [3] &quot;Eclair vanille&quot;              
+## 
+## $`vendredi 22 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;           
+## [2] &quot;Fricadelle de boeuf, jus corsé&quot;                         
+## [3] &quot;Haricots plats carottes&quot;                                
+## [4] &quot;Boulgour aux épices&quot;                                    
+## [5] &quot;-&quot;                                                      
+## [6] &quot;Quiche aux pommes de terre, poireaux et épinards maison&quot;
+## 
+## 
+## $`vendredi 22 novembre 2024`$Dîner
+## $`vendredi 22 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Cuisse de poulet à l&#39;américaine maison&quot;
+## [2] &quot;Trio de légumes&quot;                       
+## [3] &quot;Pommes de terre au four&quot;               
+## [4] &quot;-&quot;                                     
+## [5] &quot;Quiche au fromage&quot;                     
+## [6] &quot;Trio de légumes&quot;                       
+## [7] &quot;Pommes de terre au four&quot;               
+## 
+## $`vendredi 22 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Blondie aux framboises&quot;       &quot;Cocktail de fruits exotiques&quot;
+## [3] &quot;Eclair vanille&quot;              
+## 
+## 
+## 
+## $`lundi 25 novembre 2024`
+## $`lundi 25 novembre 2024`$Déjeuner
+## $`lundi 25 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;2ème étage :&quot;                            
+##  [2] &quot;Saucisse de Toulouse, jus corsé au thym&quot; 
+##  [3] &quot;Haricots verts à l&#39;ail&quot;                  
+##  [4] &quot;Frites&quot;                                  
+##  [5] &quot;-&quot;                                       
+##  [6] &quot;Mafé aux légumes, sauce au sésame maison&quot;
+##  [7] &quot;Riz pilaf&quot;                               
+##  [8] &quot;1er étage :&quot;                             
+##  [9] &quot;Fish and chips, sauce rémoulade&quot;         
+## [10] &quot;Haricots verts à l&#39;ail&quot;                  
+## [11] &quot;Riz pilaf&quot;                               
+## [12] &quot;-&quot;                                       
+## [13] &quot;Farfalles, sauce bolognaise maison&quot;      
+## [14] &quot;-&quot;                                       
+## [15] &quot;Mafé aux légumes, sauce au sésame maison&quot;
+## [16] &quot;Riz pilaf&quot;                               
+## 
+## $`lundi 25 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Paris-Brest&quot;                     &quot;Tarte au citron&quot;                
+## [3] &quot;Compote de pommes aux spéculoos&quot;
+## 
+## $`lundi 25 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;
+## [2] &quot;Fish and chips, sauce rémoulade&quot;             
+## [3] &quot;Haricots verts à l&#39;ail&quot;                      
+## [4] &quot;Riz pilaf&quot;                                   
+## [5] &quot;-&quot;                                           
+## [6] &quot;Mafé aux légumes, sauce au sésame maison&quot;    
+## [7] &quot;Riz pilaf&quot;                                   
+## 
+## 
+## $`lundi 25 novembre 2024`$Dîner
+## $`lundi 25 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Cordon bleu, sauce crème aux champignons&quot;
+## [2] &quot;Brocolis&quot;                                
+## [3] &quot;Purée de pommes de terre&quot;                
+## [4] &quot;-&quot;                                       
+## [5] &quot;Coudes gratinés&quot;                         
+## [6] &quot;Brocolis&quot;                                
+## 
+## $`lundi 25 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Paris-Brest&quot;                     &quot;Tarte au citron&quot;                
+## [3] &quot;Compote de pommes aux spéculoos&quot;
+## 
+## 
+## 
+## $`mardi 26 novembre 2024`
+## $`mardi 26 novembre 2024`$Déjeuner
+## $`mardi 26 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;2ème étage :&quot;                              
+##  [2] &quot;Viennoise, sauce tomate&quot;                   
+##  [3] &quot;Chou-fleur provençal&quot;                      
+##  [4] &quot;Frites&quot;                                    
+##  [5] &quot;-&quot;                                         
+##  [6] &quot;Galette de quinoa provençale, sauce tomate&quot;
+##  [7] &quot;Blé à la tomate&quot;                           
+##  [8] &quot;Chou-fleur provençal&quot;                      
+##  [9] &quot;1er étage :&quot;                               
+## [10] &quot;Palette à la diable&quot;                       
+## [11] &quot;Blé à la tomate&quot;                           
+## [12] &quot;Chou-fleur provençal&quot;                      
+## [13] &quot;-&quot;                                         
+## [14] &quot;Farfalles, sauce aux 3 fromages maison&quot;    
+## [15] &quot;-&quot;                                         
+## [16] &quot;Galette de quinoa provençale, sauce tomate&quot;
+## [17] &quot;Blé à la tomate&quot;                           
+## [18] &quot;Chou-fleur provençal&quot;                      
+## 
+## $`mardi 26 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Clafoutis aux poires et pépites de chocolat&quot;
+## [2] &quot;Eclair vanille&quot;                             
+## [3] &quot;Mini donut&quot;                                 
+## 
+## $`mardi 26 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;
+## [2] &quot;Palette à la diable&quot;                         
+## [3] &quot;Blé à la tomate&quot;                             
+## [4] &quot;Chou-fleur provençal&quot;                        
+## [5] &quot;-&quot;                                           
+## [6] &quot;Galette de quinoa provençale, sauce tomate&quot;  
+## [7] &quot;Blé à la tomate&quot;                             
+## [8] &quot;Chou-fleur provençal&quot;                        
+## 
+## 
+## $`mardi 26 novembre 2024`$Dîner
+## $`mardi 26 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Filet de poulet, sauce crème&quot; &quot;Haricots beurre&quot;             
+## [3] &quot;Blé safrané&quot;                  &quot;-&quot;                           
+## [5] &quot;Dahl crémeux de pois cassés&quot;  &quot;Blé safrané&quot;                 
+## 
+## $`mardi 26 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Clafoutis aux poires et pépites de chocolat&quot;
+## [2] &quot;Eclair vanille&quot;                             
+## [3] &quot;Mini donut&quot;                                 
+## 
+## 
+## 
+## $`mercredi 27 novembre 2024`
+## $`mercredi 27 novembre 2024`$Déjeuner
+## $`mercredi 27 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;JOURNEE VERTE&quot;                          
+##  [2] &quot;2ème étage :&quot;                           
+##  [3] &quot;Poutine maison&quot;                         
+##  [4] &quot;Brocolis&quot;                               
+##  [5] &quot;Frites&quot;                                 
+##  [6] &quot;-&quot;                                      
+##  [7] &quot;Lasagnes aux épinards et ricotta maison&quot;
+##  [8] &quot;Brocolis&quot;                               
+##  [9] &quot;1er étage :&quot;                            
+## [10] &quot;Chili aux légumes&quot;                      
+## [11] &quot;Riz&quot;                                    
+## [12] &quot;-&quot;                                      
+## [13] &quot;Nouilles chinoises maison&quot;              
+## [14] &quot;Wok de légumes&quot;                         
+## [15] &quot;-&quot;                                      
+## [16] &quot;Lasagnes aux épinards et ricotta maison&quot;
+## [17] &quot;Brocolis&quot;                               
+## 
+## $`mercredi 27 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Tarte normande&quot; &quot;Millefeuille&quot;   &quot;Cake nature&quot;   
+## 
+## $`mercredi 27 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;
+## [2] &quot;Chili aux légumes&quot;                           
+## [3] &quot;Riz&quot;                                         
+## [4] &quot;-&quot;                                           
+## [5] &quot;Lasagnes aux épinards et ricotta maison&quot;     
+## [6] &quot;Brocolis&quot;                                    
+## 
+## 
+## $`mercredi 27 novembre 2024`$Dîner
+## $`mercredi 27 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Galette de tofu BIO, sauce tomate&quot; &quot;Gratin de chou-fleur&quot;             
+## [3] &quot;Pommes de terre BIO maison&quot;        &quot;-&quot;                                
+## [5] &quot;Omelette au fromage&quot;               &quot;Gratin de chou-fleur&quot;             
+## [7] &quot;Pommes de terre BIO maison&quot;       
+## 
+## $`mercredi 27 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Flan au caramel BIO&quot;  &quot;Tarte aux pommes BIO&quot;
+## 
+## 
+## 
+## $`jeudi 28 novembre 2024`
+## $`jeudi 28 novembre 2024`$Déjeuner
+## $`jeudi 28 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;2ème étage :&quot;                      &quot;Merguez, sauce tomate&quot;            
+##  [3] &quot;Julienne de légumes et coriandre&quot;  &quot;Frites&quot;                           
+##  [5] &quot;-&quot;                                 &quot;Samoussa aux légumes&quot;             
+##  [7] &quot;Julienne de légumes et coriandre&quot;  &quot;Boulgour&quot;                         
+##  [9] &quot;1er étage :&quot;                       &quot;Paëlla maison&quot;                    
+## [11] &quot;-&quot;                                 &quot;Farfalles, sauce arrabiata maison&quot;
+## [13] &quot;-&quot;                                 &quot;Samoussa aux légumes&quot;             
+## [15] &quot;Julienne de légumes et coriandre&quot;  &quot;Boulgour&quot;                         
+## 
+## $`jeudi 28 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Beignet au chocolat&quot;                      
+## [2] &quot;Tarte coco&quot;                               
+## [3] &quot;Fromage blanc crème de marrons et vanille&quot;
+## 
+## $`jeudi 28 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;
+## [2] &quot;Paëlla maison&quot;                               
+## [3] &quot;-&quot;                                           
+## [4] &quot;Samoussa aux légumes&quot;                        
+## [5] &quot;Julienne de légumes et coriandre&quot;            
+## [6] &quot;Boulgour&quot;                                    
+## 
+## 
+## $`jeudi 28 novembre 2024`$Dîner
+## $`jeudi 28 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Boulettes d&#39;agneau&quot;                                
+## [2] &quot;Légumes couscous&quot;                                  
+## [3] &quot;Semoule&quot;                                           
+## [4] &quot;-&quot;                                                 
+## [5] &quot;Tajine de pois chiches, abricots et amandes maison&quot;
+## [6] &quot;Semoule&quot;                                           
+## 
+## $`jeudi 28 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Beignet au chocolat&quot;                       
+## [2] &quot;Tarte coco&quot;                                
+## [3] &quot;Fromage blanc, crème de marrons et vanille&quot;
+## 
+## 
+## 
+## $`vendredi 29 novembre 2024`
+## $`vendredi 29 novembre 2024`$Déjeuner
+## $`vendredi 29 novembre 2024`$Déjeuner$`Menus étudiants 1er et 2ème étage`
+##  [1] &quot;2ème étage :&quot;                           
+##  [2] &quot;Pilons de poulet, sauce marchand de vin&quot;
+##  [3] &quot;Duo de carottes&quot;                        
+##  [4] &quot;Frites&quot;                                 
+##  [5] &quot;-&quot;                                      
+##  [6] &quot;Curry de légumes&quot;                       
+##  [7] &quot;Riz&quot;                                    
+##  [8] &quot;1er étage :&quot;                            
+##  [9] &quot;Cordon bleu, sauce marchand de vin&quot;     
+## [10] &quot;Duo de carottes&quot;                        
+## [11] &quot;Pommes de terre wedges&quot;                 
+## [12] &quot;-&quot;                                      
+## [13] &quot;Farfalles, sauce carbonara maison&quot;      
+## [14] &quot;-&quot;                                      
+## [15] &quot;Curry de légumes&quot;                       
+## [16] &quot;Riz&quot;                                    
+## 
+## $`vendredi 29 novembre 2024`$Déjeuner$`Desserts 1er et 2ème étage`
+## [1] &quot;Flan chocolat et noisettes&quot; &quot;Eclair au café&quot;            
+## [3] &quot;Tarte aux poires&quot;          
+## 
+## $`vendredi 29 novembre 2024`$Déjeuner$`Cristal Shop (RDC) Cafétéria`
+## [1] &quot;Plat à emporter en box en verre ou sur place&quot;
+## [2] &quot;Cordon bleu, sauce marchand de vin&quot;          
+## [3] &quot;Duo de carottes&quot;                             
+## [4] &quot;Pommes de terre wedges&quot;                      
+## [5] &quot;-&quot;                                           
+## [6] &quot;Curry de légumes&quot;                            
+## [7] &quot;Riz&quot;                                         
+## 
+## 
+## $`vendredi 29 novembre 2024`$Dîner
+## $`vendredi 29 novembre 2024`$Dîner$`Menus étudiants 2ème étage`
+## [1] &quot;Farfalles bolognaises&quot; &quot;-&quot;                     &quot;Quiche aux poireaux&quot;  
+## [4] &quot;Farfalles&quot;            
+## 
+## $`vendredi 29 novembre 2024`$Dîner$`Desserts 2ème étage`
+## [1] &quot;Flan chocolat et noisettes&quot; &quot;Eclair au café&quot;            
+## [3] &quot;Tarte aux poires&quot;</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

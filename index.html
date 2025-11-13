@@ -14,7 +14,7 @@
 
 <title>Data Analysis (3 ECTS)</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -30,11 +30,11 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/font-awesome-5.13.0/js/script.js"></script>
+<script src="site_libs/font-awesome-6.7.2/js/script.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -44,6 +44,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 
@@ -74,6 +75,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -131,11 +135,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -164,8 +172,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -173,16 +181,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -305,7 +306,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -319,18 +320,6 @@ div.tocify {
 </li>
 <li>
   <a href="2_Basics.html">Basics</a>
-</li>
-<li>
-  <a href="3_Arrays_Vectors.html">Arrays/Vectors</a>
-</li>
-<li>
-  <a href="5_Data_Analysis_R.html">Data Analysis</a>
-</li>
-<li>
-  <a href="4_Regex.html">Regex</a>
-</li>
-<li>
-  <a href="7_Best_practices.html">Best Pratices</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -350,7 +339,9 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Data Analysis (3 ECTS)</h1>
-<h4 class="author">Pierre Pelletier [<a href="mailto:p.pelletier@unistra.fr" class="email">p.pelletier@unistra.fr</a>]</h4>
+<h4 class="author">Pierre Pelletier [<a
+href="mailto:p.pelletier@unistra.fr"
+class="email">p.pelletier@unistra.fr</a>]</h4>
 
 </div>
 
@@ -361,36 +352,57 @@ div.tocify {
 <div id="description" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Description</h1>
 <ul>
-<li>This course is part of the first semester of M1 ETIC/MPE. It aims at providing students with fundamental programming concepts in R, including data structures, libraries, re-usable functions, efficient codes. The course will also focus on how to report results of data analysis using Markdown and hosts of source codes (GitHub).</li>
+<li>This course is part of the first semester of M1 ETIC/MPE. It aims at
+providing students with fundamental programming concepts in R, including
+data structures, libraries, re-usable functions, efficient codes. The
+course will also focus on how to report results of data analysis using
+Markdown and hosts of source codes (GitHub).</li>
 </ul>
 <p>
  
 </p>
 <ul>
-<li>Each session will be divided into two parts, first we will go through the course using this site as a support. In the second part of the course students will be asked to solve exercises and present their approaches to others. The aim is to familiarize students with presenting and explaining their codes, but it is even more important that it serves students to benchmark their different approaches in order to better understand how to improve their code.</li>
+<li>Each session will be divided into two parts, first we will go
+through the course using this site as a support. In the second part of
+the course students will be asked to solve exercises and present their
+approaches to others. The aim is to familiarize students with presenting
+and explaining their codes, but it is even more important that it serves
+students to benchmark their different approaches in order to better
+understand how to improve their code.</li>
 </ul>
 <p>
  
 </p>
 <p>This lecture is structured as follows:</p>
 <ul>
-<li>Chapter ‘Basics’ will go through the simplest operations we can perform. It covers the different types of objects present in the two languages, the use of control flows, and the creation of functions.
+<li>Chapter ‘Basics’ will go through the simplest operations we can
+perform. It covers the different types of objects present in the two
+languages, the use of control flows, and the creation of functions.
 <p>
  
 </p></li>
-<li>Chapter ‘Arrays/Vectors’ introduces the use of vectors and matrices to perform operations. It highlights the benefits of vectorization and briefly discusses how to deal with sparse matrix.
+<li>Chapter ‘Arrays/Vectors’ introduces the use of vectors and matrices
+to perform operations. It highlights the benefits of vectorization and
+briefly discusses how to deal with sparse matrix.
 <p>
  
 </p></li>
-<li>Chapter ‘Data Analysis’ use of Tibbles from dplyr and data.table. Basic operations on dataframe like slicing, filtering, grouping, merging are covered in the chapter as well as reading and writing data.
+<li>Chapter ‘Data Analysis’ use of Tibbles from dplyr and data.table.
+Basic operations on dataframe like slicing, filtering, grouping, merging
+are covered in the chapter as well as reading and writing data.
 <p>
  
 </p></li>
-<li>Chapter ‘Regex’ gives an overview of regular expression and string manipulation. It summarizes the first two chapters by applying the regular expressions in a very basic webscrapping exercise.
+<li>Chapter ‘Regex’ gives an overview of regular expression and string
+manipulation. It summarizes the first two chapters by applying the
+regular expressions in a very basic webscrapping exercise.
 <p>
  
 </p></li>
-<li>Chapter ‘Best Practices’ is about coding in a conventional way to improve the readability of the code by others. It will also explain how to communicate and make your code accessible via github, but also how to produce reports or feed a blog with RMarkdown.
+<li>Chapter ‘Best Practices’ is about coding in a conventional way to
+improve the readability of the code by others. It will also explain how
+to communicate and make your code accessible via github, but also how to
+produce reports or feed a blog with RMarkdown.
 <p>
  
 </p></li>
@@ -403,18 +415,35 @@ div.tocify {
  
 </p>
 <ul>
-<li><p>A project to be handed in by groups of 2-3. This project is completely unbounded, but here is a guideline:</p>
+<li><p>A project to be handed in by groups of 2-3. This project is
+completely unbounded, but here is a guideline:</p>
 <ul>
-<li><p>The project must involve data processing. After defining the question you want to address, select the type of data to use (cross-sectional data, emails, time series, articles, websites, maps, simulated databases, <a href="https://www.kaggle.com/datasets">Kaggle</a>, <a href="https://archive.ics.uci.edu/ml/index.php">UCI</a>, etc.).</p></li>
-<li><p>The goal is to create a tool to answer your question. The tool can be almost anything — it could be something you’ve always dreamed of automating.</p></li>
-<li><p>The tool developed must be documented and accessible via the Github platform. The final version of the project must be on Github by the <strong>08/12/2024</strong> before midnight. <strong>No commits after this date will be taken into account.</strong> The slides for the presentation must be created in markdown.</p></li>
+<li><p>The project must involve data processing. After defining the
+question you want to address, select the type of data to use
+(cross-sectional data, emails, time series, articles, websites, maps,
+simulated databases, <a
+href="https://www.kaggle.com/datasets">Kaggle</a>, <a
+href="https://archive.ics.uci.edu/ml/index.php">UCI</a>, etc.).</p></li>
+<li><p>The goal is to create a tool to answer your question. The tool
+can be almost anything — it could be something you’ve always dreamed of
+automating.</p></li>
+<li><p>The tool developed must be documented and accessible via the
+Github platform. The final version of the project must be on Github by
+the <strong>08/12/2024</strong> before midnight. <strong>No commits
+after this date will be taken into account.</strong> The slides for the
+presentation must be created in markdown.</p></li>
 </ul></li>
 </ul>
 <p>
  
 </p>
 <ul>
-<li>The project must be presented orally the <strong>11/12/2024</strong>. Students will present the project, discussing both the strengths and weaknesses of their code and the approaches they used during the tool’s development. Students who ask questions during others’ presentations will receive bonus points towards their oral grade.</li>
+<li>The project must be presented orally the
+<strong>11/12/2024</strong>. Students will present the project,
+discussing both the strengths and weaknesses of their code and the
+approaches they used during the tool’s development. Students who ask
+questions during others’ presentations will receive bonus points towards
+their oral grade.</li>
 </ul>
 <!--
 
@@ -452,46 +481,96 @@ div.tocify {
 <p>
  
 </p>
+<div style="text-align: center;">
+<div class="float">
+<img src="img/M1ETICMPE.jpg" style="width:50.0%"
+alt="https://P-Pelletier.github.io/M1-ETIC-MPE/" />
+<div class="figcaption"><a
+href="https://P-Pelletier.github.io/M1-ETIC-MPE/"
+class="uri">https://P-Pelletier.github.io/M1-ETIC-MPE/</a></div>
+</div>
+</div>
 </div>
 <div id="installs" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Installs</h1>
-<p>Here are some link that you can use to download and install stuff that we will need.</p>
+<p>Here are some link that you can use to download and install stuff
+that we will need.</p>
 <ul>
 <li>windows:
 <ul>
-<li><a href="https://uvastatlab.github.io/phdplus/installR.html" class="uri">https://uvastatlab.github.io/phdplus/installR.html</a></li>
-<li><a href="https://www.anaconda.com/products/individual/get-started" class="uri">https://www.anaconda.com/products/individual/get-started</a></li>
-<li><a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file" class="uri">https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file</a></li>
+<li><a href="https://uvastatlab.github.io/phdplus/installR.html"
+class="uri">https://uvastatlab.github.io/phdplus/installR.html</a></li>
+<li><a href="https://www.anaconda.com/products/individual/get-started"
+class="uri">https://www.anaconda.com/products/individual/get-started</a></li>
+<li><a
+href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file"
+class="uri">https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file</a></li>
 </ul></li>
 <li>Linux:
 <ul>
-<li><a href="https://linuxconfig.org/rstudio-on-ubuntu-18-04-bionic-beaver-linux" class="uri">https://linuxconfig.org/rstudio-on-ubuntu-18-04-bionic-beaver-linux</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-18-04" class="uri">https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-18-04</a></li>
-<li><a href="https://www.robertroos.net/blog/github-desktop-ubuntu/" class="uri">https://www.robertroos.net/blog/github-desktop-ubuntu/</a></li>
-<li><a href="https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/" class="uri">https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/</a></li>
-<li><a href="http://www.psych.mcgill.ca/labs/mogillab/anaconda2/lib/python2.7/site-packages/spyder/doc/installation.html" class="uri">http://www.psych.mcgill.ca/labs/mogillab/anaconda2/lib/python2.7/site-packages/spyder/doc/installation.html</a></li>
-<li><a href="https://stackoverflow.com/questions/41986507/unable-to-set-default-python-version-to-python3-in-ubuntu" class="uri">https://stackoverflow.com/questions/41986507/unable-to-set-default-python-version-to-python3-in-ubuntu</a></li>
-<li><a href="https://docs.anaconda.com/anaconda/install/linux/" class="uri">https://docs.anaconda.com/anaconda/install/linux/</a></li>
+<li><a
+href="https://linuxconfig.org/rstudio-on-ubuntu-18-04-bionic-beaver-linux"
+class="uri">https://linuxconfig.org/rstudio-on-ubuntu-18-04-bionic-beaver-linux</a></li>
+<li><a
+href="https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-18-04"
+class="uri">https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-18-04</a></li>
+<li><a href="https://www.robertroos.net/blog/github-desktop-ubuntu/"
+class="uri">https://www.robertroos.net/blog/github-desktop-ubuntu/</a></li>
+<li><a
+href="https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/"
+class="uri">https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/</a></li>
+<li><a
+href="http://www.psych.mcgill.ca/labs/mogillab/anaconda2/lib/python2.7/site-packages/spyder/doc/installation.html"
+class="uri">http://www.psych.mcgill.ca/labs/mogillab/anaconda2/lib/python2.7/site-packages/spyder/doc/installation.html</a></li>
+<li><a
+href="https://stackoverflow.com/questions/41986507/unable-to-set-default-python-version-to-python3-in-ubuntu"
+class="uri">https://stackoverflow.com/questions/41986507/unable-to-set-default-python-version-to-python3-in-ubuntu</a></li>
+<li><a href="https://docs.anaconda.com/anaconda/install/linux/"
+class="uri">https://docs.anaconda.com/anaconda/install/linux/</a></li>
 </ul></li>
 </ul>
 </div>
-<div id="materials-used-in-this-course" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Materials used in this course</h1>
-<p>Hadley Wickham. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</p>
-<p>Zed A. Shaw. Learn Python the Hard Way: A Very Simple Introduction to the Terrifyingly Beautiful World of Computers and Code</p>
+<div id="materials-used-in-this-course" class="section level1"
+number="4">
+<h1><span class="header-section-number">4</span> Materials used in this
+course</h1>
+<p>Hadley Wickham. R for Data Science: Import, Tidy, Transform,
+Visualize, and Model Data</p>
+<p>Zed A. Shaw. Learn Python the Hard Way: A Very Simple Introduction to
+the Terrifyingly Beautiful World of Computers and Code</p>
 <p>Robin Lovelace. Efficient R Programming by Colin Gillespie</p>
-<p><a href="https://www.anotherbookondatascience.com/" class="uri">https://www.anotherbookondatascience.com/</a></p>
-<p><a href="https://www.business-science.io/business/2018/10/08/python-and-r.html" class="uri">https://www.business-science.io/business/2018/10/08/python-and-r.html</a></p>
-<p><a href="https://www.practicaldatascience.org/html/vars_v_objects.html" class="uri">https://www.practicaldatascience.org/html/vars_v_objects.html</a></p>
-<p><a href="https://learnanalyticshere.wordpress.com/2015/05/14/clash-of-the-titans-r-vs-python/" class="uri">https://learnanalyticshere.wordpress.com/2015/05/14/clash-of-the-titans-r-vs-python/</a></p>
-<p><a href="https://www.statmethods.net/input/datatypes.html" class="uri">https://www.statmethods.net/input/datatypes.html</a></p>
-<p><a href="https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#as" class="uri">https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#as</a></p>
-<p><a href="https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6" class="uri">https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6</a></p>
-<p><a href="https://docs.oracle.com/javase/tutorial/java/data/characters.html" class="uri">https://docs.oracle.com/javase/tutorial/java/data/characters.html</a></p>
-<p><a href="http://eric.univ-lyon2.fr/~ricco/tanagra/fichiers/fr_Tanagra_R_Python_Data_Perfs.pdf" class="uri">http://eric.univ-lyon2.fr/~ricco/tanagra/fichiers/fr_Tanagra_R_Python_Data_Perfs.pdf</a></p>
-<p><a href="https://juba.github.io/tidyverse/06-tidyverse.html" class="uri">https://juba.github.io/tidyverse/06-tidyverse.html</a></p>
-<p><a href="https://atrebas.github.io/post/2019-03-03-datatable-dplyr/" class="uri">https://atrebas.github.io/post/2019-03-03-datatable-dplyr/</a></p>
-<p><a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-sd-usage.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-sd-usage.html</a></p>
+<p><a href="https://www.anotherbookondatascience.com/"
+class="uri">https://www.anotherbookondatascience.com/</a></p>
+<p><a
+href="https://www.business-science.io/business/2018/10/08/python-and-r.html"
+class="uri">https://www.business-science.io/business/2018/10/08/python-and-r.html</a></p>
+<p><a
+href="https://www.practicaldatascience.org/html/vars_v_objects.html"
+class="uri">https://www.practicaldatascience.org/html/vars_v_objects.html</a></p>
+<p><a
+href="https://learnanalyticshere.wordpress.com/2015/05/14/clash-of-the-titans-r-vs-python/"
+class="uri">https://learnanalyticshere.wordpress.com/2015/05/14/clash-of-the-titans-r-vs-python/</a></p>
+<p><a href="https://www.statmethods.net/input/datatypes.html"
+class="uri">https://www.statmethods.net/input/datatypes.html</a></p>
+<p><a
+href="https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#as"
+class="uri">https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#as</a></p>
+<p><a
+href="https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6"
+class="uri">https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6</a></p>
+<p><a
+href="https://docs.oracle.com/javase/tutorial/java/data/characters.html"
+class="uri">https://docs.oracle.com/javase/tutorial/java/data/characters.html</a></p>
+<p><a
+href="http://eric.univ-lyon2.fr/~ricco/tanagra/fichiers/fr_Tanagra_R_Python_Data_Perfs.pdf"
+class="uri">http://eric.univ-lyon2.fr/~ricco/tanagra/fichiers/fr_Tanagra_R_Python_Data_Perfs.pdf</a></p>
+<p><a href="https://juba.github.io/tidyverse/06-tidyverse.html"
+class="uri">https://juba.github.io/tidyverse/06-tidyverse.html</a></p>
+<p><a href="https://atrebas.github.io/post/2019-03-03-datatable-dplyr/"
+class="uri">https://atrebas.github.io/post/2019-03-03-datatable-dplyr/</a></p>
+<p><a
+href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-sd-usage.html"
+class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-sd-usage.html</a></p>
 <p>To be completed..</p>
 <!---
 update

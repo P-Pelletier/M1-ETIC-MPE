@@ -150,9 +150,7 @@ y = c(TRUE,FALSE)
 
 !x[1]
 x & y
-x && y
 x | y
-x || y
 ```
 </div>
 </div>
@@ -160,23 +158,21 @@ x || y
 | Operator (R) | Description                 |
 |--------------|-----------------------------|
 | !            | Logical NOT                 |
-| &            | Element-wise logical AND    |
-| &&           | Logical AND                 |
-| \|           | Element-wise logical OR     |
-| \|\|         | Logical OR                  |
+| &            | Logical AND                 |
+| \|           | Logical OR                  |
 
 
 
 <div style="border:1px solid; padding:10px; margin-bottom:10px; border-radius: 10px; background-color: #f9f9f9;">
 
 
-**Exercise 1:** Write a Python expression that checks if a number is both greater than 10 and less than 20.
+**Exercise 1:** Write a R expression that checks if a number is both greater than 10 and less than 20.
 
 <details>
 <summary>Click here to see the solution</summary>
-```{python,echo = T,collapse = TRUE}
+```{r,echo = T,collapse = TRUE}
 number = 15
-result = 10 < number < 20
+result = (10 < number) & (number < 20)
 print(result)
 ```
 </details>  
@@ -184,13 +180,13 @@ print(result)
 
 <p>&nbsp;</p>
 
-**Exercise 2:** Write a Python expression that checks if a string is either "yes" or "no".
+**Exercise 2:** Write a R expression that checks if a string is either "yes" or "no".
 
 <details>
 <summary>Click here to see the solution</summary>
-```{python,echo = T,collapse = TRUE}
+```{r,echo = T,collapse = TRUE}
 string = "yes"
-result = string == "yes" or string == "no"
+result = (string == "yes") | (string == "no")
 print(result)
 ```
 </details>  
@@ -210,6 +206,7 @@ x = 'Hello World'
 
 print('Hello' %in% x)
 stringr::str_detect(x,'Hello')
+print(grepl('Hello',x))
 ```
 </div>
 </div>
@@ -225,52 +222,41 @@ stringr::str_detect(x,'Hello')
 x = c('Hello','World')
 
 print('Hello' %in% x)
-stringr::str_detect('Hello',x)
+print(stringr::str_detect(x,'Hello'))
+print(grepl('Hello',x))
 ```
 </div>
 </div>
 
 
 
-<div style="border:1px solid; padding:10px; margin-bottom:10px; border-radius: 10px; background-color: #f9f9f9;">
-
-**Exercise:**
-
-- Verify if a number is divisible by 5.
-- Is the number '58' present in the string 'ak2vf6dGdS8wShiz9S56a5hd58f8Se'?
-- Check both of these conditions simultaneously
-    
-</div>
-
-
-
 
 <div style="border:1px solid; padding:10px; margin-bottom:10px; border-radius: 10px; background-color: #f9f9f9;">
 
 
 
-**Exercise 1:** Write a Python expression that checks if the letter "a" is present in the string "banana".
+**Exercise 1:** Write a R expression that checks if the letter "a" is present in the string "banana".
 
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T,collapse = TRUE}
+```{r,echo = T,collapse = TRUE}
 string = "banana"
-result = "a" in string
+result = grepl('a',string)
 print(result)
 ```
 </details>  
 
 <p>&nbsp;</p>
 
-**Exercise 2:**  Write a Python expression that checks if the number 5 is not present in the list [1, 2, 3, 4].
+**Exercise 2:**  Write a R expression that checks if the number 5 is not present in the list [1, 2, 3, 4].
 
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T,collapse = TRUE}
-list_ = [1, 2, 3, 4]
-result = 5 not in list_
+```{r,echo = T,collapse = TRUE}
+vec = c(1, 2, 3, 4)
+result = !(5 %in% vec)
 print(result)
 ```
 </details>  
@@ -327,23 +313,25 @@ as.numeric(f)
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T,collapse = TRUE}
+```{r,echo = T,collapse = TRUE}
 full_name = "John Smith"
-first_name = full_name.split()[0] 
+first_name = strsplit(full_name, " ")
+print(first_name)
+first_name = first_name[[1]][1]
 print(first_name)
 ```
 </details> 
 
 <p>&nbsp;</p>
 
-**Exercise 2:**  Write a Python expression that checks if 'ab' is present in the list ['aa','bb','ab','ba'].
+**Exercise 2:**  Write a R expression that checks if 'ab' is present in the list ['aa','bb','ab','ba'].
 
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T,collapse = TRUE}
-list_ = ['aa','bb','ab','ba']
-result = 'ab' in list_
+```{r,echo = T,collapse = TRUE}
+vec = c('aa', 'bb', 'ab', 'ba')
+result = 'ab' %in% vec
 print(result)
 ```
 </details> 
@@ -442,14 +430,14 @@ i_mat
 
 <div style="border:1px solid; padding:10px; margin-bottom:10px; border-radius: 10px; background-color: #f9f9f9;">
 
-**Exercise 1:**  Given a list [5, 2, 8, 1, 9], sort the list in ascending order.
+**Exercise 1:**  Given a vector c(5, 2, 8, 1, 9), sort the vector in ascending order.
 
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T,collapse = TRUE}
-my_list = [5, 2, 8, 1, 9]
-my_list.sort()
+```{r,echo = T,collapse = TRUE}
+my_list = c(5, 2, 8, 1, 9)
+my_list = sort(my_list)
 print(my_list)
 ```
 </details> 
@@ -457,30 +445,17 @@ print(my_list)
 <p>&nbsp;</p>
 
 
-**Exercise 2:**    Create a NumPy array with the values [[1, 2, 3], [4, 5, 6]]. Then, print the element at row 1, column 2.
+**Exercise 2:**    Create a matrix with the values c(1, 2, 3, 4, 5, 6) (2x3). Then, print the element at row 2, column 3.
 
 <details>
 <summary>Click here to see the solution</summary>
-```{python,echo = T, error = T, collapse = TRUE}
-import numpy as np
-my_array = np.array([[1, 2, 3], [4, 5, 6]])
-print(my_array[1, 2])
+```{r,echo = T, error = T, collapse = TRUE}
+my_matrix = matrix(c(1, 2, 3, 4, 5, 6), 2, 3)
+print(my_matrix[2, 3])
 ```
 </details> 
 
 <p>&nbsp;</p>
-
-**Exercise 3:**  Create a NumPy array with the values [1, 2, 3, 4, 5, 6]. Then, reshape it into a 2x3 matrix.
-
-<details>
-<summary>Click here to see the solution</summary>
-```{python,echo = T,collapse = TRUE}
-import numpy as np
-my_array = np.array([1, 2, 3, 4, 5, 6])
-reshaped_array = my_array.reshape(2, 3)
-print(reshaped_array)
-```
-</details> 
 
 </div>
 
@@ -538,28 +513,25 @@ class(t_df)
 
 
 
-**Exercise 1:**   Create a Pandas DataFrame from a dictionary with two columns: "Name" and "Age".
+**Exercise 1:**   Create a DataFrame with two columns: "Name" and "Age" from two vectors of length 2.
 
 <details>
 <summary>Click here to see the solution</summary>
-```{python,echo = T, error = T, collapse = TRUE}
-import pandas as pd
-data = {"Name": ["Alice", "Bob"], "Age": [25, 24]}
-df = pd.DataFrame(data)
-print(df)
-
+```{r,echo = T, error = T, collapse = TRUE}
+data = data.frame(Name = c("Alice", "Bob"), Age = c(25, 24))
+print(data)
 ```
 </details>  
 
 <p>&nbsp;</p>
 
-**Exercise 2:**  Add a new column to a Pandas DataFrame that contains the square of 'Age'.
+**Exercise 2:**  Add a new column to the DataFrame that contains the square of 'Age'.
 
 <details>
 <summary>Click here to see the solution</summary>
-```{python,echo = T,collapse = TRUE}
-df["Squared_Age"] = df["Age"] ** 2
-print(df)
+```{r,echo = T,collapse = TRUE}
+data$Squared_Age = data$Age ^ 2
+print(data)
 ```
 </details>  
 
@@ -675,13 +647,13 @@ if(!is.integer(n)){
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T, error = T, collapse = TRUE}
+```{r,echo = T, error = T, collapse = TRUE}
 word = 'hello'
-if 'e' in word:
+if(grepl('e', word)){
   print("there is an 'e'")
-else:
+} else {
   print("there is no 'e'")
-
+}
 ```
 </details>  
 
@@ -692,13 +664,14 @@ else:
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T,collapse = TRUE}
-if len(word) <= 3:
-    print("short")
-elif len(word) <= 6:
-    print("medium")
-else:
-    print("long")
+```{r,echo = T,collapse = TRUE}
+if (nchar(word) <= 3) {
+  print("short")
+} else if (nchar(word) <= 6) {
+  print("medium")
+} else {
+  print("long")
+}
 ```
 </details>  
 
@@ -763,23 +736,25 @@ total
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T, error = T, collapse = TRUE}
-for i in range(1, 11):
-    print(i)
+```{r,echo = T, error = T, collapse = TRUE}
+for (i in 1:10) {
+  print(i)
+}
 ```
 </details>  
 
 <p>&nbsp;</p>
 
-**Exercise 2:**  Write a while loop that keeps prompting the user for input until they enter "quit".
+**Exercise 2:**  Write a while loop that keeps prompting the user for input until they enter "quit". Use ``` readline(prompt = "Enter something (or 'quit'): ")```
 
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T, eval=FALSE,collapse = TRUE}
+```{r,echo = T, eval=FALSE,collapse = TRUE}
 user_input = ""
-while user_input != "quit":
-    user_input = input("Enter something (or 'quit'): ")
+while (user_input != "quit") {
+  user_input = readline(prompt = "Enter something (or 'quit'): ")
+}
 ```
 </details>  
 
@@ -883,18 +858,19 @@ x2
 
  
 
-**Exercise 1:**  Write a function that takes a list of numbers as input and returns the average of the numbers. Check first that the list is not None before computing the average.
+**Exercise 1:**  Write a function that takes a vector as input and returns the average of the numbers. Check first that the vector contains some elements before computing the average.
 
 <details>
 <summary>Click here to see the solution</summary>
 
-```{python,echo = T, error = T, collapse = TRUE}
-def average_list(numbers):
-    if not numbers:
-        return 0
-    return sum(numbers) / len(numbers)
-
-my_list = [1, 2, 3, 4, 5]
+```{r,echo = T, error = T, collapse = TRUE}
+average_list = function(numbers){
+  if (length(numbers) == 0){
+    return(0)
+  }
+  return(sum(numbers) / length(numbers))
+}
+my_list = c(1, 2, 3, 4, 5)
 average = average_list(my_list)
 print(average)
 ```

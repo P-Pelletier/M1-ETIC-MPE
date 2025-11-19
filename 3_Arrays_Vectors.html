@@ -470,7 +470,7 @@ using vectorized operations:</p>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>vec_2 <span class="ot">=</span> vec<span class="sc">*</span><span class="dv">2</span></span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## Time difference of 0.002229929 secs</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## Time difference of 0.002384186 secs</span></span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>vec_2_loop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(vec))</span>
@@ -478,7 +478,7 @@ using vectorized operations:</p>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  vec_2_loop[i] <span class="ot">=</span> vec[i]<span class="sc">*</span><span class="dv">2</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    }</span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="do">## Time difference of 0.1074569 secs</span></span></code></pre></div>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="do">## Time difference of 0.10796 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="create-arrays" class="section level1" number="1">
@@ -539,11 +539,11 @@ using vectorized operations:</p>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>mat_rd <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">4</span><span class="sc">*</span><span class="dv">5</span>),<span class="dv">4</span>,<span class="dv">5</span>)</span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>mat_rd</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="do">##            [,1]      [,2]      [,3]      [,4]      [,5]</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="do">## [1,] 0.36106721 0.1125063 0.9627866 0.3676942 0.9769649</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="do">## [2,] 0.00584566 0.6400775 0.4823643 0.1458049 0.9295941</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="do">## [3,] 0.71668526 0.6261808 0.3606518 0.5347798 0.7894776</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">## [4,] 0.14114014 0.9335206 0.4430472 0.9303363 0.3554775</span></span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="do">##           [,1]      [,2]       [,3]      [,4]      [,5]</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="do">## [1,] 0.2723129 0.3007131 0.94887465 0.6650002 0.7531317</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="do">## [2,] 0.1769633 0.1683990 0.41466585 0.7430993 0.8571609</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="do">## [3,] 0.9099809 0.9432342 0.64307517 0.1485137 0.3425609</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">## [4,] 0.4620686 0.4469217 0.07151309 0.8464154 0.3382062</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -684,27 +684,27 @@ slicing</h2>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>arr <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>arr</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">##  [1] 0.28049869 0.39953223 0.06849294 0.99355290 0.54871119 0.97488983</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">##  [7] 0.79171572 0.56840763 0.93572181 0.15033443</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">##  [1] 0.224318869 0.468591152 0.307798881 0.706871074 0.572001553 0.647370121</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">##  [7] 0.973322546 0.958177804 0.004562827 0.691516285</span></span>
 <span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="fu">sort</span>(arr)</span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="do">##  [1] 0.06849294 0.15033443 0.28049869 0.39953223 0.54871119 0.56840763</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="do">##  [7] 0.79171572 0.93572181 0.97488983 0.99355290</span></span></code></pre></div>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="do">##  [1] 0.004562827 0.224318869 0.307798881 0.468591152 0.572001553 0.647370121</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="do">##  [7] 0.691516285 0.706871074 0.958177804 0.973322546</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>arr <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">4</span><span class="sc">*</span><span class="dv">3</span>),<span class="dv">4</span>,<span class="dv">3</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>arr</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="do">##           [,1]      [,2]      [,3]</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="do">## [1,] 0.9121903 0.3885284 0.8819511</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="do">## [2,] 0.4947872 0.3203447 0.4028643</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="do">## [3,] 0.2229858 0.2234433 0.8863103</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="do">## [4,] 0.4330889 0.2601462 0.2161666</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="do">##            [,1]      [,2]      [,3]</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="do">## [1,] 0.05660917 0.6820333 0.9455428</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="do">## [2,] 0.51672650 0.9948109 0.1802383</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="do">## [3,] 0.62515142 0.5138835 0.1925056</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="do">## [4,] 0.41987841 0.4748254 0.4543346</span></span>
 <span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="fu">apply</span>(arr,<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> sort)</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="do">##           [,1]      [,2]      [,3]</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="do">## [1,] 0.2229858 0.2234433 0.2161666</span></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="do">## [2,] 0.4330889 0.2601462 0.4028643</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="do">## [3,] 0.4947872 0.3203447 0.8819511</span></span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="do">## [4,] 0.9121903 0.3885284 0.8863103</span></span></code></pre></div>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="do">##            [,1]      [,2]      [,3]</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="do">## [1,] 0.05660917 0.4748254 0.1802383</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="do">## [2,] 0.41987841 0.5138835 0.1925056</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="do">## [3,] 0.51672650 0.6820333 0.4543346</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="do">## [4,] 0.62515142 0.9948109 0.9455428</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -783,13 +783,13 @@ on the size of the vector.</p>
 <span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  }</span>
 <span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>}</span>
 <span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="do">## Time difference of 0.02080679 secs</span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="do">## Time difference of 0.01902008 secs</span></span>
 <span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a></span>
 <span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a></span>
 <span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(vec<span class="sc">%%</span><span class="dv">2</span><span class="sc">!=</span><span class="dv">0</span>,vec,<span class="dv">0</span>)</span>
 <span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="do">## Time difference of 0.05601597 secs</span></span></code></pre></div>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="do">## Time difference of 0.05210614 secs</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">20000000</span>)</span>
@@ -804,13 +804,13 @@ on the size of the vector.</p>
 <span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>  }</span>
 <span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>}</span>
 <span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="do">## Time difference of 1.800551 secs</span></span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="do">## Time difference of 1.731085 secs</span></span>
 <span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a></span>
 <span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a></span>
 <span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(vec<span class="sc">%%</span><span class="dv">2</span><span class="sc">!=</span><span class="dv">0</span>,vec,<span class="dv">0</span>)</span>
 <span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a><span class="do">## Time difference of 0.3925891 secs</span></span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a><span class="do">## Time difference of 0.39205 secs</span></span>
 <span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a></span>
 <span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a></span>
 <span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a><span class="do">## other way using which</span></span>
@@ -818,7 +818,7 @@ on the size of the vector.</p>
 <span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a>vec[<span class="fu">which</span>(vec<span class="sc">%%</span><span class="dv">2</span><span class="sc">==</span><span class="dv">0</span>)] <span class="ot">=</span> <span class="dv">0</span></span>
 <span id="cb16-28"><a href="#cb16-28" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t </span>
-<span id="cb16-29"><a href="#cb16-29" tabindex="-1"></a><span class="do">## Time difference of 0.114182 secs</span></span></code></pre></div>
+<span id="cb16-29"><a href="#cb16-29" tabindex="-1"></a><span class="do">## Time difference of 0.1120391 secs</span></span></code></pre></div>
 </div>
 </div>
 </div>

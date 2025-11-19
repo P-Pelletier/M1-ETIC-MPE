@@ -602,17 +602,17 @@ full_join, inner_join, anti_join)</td>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="do">## ── Attaching core tidyverse packages ────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="do">## ── Attaching core tidyverse packages ──────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──</span></span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="do">## ✔ forcats   1.0.0     ✔ purrr     1.1.0</span></span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0</span></span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="do">## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="do">## ✖ dplyr::filter() masks stats::filter()</span></span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="do">## ✖ dplyr::lag()    masks stats::lag()</span></span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="do">## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>covid_papers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/covid_papers.csv&quot;</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="do">## Rows: 148916 Columns: 19</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="do">## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="do">## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">## Delimiter: &quot;,&quot;</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="do">## chr  (17): _id, pmid, pmcid, doi, title, source, year_pub, month_pub, author...</span></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="do">## dbl   (1): cited</span></span>
@@ -651,7 +651,7 @@ full_join, inner_join, anti_join)</td>
 <span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> <span class="fu">filter</span>(covid_papers,doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="fu">Sys.time</span>()<span class="sc">-</span>t</span>
-<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">## Time difference of 0.01443601 secs</span></span></code></pre></div>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">## Time difference of 0.01418686 secs</span></span></code></pre></div>
 <p><b> Using Pipes </b></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
@@ -663,12 +663,12 @@ full_join, inner_join, anti_join)</td>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01377583 secs</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01311707 secs</span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers[<span class="fu">which</span>(covid_papers<span class="sc">$</span>doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>),]</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.01467705 secs</span></span></code></pre></div>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.0141449 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="select-columns" class="section level3" number="1.1.2">
@@ -1457,8 +1457,8 @@ manipulation</h2>
 <span id="cb23-47"><a href="#cb23-47" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cur_group_rows</span>()[<span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">n</span>())])</span>
 <span id="cb23-48"><a href="#cb23-48" tabindex="-1"></a><span class="do">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.</span></span>
 <span id="cb23-49"><a href="#cb23-49" tabindex="-1"></a><span class="do">## ℹ Please use `reframe()` instead.</span></span>
-<span id="cb23-50"><a href="#cb23-50" tabindex="-1"></a><span class="do">## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and</span></span>
-<span id="cb23-51"><a href="#cb23-51" tabindex="-1"></a><span class="do">##   adjust accordingly.</span></span>
+<span id="cb23-50"><a href="#cb23-50" tabindex="-1"></a><span class="do">## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and adjust</span></span>
+<span id="cb23-51"><a href="#cb23-51" tabindex="-1"></a><span class="do">##   accordingly.</span></span>
 <span id="cb23-52"><a href="#cb23-52" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
 <span id="cb23-53"><a href="#cb23-53" tabindex="-1"></a><span class="do">## `summarise()` has grouped output by &#39;PY&#39;. You can override using the `.groups`</span></span>
 <span id="cb23-54"><a href="#cb23-54" tabindex="-1"></a><span class="do">## argument.</span></span>
@@ -1850,7 +1850,7 @@ to include in the .SD.</p>
 <span id="cb30-27"><a href="#cb30-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character),</span>
 <span id="cb30-28"><a href="#cb30-28" tabindex="-1"></a>         toupper))</span>
 <span id="cb30-29"><a href="#cb30-29" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 2.967147 secs</span></span></code></pre></div>
+<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 2.967513 secs</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1876,7 +1876,7 @@ to include in the .SD.</p>
 <span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span>  <span class="fu">which</span>(<span class="fu">sapply</span>(cp_datatable, class)<span class="sc">==</span><span class="st">&#39;character&#39;</span>)){<span class="fu">set</span>(cp_datatable, <span class="at">i=</span><span class="cn">NULL</span>, <span class="at">j=</span>j, <span class="at">value=</span><span class="fu">toupper</span>(cp_datatable[[j]]))}</span>
 <span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t </span>
-<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 2.629824 secs</span></span></code></pre></div>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 2.622077 secs</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -3198,7 +3198,7 @@ class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb1
 <span id="cb102-3"><a href="#cb102-3" tabindex="-1"></a></span>
 <span id="cb102-4"><a href="#cb102-4" tabindex="-1"></a>covid_papers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/covid_papers.csv&quot;</span>)</span>
 <span id="cb102-5"><a href="#cb102-5" tabindex="-1"></a><span class="do">## Rows: 148916 Columns: 19</span></span>
-<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a><span class="do">## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a><span class="do">## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb102-7"><a href="#cb102-7" tabindex="-1"></a><span class="do">## Delimiter: &quot;,&quot;</span></span>
 <span id="cb102-8"><a href="#cb102-8" tabindex="-1"></a><span class="do">## chr  (17): _id, pmid, pmcid, doi, title, source, year_pub, month_pub, author...</span></span>
 <span id="cb102-9"><a href="#cb102-9" tabindex="-1"></a><span class="do">## dbl   (1): cited</span></span>

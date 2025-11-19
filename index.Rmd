@@ -35,21 +35,24 @@ This lecture is structured as follows:
 # Exams 
 
 
-There are two different grades in this course :
+There are 3 different grades in this course :
 
 <p>&nbsp;</p>
 
-- A project to be handed in by groups of 2-3. This project is completely unbounded, but here is a guideline:
+- A written exam at the end of the semester (**<span style="font-size: 1.2em;">15/12/2025</span>**).
+<p>&nbsp;</p>
+
+- A project to be handed in by groups of 2-3 (**<span style="font-size: 1.2em;">13/01/2026</span>**). This project is completely unbounded, but here is a guideline:
 
     - The project must involve data processing. After defining the question you want to address, select the type of data to use (cross-sectional data, emails, time series, articles, websites, maps, simulated databases, [Kaggle](https://www.kaggle.com/datasets), [UCI](https://archive.ics.uci.edu/ml/index.php), etc.).
     
     - The goal is to create a tool to answer your question. The tool can be almost anything — it could be something you’ve always dreamed of automating.
     
-    - The tool developed must be documented and accessible via the Github platform. The final version of the project must be on Github by the **08/12/2024** before midnight. **No commits after this date will be taken into account.** The slides for the presentation must be created in markdown.
+    - The tool developed must be documented and accessible via the Github platform. The final version of the project must be on Github by the **12/01/2026** before midnight. **No commits after this date will be taken into account.** The slides for the presentation must be created in markdown.
     
 <p>&nbsp;</p>
 
-- The project must be presented orally the **11/12/2024**. Students will present the project, discussing both the strengths and weaknesses of their code and the approaches they used during the tool's development. Students who ask questions during others’ presentations will receive bonus points towards their oral grade.
+- The project must be presented orally the **13/01/2026**. Students will present the project, discussing both the strengths and weaknesses of their code and the approaches they used during the tool's development. Students who ask questions during others’ presentations will receive bonus points towards their oral grade.
 
 
 <!--

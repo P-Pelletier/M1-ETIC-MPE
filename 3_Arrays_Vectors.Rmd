@@ -449,21 +449,22 @@ Operator | Description
 
 ```{r, collapse = TRUE}
 # R
-network_12[!upper.tri(network_12)] = 0
+diag(network_12) = NA
+network_12
 # nb of link
-sum(network_12)
+sum(network_12, na.rm = T)
 # same since there is only 0 and 1 
 sum(network_12[which(network_12>0,arr.ind = T)]) # see the arr.ind to get the two coordinates
 
 # share of link 
-mean(network_12)
+mean(network_12, na.rm = T)
 
 
 # nb link by entities
-apply(network_12,MARGIN = 2,FUN = sum)
+apply(network_12,MARGIN = 2,FUN = sum, na.rm = T)
 
 # share of link across entities (by columns)
-apply(network_12,MARGIN = 2,FUN = mean)
+apply(network_12,MARGIN = 2,FUN = mean, na.rm = T)
 
 
 ```
@@ -598,7 +599,7 @@ Find the last ten digits of the series, $1^{1} + 2^{2} + 3^{3} + ... + 1000^{100
 
 **Exercise 2**
 
-Try to vectorize exercices from chapter 1, you can also compare it with apply/map functions.
+Try to vectorize exercices 1 and 2 from chapter 1, you can also compare it with apply/map functions.
 
 </div>
 
@@ -636,6 +637,6 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 <p>&nbsp;</p>
 
 
-<a href="exo_chap_2.html">Solutions</a> 
+<a href="">Solutions</a> 
 <!-- exo_chap_2.html -->
 

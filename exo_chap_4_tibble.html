@@ -418,6 +418,9 @@ div.tocify {
 <li>
   <a href="2_Basics.html">Basics</a>
 </li>
+<li>
+  <a href="3_Arrays_Vectors.html">Arrays/Vectors</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -467,7 +470,7 @@ div.r pre { background-color: #fff5fd; }
 <pre><code>## Error: &#39;data/table_2.csv&#39; does not exist in current working directory (&#39;/Users/peltouz/Documents/GitHub/M1-ETIC-MPE&#39;).</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>cities <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">&#39;data/cities_loc.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 13751 Columns: 4</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────
+<pre><code>## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (2): city, country
 ## dbl (2): lng, lat
@@ -493,7 +496,7 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="fu">filter</span>(pmid <span class="sc">!=</span> <span class="st">&#39;null&#39;</span> <span class="sc">&amp;</span> year_pub <span class="sc">&gt;</span> <span class="dv">1975</span>)</span></code></pre></div>
 <pre><code>## Error: object &#39;table_2&#39; not found</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 </div>
 </div>
 <div id="merge" class="section level1" number="3">
@@ -524,7 +527,7 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nb_aut =</span> <span class="fu">dim</span>(<span class="fu">str_match_all</span>(authors, <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)[[<span class="dv">1</span>]])[<span class="dv">1</span>]) </span></code></pre></div>
 <pre><code>## Error: object &#39;final_table&#39; not found</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>final_table <span class="ot">=</span> final_table <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>  <span class="fu">filter</span>(nb_aut <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## Error: object &#39;final_table&#39; not found</code></pre>
@@ -575,7 +578,7 @@ binary variable also, what is the share of ML paper that are oa ?</p>
 <span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_nb_aut =</span> <span class="fu">mean</span>(nb_aut))</span></code></pre></div>
 <pre><code>## Error: object &#39;final_table&#39; not found</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>final_table <span class="sc">%&gt;%</span> </span>
 <span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a>  <span class="fu">group_by</span>(ML) <span class="sc">%&gt;%</span> </span>
@@ -643,7 +646,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb65-7"><a href="#cb65-7" tabindex="-1"></a>  <span class="fu">separate_rows</span>(authors, <span class="at">sep =</span> <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)</span></code></pre></div>
 <pre><code>## Error: object &#39;final_table&#39; not found</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
 <span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a>  <span class="fu">select</span>(authors)</span></code></pre></div>
 <pre><code>## Error: object &#39;countries_tibble&#39; not found</code></pre>
@@ -653,7 +656,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb71-4"><a href="#cb71-4" tabindex="-1"></a>  <span class="fu">filter</span>(authors <span class="sc">!=</span><span class="st">&quot;&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(authors, <span class="st">&#39;&lt;AFFILIATION&gt;None&#39;</span>))</span></code></pre></div>
 <pre><code>## Error: object &#39;countries_tibble&#39; not found</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0.001 sec elapsed</code></pre>
+<pre><code>## 0 sec elapsed</code></pre>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
 <span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a>  <span class="fu">select</span>(authors)</span></code></pre></div>
 <pre><code>## Error: object &#39;countries_tibble&#39; not found</code></pre>
@@ -696,7 +699,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb91-4"><a href="#cb91-4" tabindex="-1"></a>  <span class="fu">distinct</span>(pmid, country)</span></code></pre></div>
 <pre><code>## Error: object &#39;countries_tibble&#39; not found</code></pre>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a>countries_tibble</span></code></pre></div>
 <pre><code>## Error: object &#39;countries_tibble&#39; not found</code></pre>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
@@ -715,7 +718,7 @@ class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb1
 <pre><code>## Error: object &#39;countries_tibble&#39; not found</code></pre>
 <div class="sourceCode" id="cb103"><pre
 class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 </div>
 </div>
 <div id="country-bar-plot-with-plotly" class="section level1"

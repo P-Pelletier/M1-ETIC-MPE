@@ -72,18 +72,23 @@ What is the 10 001st prime number?
 ```{r}
 # R
 
-nth_prime <- function(nth){
-  primes = c(1,2)
-  i = 2
-  while(length(primes)<nth){
-    i <- i+1
-    is_prime = TRUE
-    for(j in 2:(round(sqrt(i))+1)){
-      if(i%%j == 0){
+is_nb_prime <- function(nb){
+   is_prime = TRUE
+   for(j in 2:(round(sqrt(nb))+1)){
+      if(nb%%j == 0){
         is_prime = FALSE
         break
       }
-    }
+   }
+   return(is_prime)
+}
+
+nth_prime <- function(nth){
+  primes = c(2,3)
+  i = 3
+  while(length(primes)<nth){
+    i <- i+1
+    is_prime = is_nb_prime(i) 
     if(is_prime == TRUE){
       primes = c(primes,i)
     }

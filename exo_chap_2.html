@@ -13,7 +13,7 @@
 
 <title>exo chap 2</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -56,8 +56,9 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -68,7 +69,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -421,6 +422,12 @@ div.tocify {
 <li>
   <a href="3_Arrays_Vectors.html">Arrays/Vectors</a>
 </li>
+<li>
+  <a href="5_Data_Analysis_R.html">Data Analysis</a>
+</li>
+<li>
+  <a href="7_Best_practices.html">Best Pratices</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -466,20 +473,24 @@ class="math inline">\(1^{1} + 2^{2} + 3^{3} + ... +
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># To manage very large numbers you have to use gmp</span></span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">library</span>(gmp)</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## Error in library(gmp): there is no package called &#39;gmp&#39;</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>sum_n_power_last_digit <span class="ot">&lt;-</span> <span class="cf">function</span>(n, last_digit){</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  sum_series <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">as.bigz</span>(<span class="fu">seq</span>(<span class="dv">1</span>, n))<span class="sc">**</span>(<span class="fu">seq</span>(<span class="dv">1</span>, n)))</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  sum_n <span class="ot">=</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">as.character</span>(sum_series),<span class="st">&#39;&#39;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  last_digits <span class="ot">=</span> sum_n[(<span class="fu">length</span>(sum_n)<span class="sc">-</span>last_digit<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(sum_n)]</span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  <span class="fu">return</span>(last_digits)</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>}</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">sum_n_power_last_digit</span>(<span class="dv">1000</span>,<span class="dv">10</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="do">## Error in as.bigz(seq(1, n)): could not find function &quot;as.bigz&quot;</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="do">## Time difference of 0.0002069473 secs</span></span></code></pre></div>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="do">## Attaching package: &#39;gmp&#39;</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="do">##     %*%, apply, crossprod, matrix, tcrossprod</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>sum_n_power_last_digit <span class="ot">&lt;-</span> <span class="cf">function</span>(n, last_digit){</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  sum_series <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">as.bigz</span>(<span class="fu">seq</span>(<span class="dv">1</span>, n))<span class="sc">**</span>(<span class="fu">seq</span>(<span class="dv">1</span>, n)))</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  sum_n <span class="ot">=</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">as.character</span>(sum_series),<span class="st">&#39;&#39;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  last_digits <span class="ot">=</span> sum_n[(<span class="fu">length</span>(sum_n)<span class="sc">-</span>last_digit<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(sum_n)]</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="fu">return</span>(last_digits)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>}</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">sum_n_power_last_digit</span>(<span class="dv">1000</span>,<span class="dv">10</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="do">##  [1] &quot;9&quot; &quot;1&quot; &quot;1&quot; &quot;0&quot; &quot;8&quot; &quot;4&quot; &quot;6&quot; &quot;7&quot; &quot;0&quot; &quot;0&quot;</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="do">## Time difference of 0.007824898 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="exercice-2" class="section level1" number="2">
@@ -504,7 +515,7 @@ or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="fu">get_sum_multiples_below1</span>(<span class="dv">1000000</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="do">## [1] 233333166668</span></span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="do">## Time difference of 0.3404422 secs</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="do">## Time difference of 0.2743299 secs</span></span>
 <span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a></span>
 <span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a></span>
 <span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
@@ -518,7 +529,7 @@ or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
 <span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="fu">get_sum_multiples_below2</span>(<span class="dv">1000000</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
 <span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="do">## [1] 233333166668</span></span>
 <span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="do">## Time difference of 1.012419 secs</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="do">## Time difference of 0.84674 secs</span></span>
 <span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a></span>
 <span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a></span>
 <span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a></span>
@@ -532,7 +543,7 @@ or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.</p>
 <span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a><span class="fu">get_sum_multiples_below3</span>(<span class="dv">1000000</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
 <span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a><span class="do">## [1] 233333166668</span></span>
 <span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a><span class="do">## Time difference of 0.008219957 secs</span></span></code></pre></div>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a><span class="do">## Time difference of 0.007993937 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="exercice-2-1" class="section level2" number="2.2">
@@ -544,8 +555,8 @@ can see that the 6th prime is 13.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>nth_prime <span class="ot">&lt;-</span> <span class="cf">function</span>(nth){</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  primes <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  i <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  primes <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  i <span class="ot">=</span> <span class="dv">3</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="cf">while</span>(<span class="fu">length</span>(primes)<span class="sc">&lt;</span>nth){</span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    i <span class="ot">&lt;-</span> i<span class="sc">+</span><span class="dv">1</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    is_prime <span class="ot">=</span> <span class="cn">TRUE</span></span>
@@ -569,7 +580,7 @@ can see that the 6th prime is 13.</p>
 <span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="fu">nth_prime</span>(<span class="dv">10001</span>)</span>
 <span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="do">## [1] 104743</span></span>
 <span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="do">## Time difference of 0.835192 secs</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="do">## Time difference of 0.573751 secs</span></span>
 <span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a></span>
 <span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a></span>
 <span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a>nth_prime2 <span class="ot">&lt;-</span> <span class="cf">function</span>(nth){</span>
@@ -590,125 +601,36 @@ can see that the 6th prime is 13.</p>
 <span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="fu">nth_prime2</span>(<span class="dv">10001</span>)</span>
 <span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="do">## [1] 104743</span></span>
 <span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="do">## Time difference of 0.6083109 secs</span></span></code></pre></div>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="do">## Time difference of 0.5317729 secs</span></span></code></pre></div>
 </div>
 </div>
 </div>
 <div id="exercice-3" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Exercice 3</h1>
-<p>2520 is the smallest number that can be divided by each of the
-numbers from 1 to 10 without any remainder.</p>
-<p>What is the smallest positive number that is evenly divisible by all
-of the numbers from 1 to 20?</p>
-<div class="r">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># R</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>smalles_multiple <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  dividers <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>,n)</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  i <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  is_multiple <span class="ot">=</span> <span class="cn">FALSE</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="cf">while</span>(is_multiple <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>    modulos <span class="ot">=</span> i<span class="sc">%%</span>dividers</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>    len_multiple <span class="ot">=</span> <span class="fu">length</span>(modulos[<span class="fu">which</span>(modulos <span class="sc">==</span> <span class="dv">0</span>)])</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>    <span class="cf">if</span>(len_multiple <span class="sc">==</span> <span class="fu">length</span>(dividers)){</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>      is_multiple <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>      i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>    }</span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>  }</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>}</span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="fu">smalles_multiple</span>(<span class="dv">10</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="do">## [1] 2520</span></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="do">## Time difference of 0.005362034 secs</span></span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#smalles_multiple(20)</span></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="do">## Time difference of 0.000150919 secs</span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>smalles_multiple <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a>  dividers_all <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>,n)</span>
-<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a>  multiple <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>  i <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span>,n,<span class="dv">10</span>)){</span>
-<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a>    dividers <span class="ot">=</span> dividers_all[j<span class="sc">:</span>(j<span class="sc">+</span><span class="dv">9</span>)]</span>
-<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a>    is_multiple <span class="ot">=</span> <span class="cn">FALSE</span></span>
-<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a>    <span class="cf">while</span>(is_multiple <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
-<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a>      modulos <span class="ot">=</span> i<span class="sc">%%</span>dividers</span>
-<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a>      len_multiple <span class="ot">=</span> <span class="fu">length</span>(modulos[<span class="fu">which</span>(modulos <span class="sc">==</span> <span class="dv">0</span>)])</span>
-<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a>      <span class="cf">if</span>(len_multiple <span class="sc">==</span> <span class="fu">length</span>(dividers)){</span>
-<span id="cb4-44"><a href="#cb4-44" tabindex="-1"></a>        is_multiple <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a>        multiple <span class="ot">=</span> i</span>
-<span id="cb4-46"><a href="#cb4-46" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
-<span id="cb4-47"><a href="#cb4-47" tabindex="-1"></a>        i <span class="ot">=</span> i <span class="sc">+</span> multiple</span>
-<span id="cb4-48"><a href="#cb4-48" tabindex="-1"></a>      }</span>
-<span id="cb4-49"><a href="#cb4-49" tabindex="-1"></a>    }</span>
-<span id="cb4-50"><a href="#cb4-50" tabindex="-1"></a>  }</span>
-<span id="cb4-51"><a href="#cb4-51" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb4-52"><a href="#cb4-52" tabindex="-1"></a>}</span>
-<span id="cb4-53"><a href="#cb4-53" tabindex="-1"></a></span>
-<span id="cb4-54"><a href="#cb4-54" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb4-55"><a href="#cb4-55" tabindex="-1"></a><span class="fu">smalles_multiple</span>(<span class="dv">10</span>)</span>
-<span id="cb4-56"><a href="#cb4-56" tabindex="-1"></a><span class="do">## [1] 2520</span></span>
-<span id="cb4-57"><a href="#cb4-57" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb4-58"><a href="#cb4-58" tabindex="-1"></a><span class="do">## Time difference of 0.006178141 secs</span></span>
-<span id="cb4-59"><a href="#cb4-59" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" tabindex="-1"></a></span>
-<span id="cb4-61"><a href="#cb4-61" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb4-62"><a href="#cb4-62" tabindex="-1"></a><span class="fu">smalles_multiple</span>(<span class="dv">20</span>)</span>
-<span id="cb4-63"><a href="#cb4-63" tabindex="-1"></a><span class="do">## [1] 232792560</span></span>
-<span id="cb4-64"><a href="#cb4-64" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb4-65"><a href="#cb4-65" tabindex="-1"></a><span class="do">## Time difference of 0.1532872 secs</span></span></code></pre></div>
-</div>
-</div>
-<div id="exercice-4" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Exercice 4</h1>
-<p><span class="math inline">\(2^{15}\)</span>=32768 and the sum of its
-digits is 3 + 2 + 7 + 6 + 8 = 26.</p>
-<p>What is the sum of the digits of the number <span
-class="math inline">\(2^{1000}\)</span>?</p>
-<div class="r">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(gmp)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="do">## Error in library(gmp): there is no package called &#39;gmp&#39;</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>bigq <span class="ot">=</span> <span class="fu">as.bigz</span>(<span class="dv">2</span><span class="sc">**</span><span class="dv">1000</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">## Error in as.bigz(2^1000): could not find function &quot;as.bigz&quot;</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">as.integer</span>(stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">as.character</span>(bigq),<span class="st">&#39;&#39;</span>)[[<span class="dv">1</span>]]))</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">## Error: object &#39;bigq&#39; not found</span></span></code></pre></div>
-</div>
-</div>
-<div id="exercice-5" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Exercice 5</h1>
 <p>A palindromic number reads the same both ways. The largest palindrome
 made from the product of two 2-digit numbers is 9009 = 91 × 99.</p>
 <p>Find the largest palindrome made from the product of two 3-digit
 numbers.</p>
 <div class="r">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>vec_palindrome <span class="ot">=</span> <span class="cf">function</span>(seq){</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  vec1 <span class="ot">=</span> <span class="fu">rep</span>(seq,<span class="at">each =</span> <span class="fu">length</span>(seq))</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  vec2 <span class="ot">=</span> <span class="fu">rep</span>(seq,<span class="fu">length</span>(seq))</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  product <span class="ot">=</span> vec1<span class="sc">*</span>vec2</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  </span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  product_inv <span class="ot">=</span> stringi<span class="sc">::</span><span class="fu">stri_reverse</span>(product)</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  palindromes <span class="ot">=</span> product[<span class="fu">which</span>(product <span class="sc">==</span>  product_inv)]</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">max</span>(palindromes))</span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>}</span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>three_digits <span class="ot">=</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">999</span></span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="fu">vec_palindrome</span>(three_digits)</span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="do">## [1] 906609</span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="do">## Time difference of 0.375957 secs</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>vec_palindrome <span class="ot">=</span> <span class="cf">function</span>(seq){</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  vec1 <span class="ot">=</span> <span class="fu">rep</span>(seq,<span class="at">each =</span> <span class="fu">length</span>(seq))</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  vec2 <span class="ot">=</span> <span class="fu">rep</span>(seq,<span class="fu">length</span>(seq))</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  product <span class="ot">=</span> vec1<span class="sc">*</span>vec2</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  </span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  product_inv <span class="ot">=</span> stringi<span class="sc">::</span><span class="fu">stri_reverse</span>(product)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  palindromes <span class="ot">=</span> product[<span class="fu">which</span>(product <span class="sc">==</span>  product_inv)]</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">max</span>(palindromes))</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>}</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>three_digits <span class="ot">=</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">999</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="fu">vec_palindrome</span>(three_digits)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="do">## [1] 906609</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="do">## Time difference of 0.2975399 secs</span></span></code></pre></div>
 </div>
 <p><a href="3_Arrays_Vectors.html"> Go back to chapter 2</a></p>
 </div>

@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Data.table</title>
+
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">M1 ETIC/MPE - Data Analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="2_Basics.html">Basics</a>
+</li>
+<li>
+  <a href="3_Arrays_Vectors.html">Arrays/Vectors</a>
+</li>
+<li>
+  <a href="5_Data_Analysis_R.html">Data Analysis</a>
+</li>
+<li>
+  <a href="7_Best_practices.html">Best Pratices</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/master-ds2e/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Data.table</h1>
+
+</div>
+
+
+<style>
+div.python pre { background-color: #e9f7f5
+; }
+</style>
+<style>
+div.r pre { background-color: #fff5fd; }
+</style>
+<p><a href="5_Data_Analysis_R.html">Go back to chapter 4</a></p>
+<div id="import-datasets" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Import datasets</h1>
+<div class="r">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(tictoc)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="do">## Attaching package: &#39;tictoc&#39;</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:data.table&#39;:</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">##     shift</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Import the two datasets </span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>dt_table_1 <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="st">&#39;data/table_1.csv&#39;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>dt_table_2 <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="st">&#39;data/table_2.csv&#39;</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>dt_cities <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="st">&#39;data/cities_loc.csv&#39;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">## 0.931 sec elapsed</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">setDT</span>(dt_table_1)</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">setDT</span>(dt_table_2)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">setkey</span>(dt_table_1,pmid)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">setkey</span>(dt_table_2,pmid)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>dt_table_1</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="do">## Key: &lt;pmid&gt;</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="do">##             pmid                           doi</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="do">##           &lt;char&gt;                        &lt;char&gt;</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="do">##      1: 10022847       10.1093/emboj/18.4.1059</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="do">##      2: 10023135             10.1159/000028054</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="do">##      3: 10023767 10.1016/s1074-7613(00)80003-5</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="do">##      4: 10024427        10.1006/mcpr.1998.0204</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="do">##      5: 10024430        10.1006/mcpr.1998.0211</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="do">##     ---                                       </span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="do">## 148912:     null                          null</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="do">## 148913:     null                          null</span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="do">## 148914:     null                          null</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="do">## 148915:     null                          null</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="do">## 148916:     null                          null</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="do">##                                                                                                                                                 title</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="do">##                                                                                                                                                &lt;char&gt;</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a><span class="do">##      1: The disulfide-bonded loop of chromogranin B mediates membrane binding and directs sorting from the trans-Golgi network to secretory granules.</span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="do">##      2:                                              Cellular reservoirs for coronavirus infection of the brain in beta2-microglobulin knockout mice.</span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a><span class="do">##      3:                                                                       An antiviral mechanism of nitric oxide: inhibition of a viral protease.</span></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="do">##      4:                                                      A multiplex PCR for Massachusetts and Arkansas serotypes of infectious bronchitis virus.</span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="do">##      5:                                           Diagnosis of mouse hepatitis virus contamination in mouse population by using nude mice and RT-PCR.</span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="do">##     ---                                                                                                                                              </span></span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a><span class="do">## 148912:                                                                                                                          BIOLOGICAL SCIENCES.</span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="do">## 148913:                                                                                                                  The British Medical Journal.</span></span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="do">## 148914:                                                                              SEVENTY-THIRD ANNUAL MEETING OF THE British Medical Association.</span></span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="do">## 148915:                                                                              SEVENTY-NINTH ANNUAL MEETING OF THE British Medical Association.</span></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="do">## 148916:                                                                                Forty-Third Annual Meeting of the British Medical Association.</span></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a><span class="do">##         source language</span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="do">##         &lt;char&gt;   &lt;char&gt;</span></span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">##      1:    MED      eng</span></span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="do">##      2:    MED      eng</span></span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a><span class="do">##      3:    MED      eng</span></span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a><span class="do">##      4:    MED      eng</span></span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a><span class="do">##      5:    MED      eng</span></span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a><span class="do">##     ---                </span></span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a><span class="do">## 148912:    PMC      eng</span></span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a><span class="do">## 148913:    PMC      eng</span></span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a><span class="do">## 148914:    PMC      eng</span></span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a><span class="do">## 148915:    PMC      eng</span></span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a><span class="do">## 148916:    PMC      eng</span></span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a><span class="do">##                                                                                                                                                     pubtype</span></span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a><span class="do">##                                                                                                                                                      &lt;char&gt;</span></span>
+<span id="cb1-68"><a href="#cb1-68" tabindex="-1"></a><span class="do">##      1:                                                    {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a><span class="do">##      2:                                                    {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a><span class="do">##      3:          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb1-71"><a href="#cb1-71" tabindex="-1"></a><span class="do">##      4:                     {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Comparative Study&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, Non-P.H.S.&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a><span class="do">##      5: {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Comparative Study&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, Non-P.H.S.&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                    </span></span>
+<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a><span class="do">## 148912:                                                                                                                          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Index&quot;&quot;]}</span></span>
+<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a><span class="do">## 148913:                                                                                          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a><span class="do">## 148914:                                                                                             {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;meeting-report&quot;&quot;, &quot;&quot;Meeting Report&quot;&quot;]}</span></span>
+<span id="cb1-77"><a href="#cb1-77" tabindex="-1"></a><span class="do">## 148915:                                                                                             {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;meeting-report&quot;&quot;, &quot;&quot;Meeting Report&quot;&quot;]}</span></span>
+<span id="cb1-78"><a href="#cb1-78" tabindex="-1"></a><span class="do">## 148916:                                                                                             {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;meeting-report&quot;&quot;, &quot;&quot;Meeting Report&quot;&quot;]}</span></span>
+<span id="cb1-79"><a href="#cb1-79" tabindex="-1"></a><span class="do">##                 pubmodel</span></span>
+<span id="cb1-80"><a href="#cb1-80" tabindex="-1"></a><span class="do">##                   &lt;char&gt;</span></span>
+<span id="cb1-81"><a href="#cb1-81" tabindex="-1"></a><span class="do">##      1:        &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb1-82"><a href="#cb1-82" tabindex="-1"></a><span class="do">##      2:        &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb1-83"><a href="#cb1-83" tabindex="-1"></a><span class="do">##      3:        &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb1-84"><a href="#cb1-84" tabindex="-1"></a><span class="do">##      4:        &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb1-85"><a href="#cb1-85" tabindex="-1"></a><span class="do">##      5:        &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb1-86"><a href="#cb1-86" tabindex="-1"></a><span class="do">##     ---                 </span></span>
+<span id="cb1-87"><a href="#cb1-87" tabindex="-1"></a><span class="do">## 148912: &quot;&quot;Undetermined&quot;&quot;</span></span>
+<span id="cb1-88"><a href="#cb1-88" tabindex="-1"></a><span class="do">## 148913: &quot;&quot;Undetermined&quot;&quot;</span></span>
+<span id="cb1-89"><a href="#cb1-89" tabindex="-1"></a><span class="do">## 148914: &quot;&quot;Undetermined&quot;&quot;</span></span>
+<span id="cb1-90"><a href="#cb1-90" tabindex="-1"></a><span class="do">## 148915: &quot;&quot;Undetermined&quot;&quot;</span></span>
+<span id="cb1-91"><a href="#cb1-91" tabindex="-1"></a><span class="do">## 148916: &quot;&quot;Undetermined&quot;&quot;</span></span></code></pre></div>
+</div>
+</div>
+<div id="clean" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Clean</h1>
+<p>Remove articles with no pmid and no DOI, and all articles before
+1975</p>
+<div class="r">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>dt_table_1 <span class="ot">=</span> dt_table_1[pmid <span class="sc">!=</span> <span class="st">&#39;null&#39;</span> <span class="sc">&amp;</span> doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>dt_table_2 <span class="ot">=</span> dt_table_2[pmid <span class="sc">!=</span> <span class="st">&#39;null&#39;</span> <span class="sc">&amp;</span> year_pub <span class="sc">&gt;</span> <span class="dv">1975</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="do">## 0.018 sec elapsed</span></span></code></pre></div>
+</div>
+</div>
+<div id="merge" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Merge</h1>
+<p>Merge the two datasets, pmid is unique for each paper</p>
+<div class="r">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>dt_final_table <span class="ot">=</span> <span class="fu">na.omit</span>(dt_table_2[dt_table_1, <span class="at">on =</span> <span class="st">&#39;pmid&#39;</span>])</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="do">## 0.02 sec elapsed</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>dt_final_table</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## Key: &lt;pmid&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="do">##             pmid</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="do">##           &lt;char&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="do">##      1: 10022847</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="do">##      2: 10023135</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="do">##      3: 10023767</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="do">##      4: 10024427</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="do">##      5: 10024430</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="do">##     ---         </span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="do">## 108718:  9952375</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="do">## 108719:  9971782</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="do">## 108720:  9971783</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="do">## 108721:  9988465</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="do">## 108722:  9989453</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               authors</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                &lt;char&gt;</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                                                                                                                                                                                                              &lt;AUTHOR&gt; Glombik MM Glombik&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Krömer A Krömer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Salm T Salm&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Huttner WB Huttner&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gerdes HH Gerdes&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="do">##      2:                                                                                                                                                                                                                                          &lt;AUTHOR&gt; Lavi E E Lavi&lt;AFFILIATION&gt;Division of Neuropathology, Department of Pathology and Laboratory Medicine, University of Pennsylvania School of Medicine, Philadelphia, PA 19104-6085, USA.lavi@mail.med.upenn.edu&lt;AUTHOR&gt; Das Sarma J J Das Sarma&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Weiss SR S R Weiss&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="do">##      3:                                                                                                            &lt;AUTHOR&gt; Saura M M Saura&lt;AFFILIATION&gt;Department of Medicine, The Johns Hopkins University School of Medicine, Baltimore, Maryland 21205, USA.&lt;AUTHOR&gt; Zaragoza C C Zaragoza&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; McMillan A A McMillan&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Quick RA R A Quick&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Hohenadl C C Hohenadl&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein JM J M Lowenstein&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein CJ C J Lowenstein&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="do">##      4:                                                                                                                                                                                                                                                                                                                                                               &lt;AUTHOR&gt; Wang X X Wang&lt;AFFILIATION&gt;Department of Pathobiology, University of Connecticut, U-89,61 North Eagleville Road, Storrs, CT, 06269-3089, USA.&lt;AUTHOR&gt; Khan MI M I Khan&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="do">##      5:                                                                                                                                                                                                                                                                                              &lt;AUTHOR&gt; Wang RF Wang&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Campbell WL Campbell&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Cao WW Cao&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Colvert RM Colvert&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Holland MA Holland&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Cerniglia CE Cerniglia&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="do">## 108718: &lt;AUTHOR&gt; Teran LM L M Teran&lt;AFFILIATION&gt;Department of Medicine, Health, and Biological Sciences, University of Southampton, School of Medicine, Southampton General Hospital, Southampton, Hampshire, United Kingdom S016 6YD.&lt;AUTHOR&gt; Seminario MC M C Seminario&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Shute JK J K Shute&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Papi A A Papi&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Compton SJ S J Compton&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Low JL J L Low&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gleich GJ G J Gleich&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Johnston SL S L Johnston&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="do">## 108719:                                                                                                                                                                                                                                                                         &lt;AUTHOR&gt; Pedersen KW K W Pedersen&lt;AFFILIATION&gt;Division of Electron Microscopy, Department of Biology, University of Oslo, Oslo, Norway.&lt;AUTHOR&gt; van der Meer Y Y van der Meer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Roos N N Roos&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Snijder EJ E J Snijder&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="do">## 108720:                                                                                                                                                                                                                                                                         &lt;AUTHOR&gt; van Dinten LC L C van Dinten&lt;AFFILIATION&gt;Department of Virology, Leiden University Medical Center, Leiden, The Netherlands.&lt;AUTHOR&gt; Rensen S S Rensen&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gorbalenya AE A E Gorbalenya&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Snijder EJ E J Snijder&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="do">## 108721:                                                                                                                                                                                                                                                                                                                                                                                                                                                          &lt;AUTHOR&gt; Johnston SL S L Johnston&lt;AFFILIATION&gt;University Medicine, Southampton General Hospital, UK.</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="do">## 108722:                                                                                                                                                                                                                                                                                                     &lt;AUTHOR&gt; Smith KJ K J Smith&lt;AFFILIATION&gt;Department of Clinical Neurological Sciences, Guy&#39;s, King&#39;s and St. Thomas&#39; School of Medicine, London. k.smith@umds.ac.uk&lt;AUTHOR&gt; Kapoor R R Kapoor&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Felts PA P A Felts&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="do">##         year_pub has_data     oa cited                                 doi</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="do">##           &lt;char&gt;   &lt;char&gt; &lt;char&gt; &lt;int&gt;                              &lt;char&gt;</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="do">##      1:     1999        N      N    61             10.1093/emboj/18.4.1059</span></span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="do">##      2:     1999        Y      Y    12                   10.1159/000028054</span></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="do">##      3:     1999        N      Y   115       10.1016/s1074-7613(00)80003-5</span></span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="do">##      4:     1999        N      Y     8              10.1006/mcpr.1998.0204</span></span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="do">##      5:     1999        N      N     1              10.1006/mcpr.1998.0211</span></span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="do">##     ---                                                                   </span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="do">## 108718:     1999        N      Y    48                      10.1086/314618</span></span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="do">## 108719:     1999        N      N   195     10.1128/jvi.73.3.2016-2026.1999</span></span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="do">## 108720:     1999        Y      N    65     10.1128/jvi.73.3.2027-2037.1999</span></span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="do">## 108721:     1998        N      Y     8 10.1046/j.1365-2222.1998.028s5181.x</span></span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="do">## 108722:     1999        N      Y   282  10.1111/j.1750-3639.1999.tb00212.x</span></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                      title</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                     &lt;char&gt;</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="do">##      1:                                                      The disulfide-bonded loop of chromogranin B mediates membrane binding and directs sorting from the trans-Golgi network to secretory granules.</span></span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="do">##      2:                                                                                                   Cellular reservoirs for coronavirus infection of the brain in beta2-microglobulin knockout mice.</span></span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="do">##      3:                                                                                                                            An antiviral mechanism of nitric oxide: inhibition of a viral protease.</span></span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="do">##      4:                                                                                                           A multiplex PCR for Massachusetts and Arkansas serotypes of infectious bronchitis virus.</span></span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="do">##      5:                                                                                                Diagnosis of mouse hepatitis virus contamination in mouse population by using nude mice and RT-PCR.</span></span>
+<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                                   </span></span>
+<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="do">## 108718: RANTES, macrophage-inhibitory protein 1alpha, and the eosinophil product major basic protein are released into upper respiratory secretions during virus-induced asthma exacerbations in children.</span></span>
+<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a><span class="do">## 108719:                       Open reading frame 1a-encoded subunits of the arterivirus replicase induce endoplasmic reticulum-derived double-membrane vesicles which carry the viral replication complex.</span></span>
+<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a><span class="do">## 108720:                              Proteolytic processing of the open reading frame 1b-encoded part of arterivirus replicase is mediated by nsp4 serine protease and Is essential for virus replication.</span></span>
+<span id="cb3-60"><a href="#cb3-60" tabindex="-1"></a><span class="do">## 108721:                                                                                                                                                                 Mechanisms of asthma exacerbation.</span></span>
+<span id="cb3-61"><a href="#cb3-61" tabindex="-1"></a><span class="do">## 108722:                                                                                                                                   Demyelination: the role of reactive oxygen and nitrogen species.</span></span>
+<span id="cb3-62"><a href="#cb3-62" tabindex="-1"></a><span class="do">##         source language</span></span>
+<span id="cb3-63"><a href="#cb3-63" tabindex="-1"></a><span class="do">##         &lt;char&gt;   &lt;char&gt;</span></span>
+<span id="cb3-64"><a href="#cb3-64" tabindex="-1"></a><span class="do">##      1:    MED      eng</span></span>
+<span id="cb3-65"><a href="#cb3-65" tabindex="-1"></a><span class="do">##      2:    MED      eng</span></span>
+<span id="cb3-66"><a href="#cb3-66" tabindex="-1"></a><span class="do">##      3:    MED      eng</span></span>
+<span id="cb3-67"><a href="#cb3-67" tabindex="-1"></a><span class="do">##      4:    MED      eng</span></span>
+<span id="cb3-68"><a href="#cb3-68" tabindex="-1"></a><span class="do">##      5:    MED      eng</span></span>
+<span id="cb3-69"><a href="#cb3-69" tabindex="-1"></a><span class="do">##     ---                </span></span>
+<span id="cb3-70"><a href="#cb3-70" tabindex="-1"></a><span class="do">## 108718:    MED      eng</span></span>
+<span id="cb3-71"><a href="#cb3-71" tabindex="-1"></a><span class="do">## 108719:    MED      eng</span></span>
+<span id="cb3-72"><a href="#cb3-72" tabindex="-1"></a><span class="do">## 108720:    MED      eng</span></span>
+<span id="cb3-73"><a href="#cb3-73" tabindex="-1"></a><span class="do">## 108721:    MED      eng</span></span>
+<span id="cb3-74"><a href="#cb3-74" tabindex="-1"></a><span class="do">## 108722:    MED      eng</span></span>
+<span id="cb3-75"><a href="#cb3-75" tabindex="-1"></a><span class="do">##                                                                                                                                                     pubtype</span></span>
+<span id="cb3-76"><a href="#cb3-76" tabindex="-1"></a><span class="do">##                                                                                                                                                      &lt;char&gt;</span></span>
+<span id="cb3-77"><a href="#cb3-77" tabindex="-1"></a><span class="do">##      1:                                                    {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-78"><a href="#cb3-78" tabindex="-1"></a><span class="do">##      2:                                                    {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-79"><a href="#cb3-79" tabindex="-1"></a><span class="do">##      3:          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-80"><a href="#cb3-80" tabindex="-1"></a><span class="do">##      4:                     {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Comparative Study&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, Non-P.H.S.&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-81"><a href="#cb3-81" tabindex="-1"></a><span class="do">##      5: {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Comparative Study&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, Non-P.H.S.&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-82"><a href="#cb3-82" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                    </span></span>
+<span id="cb3-83"><a href="#cb3-83" tabindex="-1"></a><span class="do">## 108718:          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-84"><a href="#cb3-84" tabindex="-1"></a><span class="do">## 108719:                                                                                          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-85"><a href="#cb3-85" tabindex="-1"></a><span class="do">## 108720:          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-86"><a href="#cb3-86" tabindex="-1"></a><span class="do">## 108721:                                                                              {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;research-article&quot;&quot;, &quot;&quot;Review&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-87"><a href="#cb3-87" tabindex="-1"></a><span class="do">## 108722:                                        {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Review&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb3-88"><a href="#cb3-88" tabindex="-1"></a><span class="do">##          pubmodel</span></span>
+<span id="cb3-89"><a href="#cb3-89" tabindex="-1"></a><span class="do">##            &lt;char&gt;</span></span>
+<span id="cb3-90"><a href="#cb3-90" tabindex="-1"></a><span class="do">##      1: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-91"><a href="#cb3-91" tabindex="-1"></a><span class="do">##      2: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-92"><a href="#cb3-92" tabindex="-1"></a><span class="do">##      3: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-93"><a href="#cb3-93" tabindex="-1"></a><span class="do">##      4: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-94"><a href="#cb3-94" tabindex="-1"></a><span class="do">##      5: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-95"><a href="#cb3-95" tabindex="-1"></a><span class="do">##     ---          </span></span>
+<span id="cb3-96"><a href="#cb3-96" tabindex="-1"></a><span class="do">## 108718: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-97"><a href="#cb3-97" tabindex="-1"></a><span class="do">## 108719: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-98"><a href="#cb3-98" tabindex="-1"></a><span class="do">## 108720: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-99"><a href="#cb3-99" tabindex="-1"></a><span class="do">## 108721: &quot;&quot;Print&quot;&quot;</span></span>
+<span id="cb3-100"><a href="#cb3-100" tabindex="-1"></a><span class="do">## 108722: &quot;&quot;Print&quot;&quot;</span></span></code></pre></div>
+</div>
+</div>
+<div id="number-of-authors" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Number of authors</h1>
+<p>Create a new variable with the number of authors for each paper</p>
+<div class="r">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>dt_final_table[,nb_aut <span class="sc">:=</span> <span class="fu">dim</span>(<span class="fu">str_match_all</span>(authors, <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)[[<span class="dv">1</span>]])[<span class="dv">1</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>               by <span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="do">## 1.454 sec elapsed</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>dt_final_table <span class="ot">=</span> dt_final_table[nb_aut<span class="sc">&gt;</span><span class="dv">0</span>]</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>dt_final_table[,<span class="fu">c</span>(<span class="st">&#39;authors&#39;</span>, <span class="st">&#39;nb_aut&#39;</span>)]</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               authors</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                &lt;char&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                                                                                                                                                                                                              &lt;AUTHOR&gt; Glombik MM Glombik&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Krömer A Krömer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Salm T Salm&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Huttner WB Huttner&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gerdes HH Gerdes&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">##      2:                                                                                                                                                                                                                                          &lt;AUTHOR&gt; Lavi E E Lavi&lt;AFFILIATION&gt;Division of Neuropathology, Department of Pathology and Laboratory Medicine, University of Pennsylvania School of Medicine, Philadelphia, PA 19104-6085, USA.lavi@mail.med.upenn.edu&lt;AUTHOR&gt; Das Sarma J J Das Sarma&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Weiss SR S R Weiss&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="do">##      3:                                                                                                            &lt;AUTHOR&gt; Saura M M Saura&lt;AFFILIATION&gt;Department of Medicine, The Johns Hopkins University School of Medicine, Baltimore, Maryland 21205, USA.&lt;AUTHOR&gt; Zaragoza C C Zaragoza&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; McMillan A A McMillan&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Quick RA R A Quick&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Hohenadl C C Hohenadl&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein JM J M Lowenstein&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein CJ C J Lowenstein&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="do">##      4:                                                                                                                                                                                                                                                                                                                                                               &lt;AUTHOR&gt; Wang X X Wang&lt;AFFILIATION&gt;Department of Pathobiology, University of Connecticut, U-89,61 North Eagleville Road, Storrs, CT, 06269-3089, USA.&lt;AUTHOR&gt; Khan MI M I Khan&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="do">##      5:                                                                                                                                                                                                                                                                                              &lt;AUTHOR&gt; Wang RF Wang&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Campbell WL Campbell&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Cao WW Cao&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Colvert RM Colvert&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Holland MA Holland&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Cerniglia CE Cerniglia&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="do">## 107100: &lt;AUTHOR&gt; Teran LM L M Teran&lt;AFFILIATION&gt;Department of Medicine, Health, and Biological Sciences, University of Southampton, School of Medicine, Southampton General Hospital, Southampton, Hampshire, United Kingdom S016 6YD.&lt;AUTHOR&gt; Seminario MC M C Seminario&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Shute JK J K Shute&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Papi A A Papi&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Compton SJ S J Compton&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Low JL J L Low&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gleich GJ G J Gleich&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Johnston SL S L Johnston&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="do">## 107101:                                                                                                                                                                                                                                                                         &lt;AUTHOR&gt; Pedersen KW K W Pedersen&lt;AFFILIATION&gt;Division of Electron Microscopy, Department of Biology, University of Oslo, Oslo, Norway.&lt;AUTHOR&gt; van der Meer Y Y van der Meer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Roos N N Roos&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Snijder EJ E J Snijder&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="do">## 107102:                                                                                                                                                                                                                                                                         &lt;AUTHOR&gt; van Dinten LC L C van Dinten&lt;AFFILIATION&gt;Department of Virology, Leiden University Medical Center, Leiden, The Netherlands.&lt;AUTHOR&gt; Rensen S S Rensen&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gorbalenya AE A E Gorbalenya&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Snijder EJ E J Snijder&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="do">## 107103:                                                                                                                                                                                                                                                                                                                                                                                                                                                          &lt;AUTHOR&gt; Johnston SL S L Johnston&lt;AFFILIATION&gt;University Medicine, Southampton General Hospital, UK.</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="do">## 107104:                                                                                                                                                                                                                                                                                                     &lt;AUTHOR&gt; Smith KJ K J Smith&lt;AFFILIATION&gt;Department of Clinical Neurological Sciences, Guy&#39;s, King&#39;s and St. Thomas&#39; School of Medicine, London. k.smith@umds.ac.uk&lt;AUTHOR&gt; Kapoor R R Kapoor&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Felts PA P A Felts&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="do">##         nb_aut</span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="do">##          &lt;int&gt;</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="do">##      1:      5</span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="do">##      2:      3</span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="do">##      3:      7</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="do">##      4:      2</span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="do">##      5:      6</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="do">##     ---       </span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="do">## 107100:      8</span></span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="do">## 107101:      4</span></span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="do">## 107102:      4</span></span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="do">## 107103:      1</span></span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="do">## 107104:      3</span></span></code></pre></div>
+</div>
+</div>
+<div id="nb-authors-distribution" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Nb authors
+distribution</h1>
+<p>plot distribution for the log(number of authors +1)</p>
+<div class="r">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># R </span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(<span class="fu">log</span>(dt_final_table<span class="sc">$</span>nb_aut<span class="sc">+</span><span class="dv">1</span>)))</span></code></pre></div>
+<p><img src="exo_chap_4_dt_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+</div>
+<div id="search-for-dlmlnn-in-title" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Search for DL/ML/NN in
+title</h1>
+<p>How many papers contains ‘deep learning’ or ‘machine learning’ and
+‘neural network’ (also with a ‘s’ for neural networks) in their title ?
+Create a binary variable to save this information. What is the mean of
+authors for ML papers and non-ML papers ? Transform has_data and oa into
+binary variable also, what is the share of ML paper that are oa ?</p>
+<div class="r">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>dt_final_table[, <span class="st">&#39;title&#39;</span> <span class="sc">:=</span> .(<span class="fu">tolower</span>(title)),</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>               by <span class="ot">=</span> <span class="st">&#39;pmid&#39;</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>               ][,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>                 <span class="fu">c</span>(<span class="st">&#39;ML&#39;</span>,<span class="st">&#39;has_data&#39;</span>,<span class="st">&#39;oa&#39;</span>) <span class="sc">:=</span> .(<span class="fu">ifelse</span>(<span class="fu">str_detect</span>(title,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                                                                <span class="st">&#39;deep learning|machine learning|neural networks?&#39;</span>),<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>                                              <span class="fu">ifelse</span>(has_data <span class="sc">==</span> <span class="st">&#39;Y&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                                              <span class="fu">ifelse</span>(oa <span class="sc">==</span> <span class="st">&#39;Y&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>                 by <span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="do">## 2.097 sec elapsed</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="fu">sum</span>(dt_final_table<span class="sc">$</span>ML)</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="do">## [1] 222</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">as.numeric</span>(dt_final_table<span class="sc">$</span>oa))</span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="do">## [1] 77847</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">as.numeric</span>(dt_final_table<span class="sc">$</span>has_data))</span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="do">## [1] 23980</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a>dt_final_table[,.(<span class="at">mean_nb_aut =</span> <span class="fu">mean</span>(nb_aut)),</span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a>               by <span class="ot">=</span> <span class="st">&#39;ML&#39;</span>]</span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="do">##       ML mean_nb_aut</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="do">##    &lt;num&gt;       &lt;num&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="do">## 1:     0    5.772328</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="do">## 2:     1    6.058559</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="do">## 0.003 sec elapsed</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a>dt_final_table[,.(<span class="at">share_oa =</span> <span class="fu">sum</span>(<span class="fu">as.numeric</span>(oa))<span class="sc">/</span>.N,</span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a>                  <span class="at">mean_cited =</span> <span class="fu">mean</span>(cited)),</span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a>               by <span class="ot">=</span> <span class="st">&#39;ML&#39;</span>]</span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="do">##       ML  share_oa mean_cited</span></span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="do">##    &lt;num&gt;     &lt;num&gt;      &lt;num&gt;</span></span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="do">## 1:     0 0.7266799  11.277353</span></span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="do">## 2:     1 0.8018018   1.054054</span></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="do">## 0.007 sec elapsed</span></span></code></pre></div>
+</div>
+</div>
+<div id="clean-up-pub_type" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Clean up pub_type</h1>
+<p>Clean up pub_type, for simplicity just get the first type</p>
+<div class="r">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>dt_final_table[,pub_type <span class="sc">:=</span> <span class="fu">str_match_all</span>(pubtype, <span class="st">&#39;</span><span class="sc">\\</span><span class="st">[&quot;&quot;(.*?)&quot;&quot;&#39;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>],by <span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">## 1.105 sec elapsed</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>dt_final_table[,.(pubtype,pub_type)]</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="do">##                                                                                                                                                     pubtype</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="do">##                                                                                                                                                      &lt;char&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="do">##      1:                                                    {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="do">##      2:                                                    {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="do">##      3:          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="do">##      4:                     {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Comparative Study&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, Non-P.H.S.&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="do">##      5: {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Comparative Study&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, U.S. Gov&#39;t, Non-P.H.S.&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                    </span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="do">## 107100:          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="do">## 107101:                                                                                          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="do">## 107102:          {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, U.S. Gov&#39;t, P.H.S.&quot;&quot;, &quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="do">## 107103:                                                                              {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;research-article&quot;&quot;, &quot;&quot;Review&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="do">## 107104:                                        {&quot;&quot;pubType&quot;&quot;: [&quot;&quot;Research Support, Non-U.S. Gov&#39;t&quot;&quot;, &quot;&quot;research-article&quot;&quot;, &quot;&quot;Review&quot;&quot;, &quot;&quot;Journal Article&quot;&quot;]}</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="do">##                                     pub_type</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="do">##                                       &lt;char&gt;</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="do">##      1:     Research Support, Non-U.S. Gov&#39;t</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="do">##      2:     Research Support, Non-U.S. Gov&#39;t</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="do">##      3: Research Support, U.S. Gov&#39;t, P.H.S.</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="do">##      4:                    Comparative Study</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="do">##      5:                    Comparative Study</span></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="do">##     ---                                     </span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="do">## 107100: Research Support, U.S. Gov&#39;t, P.H.S.</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="do">## 107101:                     research-article</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="do">## 107102: Research Support, U.S. Gov&#39;t, P.H.S.</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="do">## 107103:                     research-article</span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="do">## 107104:     Research Support, Non-U.S. Gov&#39;t</span></span></code></pre></div>
+</div>
+</div>
+<div id="highest-meansd-of-citation" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Highest mean/sd of
+citation</h1>
+<p>What is the pub type with the highest mean/sd of citation ? (use
+cited and the cleaned pub_type)</p>
+<div class="r">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>dt_final_table[,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>               .(<span class="at">mean_ =</span> <span class="fu">mean</span>(cited),<span class="at">sd_ =</span> <span class="fu">sd</span>(cited)),by<span class="ot">=</span><span class="st">&#39;pub_type&#39;</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>               ][<span class="fu">order</span>(mean_,<span class="at">decreasing =</span> T)]</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="do">##                                                     pub_type       mean_</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="do">##                                                       &lt;char&gt;       &lt;num&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="do">##  1:                         Consensus Development Conference 94.12820513</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="do">##  2: Research Support, American Recovery and Reinvestment Act 64.41666667</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="do">##  3:                     Research Support, U.S. Gov&#39;t, P.H.S. 53.98054275</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="do">##  4:                     Research Support, N.I.H., Intramural 48.48130841</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="do">##  5:                                 Clinical Trial, Phase II 35.28571429</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="do">##  6:                                      Clinical Conference 30.37500000</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="do">##  7:                                        Comparative Study 29.31392175</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="do">##  8:                                Controlled Clinical Trial 27.00000000</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="do">##  9:                         Research Support, Non-U.S. Gov&#39;t 26.26850704</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="do">## 10:                                           Clinical Trial 24.91121495</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="do">## 11:                                                 In Vitro 19.50000000</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="do">## 12:                                                   report 18.50000000</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="do">## 13:                                            Meta-Analysis 16.69444444</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="do">## 14:                                       Historical Article 15.74613687</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="do">## 15:                                               Congresses 15.22222222</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="do">## 16:                                           review-article 13.04854153</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="do">## 17:                                           meeting-report 12.80000000</span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="do">## 18:                 Research Support, U.S. Gov&#39;t, Non-P.H.S. 12.74545455</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="do">## 19:                                Clinical Trial, Phase III 12.53333333</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="do">## 20:                                    Retracted Publication 12.45000000</span></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="do">## 21:                              Randomized Controlled Trial 12.00000000</span></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="do">## 22:                                        Video-Audio Media 12.00000000</span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="do">## 23:                                Patient Education Handout 11.40000000</span></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="do">## 24:                                                       IM 10.68666667</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="do">## 25:                                       Evaluation Studies 10.22727273</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="do">## 26:                                        Multicenter Study 10.04878049</span></span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a><span class="do">## 27:                                         research-article  8.60117009</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a><span class="do">## 28:                                          chapter-article  8.25252525</span></span>
+<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a><span class="do">## 29:                                                 calendar  7.78947368</span></span>
+<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a><span class="do">## 30:                                           product-review  7.50000000</span></span>
+<span id="cb8-38"><a href="#cb8-38" tabindex="-1"></a><span class="do">## 31:                                                editorial  7.27654867</span></span>
+<span id="cb8-39"><a href="#cb8-39" tabindex="-1"></a><span class="do">## 32:                                             brief-report  7.25080775</span></span>
+<span id="cb8-40"><a href="#cb8-40" tabindex="-1"></a><span class="do">## 33:                                                    other  6.59201048</span></span>
+<span id="cb8-41"><a href="#cb8-41" tabindex="-1"></a><span class="do">## 34:                                                  Lecture  6.33333333</span></span>
+<span id="cb8-42"><a href="#cb8-42" tabindex="-1"></a><span class="do">## 35:                                        Systematic Review  5.95135135</span></span>
+<span id="cb8-43"><a href="#cb8-43" tabindex="-1"></a><span class="do">## 36:                                                   Review  5.59902200</span></span>
+<span id="cb8-44"><a href="#cb8-44" tabindex="-1"></a><span class="do">## 37:                                       Practice Guideline  5.10416667</span></span>
+<span id="cb8-45"><a href="#cb8-45" tabindex="-1"></a><span class="do">## 38:                                                 Congress  4.83962264</span></span>
+<span id="cb8-46"><a href="#cb8-46" tabindex="-1"></a><span class="do">## 39:                                                 abstract  4.27272727</span></span>
+<span id="cb8-47"><a href="#cb8-47" tabindex="-1"></a><span class="do">## 40:                                               discussion  4.23212710</span></span>
+<span id="cb8-48"><a href="#cb8-48" tabindex="-1"></a><span class="do">## 41:                                                  Comment  4.11706716</span></span>
+<span id="cb8-49"><a href="#cb8-49" tabindex="-1"></a><span class="do">## 42:                                  Clinical Trial Protocol  3.71875000</span></span>
+<span id="cb8-50"><a href="#cb8-50" tabindex="-1"></a><span class="do">## 43:                                       article-commentary  3.71732817</span></span>
+<span id="cb8-51"><a href="#cb8-51" tabindex="-1"></a><span class="do">## 44:                                                   filler  3.66666667</span></span>
+<span id="cb8-52"><a href="#cb8-52" tabindex="-1"></a><span class="do">## 45:                                                 protocol  3.23076923</span></span>
+<span id="cb8-53"><a href="#cb8-53" tabindex="-1"></a><span class="do">## 46:                                                     news  3.08219178</span></span>
+<span id="cb8-54"><a href="#cb8-54" tabindex="-1"></a><span class="do">## 47:                                          Journal Article  3.05093878</span></span>
+<span id="cb8-55"><a href="#cb8-55" tabindex="-1"></a><span class="do">## 48:                                      rapid-communication  2.89655172</span></span>
+<span id="cb8-56"><a href="#cb8-56" tabindex="-1"></a><span class="do">## 49:                                         Validation Study  2.80000000</span></span>
+<span id="cb8-57"><a href="#cb8-57" tabindex="-1"></a><span class="do">## 50:                                                   Letter  2.44182140</span></span>
+<span id="cb8-58"><a href="#cb8-58" tabindex="-1"></a><span class="do">## 51:                                                     News  2.43279901</span></span>
+<span id="cb8-59"><a href="#cb8-59" tabindex="-1"></a><span class="do">## 52:                                         Evaluation Study  2.25000000</span></span>
+<span id="cb8-60"><a href="#cb8-60" tabindex="-1"></a><span class="do">## 53:                                              book-review  2.00000000</span></span>
+<span id="cb8-61"><a href="#cb8-61" tabindex="-1"></a><span class="do">## 54:                                Retraction of Publication  2.00000000</span></span>
+<span id="cb8-62"><a href="#cb8-62" tabindex="-1"></a><span class="do">## 55:                                    expression-of-concern  2.00000000</span></span>
+<span id="cb8-63"><a href="#cb8-63" tabindex="-1"></a><span class="do">## 56:                                                Guideline  1.70000000</span></span>
+<span id="cb8-64"><a href="#cb8-64" tabindex="-1"></a><span class="do">## 57:                                             Case Reports  1.55363322</span></span>
+<span id="cb8-65"><a href="#cb8-65" tabindex="-1"></a><span class="do">## 58:                                        Published Erratum  1.48019802</span></span>
+<span id="cb8-66"><a href="#cb8-66" tabindex="-1"></a><span class="do">## 59:                                                Editorial  1.47501086</span></span>
+<span id="cb8-67"><a href="#cb8-67" tabindex="-1"></a><span class="do">## 60:                             Introductory Journal Article  1.42857143</span></span>
+<span id="cb8-68"><a href="#cb8-68" tabindex="-1"></a><span class="do">## 61:                                                  Address  1.12500000</span></span>
+<span id="cb8-69"><a href="#cb8-69" tabindex="-1"></a><span class="do">## 62:                                          methods-article  1.11111111</span></span>
+<span id="cb8-70"><a href="#cb8-70" tabindex="-1"></a><span class="do">## 63:                                       Validation Studies  1.00000000</span></span>
+<span id="cb8-71"><a href="#cb8-71" tabindex="-1"></a><span class="do">## 64:                                                   letter  0.84408946</span></span>
+<span id="cb8-72"><a href="#cb8-72" tabindex="-1"></a><span class="do">## 65:                  Randomized Controlled Trial, Veterinary  0.83333333</span></span>
+<span id="cb8-73"><a href="#cb8-73" tabindex="-1"></a><span class="do">## 66:                                       Personal Narrative  0.50000000</span></span>
+<span id="cb8-74"><a href="#cb8-74" tabindex="-1"></a><span class="do">## 67:                                               Legal Case  0.50000000</span></span>
+<span id="cb8-75"><a href="#cb8-75" tabindex="-1"></a><span class="do">## 68:                                               data-paper  0.32203390</span></span>
+<span id="cb8-76"><a href="#cb8-76" tabindex="-1"></a><span class="do">## 69:                                                Interview  0.29411765</span></span>
+<span id="cb8-77"><a href="#cb8-77" tabindex="-1"></a><span class="do">## 70:                                        systematic-review  0.12500000</span></span>
+<span id="cb8-78"><a href="#cb8-78" tabindex="-1"></a><span class="do">## 71:                                               correction  0.07692308</span></span>
+<span id="cb8-79"><a href="#cb8-79" tabindex="-1"></a><span class="do">## 72:                                                 Portrait  0.00000000</span></span>
+<span id="cb8-80"><a href="#cb8-80" tabindex="-1"></a><span class="do">## 73:                                                Addresses  0.00000000</span></span>
+<span id="cb8-81"><a href="#cb8-81" tabindex="-1"></a><span class="do">## 74:                                                    reply  0.00000000</span></span>
+<span id="cb8-82"><a href="#cb8-82" tabindex="-1"></a><span class="do">## 75:                                      Personal Narratives  0.00000000</span></span>
+<span id="cb8-83"><a href="#cb8-83" tabindex="-1"></a><span class="do">## 76:                                        Equivalence Trial  0.00000000</span></span>
+<span id="cb8-84"><a href="#cb8-84" tabindex="-1"></a><span class="do">## 77:                                         English Abstract  0.00000000</span></span>
+<span id="cb8-85"><a href="#cb8-85" tabindex="-1"></a><span class="do">## 78:                                                  Webcast  0.00000000</span></span>
+<span id="cb8-86"><a href="#cb8-86" tabindex="-1"></a><span class="do">## 79:                                                 obituary  0.00000000</span></span>
+<span id="cb8-87"><a href="#cb8-87" tabindex="-1"></a><span class="do">## 80:                                           Clinical Study  0.00000000</span></span>
+<span id="cb8-88"><a href="#cb8-88" tabindex="-1"></a><span class="do">## 81:                                         Technical Report  0.00000000</span></span>
+<span id="cb8-89"><a href="#cb8-89" tabindex="-1"></a><span class="do">## 82:                                                 addendum  0.00000000</span></span>
+<span id="cb8-90"><a href="#cb8-90" tabindex="-1"></a><span class="do">## 83:                                               Twin Study  0.00000000</span></span>
+<span id="cb8-91"><a href="#cb8-91" tabindex="-1"></a><span class="do">##                                                     pub_type       mean_</span></span>
+<span id="cb8-92"><a href="#cb8-92" tabindex="-1"></a><span class="do">##             sd_</span></span>
+<span id="cb8-93"><a href="#cb8-93" tabindex="-1"></a><span class="do">##           &lt;num&gt;</span></span>
+<span id="cb8-94"><a href="#cb8-94" tabindex="-1"></a><span class="do">##  1: 392.0440482</span></span>
+<span id="cb8-95"><a href="#cb8-95" tabindex="-1"></a><span class="do">##  2:  77.2227691</span></span>
+<span id="cb8-96"><a href="#cb8-96" tabindex="-1"></a><span class="do">##  3:  97.1025507</span></span>
+<span id="cb8-97"><a href="#cb8-97" tabindex="-1"></a><span class="do">##  4: 144.4506095</span></span>
+<span id="cb8-98"><a href="#cb8-98" tabindex="-1"></a><span class="do">##  5:  74.0307404</span></span>
+<span id="cb8-99"><a href="#cb8-99" tabindex="-1"></a><span class="do">##  6:  84.3037662</span></span>
+<span id="cb8-100"><a href="#cb8-100" tabindex="-1"></a><span class="do">##  7:  57.0578821</span></span>
+<span id="cb8-101"><a href="#cb8-101" tabindex="-1"></a><span class="do">##  8:  49.3189329</span></span>
+<span id="cb8-102"><a href="#cb8-102" tabindex="-1"></a><span class="do">##  9:  67.8386355</span></span>
+<span id="cb8-103"><a href="#cb8-103" tabindex="-1"></a><span class="do">## 10:  56.5568937</span></span>
+<span id="cb8-104"><a href="#cb8-104" tabindex="-1"></a><span class="do">## 11:  24.7487373</span></span>
+<span id="cb8-105"><a href="#cb8-105" tabindex="-1"></a><span class="do">## 12:  19.0918831</span></span>
+<span id="cb8-106"><a href="#cb8-106" tabindex="-1"></a><span class="do">## 13:  31.1126263</span></span>
+<span id="cb8-107"><a href="#cb8-107" tabindex="-1"></a><span class="do">## 14:  36.8637711</span></span>
+<span id="cb8-108"><a href="#cb8-108" tabindex="-1"></a><span class="do">## 15:  34.6890953</span></span>
+<span id="cb8-109"><a href="#cb8-109" tabindex="-1"></a><span class="do">## 16:  47.1319966</span></span>
+<span id="cb8-110"><a href="#cb8-110" tabindex="-1"></a><span class="do">## 17:  49.3114407</span></span>
+<span id="cb8-111"><a href="#cb8-111" tabindex="-1"></a><span class="do">## 18:  19.4500483</span></span>
+<span id="cb8-112"><a href="#cb8-112" tabindex="-1"></a><span class="do">## 19:  18.3297832</span></span>
+<span id="cb8-113"><a href="#cb8-113" tabindex="-1"></a><span class="do">## 20:  17.5063147</span></span>
+<span id="cb8-114"><a href="#cb8-114" tabindex="-1"></a><span class="do">## 21:  13.8263034</span></span>
+<span id="cb8-115"><a href="#cb8-115" tabindex="-1"></a><span class="do">## 22:  61.5753666</span></span>
+<span id="cb8-116"><a href="#cb8-116" tabindex="-1"></a><span class="do">## 23:  24.9359179</span></span>
+<span id="cb8-117"><a href="#cb8-117" tabindex="-1"></a><span class="do">## 24:  19.0369251</span></span>
+<span id="cb8-118"><a href="#cb8-118" tabindex="-1"></a><span class="do">## 25:   9.5614893</span></span>
+<span id="cb8-119"><a href="#cb8-119" tabindex="-1"></a><span class="do">## 26:  34.9256004</span></span>
+<span id="cb8-120"><a href="#cb8-120" tabindex="-1"></a><span class="do">## 27:  37.6506983</span></span>
+<span id="cb8-121"><a href="#cb8-121" tabindex="-1"></a><span class="do">## 28:  18.1978401</span></span>
+<span id="cb8-122"><a href="#cb8-122" tabindex="-1"></a><span class="do">## 29:   8.5347587</span></span>
+<span id="cb8-123"><a href="#cb8-123" tabindex="-1"></a><span class="do">## 30:  14.3410832</span></span>
+<span id="cb8-124"><a href="#cb8-124" tabindex="-1"></a><span class="do">## 31:  90.8481644</span></span>
+<span id="cb8-125"><a href="#cb8-125" tabindex="-1"></a><span class="do">## 32:  20.0573531</span></span>
+<span id="cb8-126"><a href="#cb8-126" tabindex="-1"></a><span class="do">## 33:  19.1693635</span></span>
+<span id="cb8-127"><a href="#cb8-127" tabindex="-1"></a><span class="do">## 34:  10.2891529</span></span>
+<span id="cb8-128"><a href="#cb8-128" tabindex="-1"></a><span class="do">## 35:  15.7415544</span></span>
+<span id="cb8-129"><a href="#cb8-129" tabindex="-1"></a><span class="do">## 36:  21.7561824</span></span>
+<span id="cb8-130"><a href="#cb8-130" tabindex="-1"></a><span class="do">## 37:  14.5714062</span></span>
+<span id="cb8-131"><a href="#cb8-131" tabindex="-1"></a><span class="do">## 38:  11.4568647</span></span>
+<span id="cb8-132"><a href="#cb8-132" tabindex="-1"></a><span class="do">## 39:   5.4264065</span></span>
+<span id="cb8-133"><a href="#cb8-133" tabindex="-1"></a><span class="do">## 40:  16.7167726</span></span>
+<span id="cb8-134"><a href="#cb8-134" tabindex="-1"></a><span class="do">## 41:  17.9116161</span></span>
+<span id="cb8-135"><a href="#cb8-135" tabindex="-1"></a><span class="do">## 42:  12.7487745</span></span>
+<span id="cb8-136"><a href="#cb8-136" tabindex="-1"></a><span class="do">## 43:  16.8649291</span></span>
+<span id="cb8-137"><a href="#cb8-137" tabindex="-1"></a><span class="do">## 44:   2.8867513</span></span>
+<span id="cb8-138"><a href="#cb8-138" tabindex="-1"></a><span class="do">## 45:   5.1986191</span></span>
+<span id="cb8-139"><a href="#cb8-139" tabindex="-1"></a><span class="do">## 46:  12.3897932</span></span>
+<span id="cb8-140"><a href="#cb8-140" tabindex="-1"></a><span class="do">## 47:  25.3956756</span></span>
+<span id="cb8-141"><a href="#cb8-141" tabindex="-1"></a><span class="do">## 48:   3.0512858</span></span>
+<span id="cb8-142"><a href="#cb8-142" tabindex="-1"></a><span class="do">## 49:   3.7013511</span></span>
+<span id="cb8-143"><a href="#cb8-143" tabindex="-1"></a><span class="do">## 50:  17.2729980</span></span>
+<span id="cb8-144"><a href="#cb8-144" tabindex="-1"></a><span class="do">## 51:   7.0326476</span></span>
+<span id="cb8-145"><a href="#cb8-145" tabindex="-1"></a><span class="do">## 52:   6.5166454</span></span>
+<span id="cb8-146"><a href="#cb8-146" tabindex="-1"></a><span class="do">## 53:   3.9370039</span></span>
+<span id="cb8-147"><a href="#cb8-147" tabindex="-1"></a><span class="do">## 54:   4.9359534</span></span>
+<span id="cb8-148"><a href="#cb8-148" tabindex="-1"></a><span class="do">## 55:   1.4142136</span></span>
+<span id="cb8-149"><a href="#cb8-149" tabindex="-1"></a><span class="do">## 56:   1.4944341</span></span>
+<span id="cb8-150"><a href="#cb8-150" tabindex="-1"></a><span class="do">## 57:  19.8278095</span></span>
+<span id="cb8-151"><a href="#cb8-151" tabindex="-1"></a><span class="do">## 58:   9.7302986</span></span>
+<span id="cb8-152"><a href="#cb8-152" tabindex="-1"></a><span class="do">## 59:   7.3288280</span></span>
+<span id="cb8-153"><a href="#cb8-153" tabindex="-1"></a><span class="do">## 60:   4.7338070</span></span>
+<span id="cb8-154"><a href="#cb8-154" tabindex="-1"></a><span class="do">## 61:   1.5526475</span></span>
+<span id="cb8-155"><a href="#cb8-155" tabindex="-1"></a><span class="do">## 62:   2.7200538</span></span>
+<span id="cb8-156"><a href="#cb8-156" tabindex="-1"></a><span class="do">## 63:          NA</span></span>
+<span id="cb8-157"><a href="#cb8-157" tabindex="-1"></a><span class="do">## 64:   6.5417192</span></span>
+<span id="cb8-158"><a href="#cb8-158" tabindex="-1"></a><span class="do">## 65:   0.9831921</span></span>
+<span id="cb8-159"><a href="#cb8-159" tabindex="-1"></a><span class="do">## 66:   1.5811388</span></span>
+<span id="cb8-160"><a href="#cb8-160" tabindex="-1"></a><span class="do">## 67:   0.7071068</span></span>
+<span id="cb8-161"><a href="#cb8-161" tabindex="-1"></a><span class="do">## 68:   1.4790570</span></span>
+<span id="cb8-162"><a href="#cb8-162" tabindex="-1"></a><span class="do">## 69:   0.7717436</span></span>
+<span id="cb8-163"><a href="#cb8-163" tabindex="-1"></a><span class="do">## 70:   0.3535534</span></span>
+<span id="cb8-164"><a href="#cb8-164" tabindex="-1"></a><span class="do">## 71:   0.2773501</span></span>
+<span id="cb8-165"><a href="#cb8-165" tabindex="-1"></a><span class="do">## 72:   0.0000000</span></span>
+<span id="cb8-166"><a href="#cb8-166" tabindex="-1"></a><span class="do">## 73:          NA</span></span>
+<span id="cb8-167"><a href="#cb8-167" tabindex="-1"></a><span class="do">## 74:   0.0000000</span></span>
+<span id="cb8-168"><a href="#cb8-168" tabindex="-1"></a><span class="do">## 75:          NA</span></span>
+<span id="cb8-169"><a href="#cb8-169" tabindex="-1"></a><span class="do">## 76:          NA</span></span>
+<span id="cb8-170"><a href="#cb8-170" tabindex="-1"></a><span class="do">## 77:   0.0000000</span></span>
+<span id="cb8-171"><a href="#cb8-171" tabindex="-1"></a><span class="do">## 78:   0.0000000</span></span>
+<span id="cb8-172"><a href="#cb8-172" tabindex="-1"></a><span class="do">## 79:          NA</span></span>
+<span id="cb8-173"><a href="#cb8-173" tabindex="-1"></a><span class="do">## 80:          NA</span></span>
+<span id="cb8-174"><a href="#cb8-174" tabindex="-1"></a><span class="do">## 81:   0.0000000</span></span>
+<span id="cb8-175"><a href="#cb8-175" tabindex="-1"></a><span class="do">## 82:   0.0000000</span></span>
+<span id="cb8-176"><a href="#cb8-176" tabindex="-1"></a><span class="do">## 83:          NA</span></span>
+<span id="cb8-177"><a href="#cb8-177" tabindex="-1"></a><span class="do">##             sd_</span></span>
+<span id="cb8-178"><a href="#cb8-178" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb8-179"><a href="#cb8-179" tabindex="-1"></a><span class="do">## 0.003 sec elapsed</span></span>
+<span id="cb8-180"><a href="#cb8-180" tabindex="-1"></a></span>
+<span id="cb8-181"><a href="#cb8-181" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb8-182"><a href="#cb8-182" tabindex="-1"></a>dt_final_table[,</span>
+<span id="cb8-183"><a href="#cb8-183" tabindex="-1"></a>               .(<span class="at">mean_ =</span> <span class="fu">mean</span>(cited),<span class="at">sd_ =</span> <span class="fu">sd</span>(cited)),by<span class="ot">=</span><span class="st">&#39;pub_type&#39;</span></span>
+<span id="cb8-184"><a href="#cb8-184" tabindex="-1"></a>               ][<span class="fu">order</span>(sd_,<span class="at">decreasing =</span> T)]</span>
+<span id="cb8-185"><a href="#cb8-185" tabindex="-1"></a><span class="do">##                                                     pub_type       mean_</span></span>
+<span id="cb8-186"><a href="#cb8-186" tabindex="-1"></a><span class="do">##                                                       &lt;char&gt;       &lt;num&gt;</span></span>
+<span id="cb8-187"><a href="#cb8-187" tabindex="-1"></a><span class="do">##  1:                         Consensus Development Conference 94.12820513</span></span>
+<span id="cb8-188"><a href="#cb8-188" tabindex="-1"></a><span class="do">##  2:                     Research Support, N.I.H., Intramural 48.48130841</span></span>
+<span id="cb8-189"><a href="#cb8-189" tabindex="-1"></a><span class="do">##  3:                     Research Support, U.S. Gov&#39;t, P.H.S. 53.98054275</span></span>
+<span id="cb8-190"><a href="#cb8-190" tabindex="-1"></a><span class="do">##  4:                                                editorial  7.27654867</span></span>
+<span id="cb8-191"><a href="#cb8-191" tabindex="-1"></a><span class="do">##  5:                                      Clinical Conference 30.37500000</span></span>
+<span id="cb8-192"><a href="#cb8-192" tabindex="-1"></a><span class="do">##  6: Research Support, American Recovery and Reinvestment Act 64.41666667</span></span>
+<span id="cb8-193"><a href="#cb8-193" tabindex="-1"></a><span class="do">##  7:                                 Clinical Trial, Phase II 35.28571429</span></span>
+<span id="cb8-194"><a href="#cb8-194" tabindex="-1"></a><span class="do">##  8:                         Research Support, Non-U.S. Gov&#39;t 26.26850704</span></span>
+<span id="cb8-195"><a href="#cb8-195" tabindex="-1"></a><span class="do">##  9:                                        Video-Audio Media 12.00000000</span></span>
+<span id="cb8-196"><a href="#cb8-196" tabindex="-1"></a><span class="do">## 10:                                        Comparative Study 29.31392175</span></span>
+<span id="cb8-197"><a href="#cb8-197" tabindex="-1"></a><span class="do">## 11:                                           Clinical Trial 24.91121495</span></span>
+<span id="cb8-198"><a href="#cb8-198" tabindex="-1"></a><span class="do">## 12:                                Controlled Clinical Trial 27.00000000</span></span>
+<span id="cb8-199"><a href="#cb8-199" tabindex="-1"></a><span class="do">## 13:                                           meeting-report 12.80000000</span></span>
+<span id="cb8-200"><a href="#cb8-200" tabindex="-1"></a><span class="do">## 14:                                           review-article 13.04854153</span></span>
+<span id="cb8-201"><a href="#cb8-201" tabindex="-1"></a><span class="do">## 15:                                         research-article  8.60117009</span></span>
+<span id="cb8-202"><a href="#cb8-202" tabindex="-1"></a><span class="do">## 16:                                       Historical Article 15.74613687</span></span>
+<span id="cb8-203"><a href="#cb8-203" tabindex="-1"></a><span class="do">## 17:                                        Multicenter Study 10.04878049</span></span>
+<span id="cb8-204"><a href="#cb8-204" tabindex="-1"></a><span class="do">## 18:                                               Congresses 15.22222222</span></span>
+<span id="cb8-205"><a href="#cb8-205" tabindex="-1"></a><span class="do">## 19:                                            Meta-Analysis 16.69444444</span></span>
+<span id="cb8-206"><a href="#cb8-206" tabindex="-1"></a><span class="do">## 20:                                          Journal Article  3.05093878</span></span>
+<span id="cb8-207"><a href="#cb8-207" tabindex="-1"></a><span class="do">## 21:                                Patient Education Handout 11.40000000</span></span>
+<span id="cb8-208"><a href="#cb8-208" tabindex="-1"></a><span class="do">## 22:                                                 In Vitro 19.50000000</span></span>
+<span id="cb8-209"><a href="#cb8-209" tabindex="-1"></a><span class="do">## 23:                                                   Review  5.59902200</span></span>
+<span id="cb8-210"><a href="#cb8-210" tabindex="-1"></a><span class="do">## 24:                                             brief-report  7.25080775</span></span>
+<span id="cb8-211"><a href="#cb8-211" tabindex="-1"></a><span class="do">## 25:                                             Case Reports  1.55363322</span></span>
+<span id="cb8-212"><a href="#cb8-212" tabindex="-1"></a><span class="do">## 26:                 Research Support, U.S. Gov&#39;t, Non-P.H.S. 12.74545455</span></span>
+<span id="cb8-213"><a href="#cb8-213" tabindex="-1"></a><span class="do">## 27:                                                    other  6.59201048</span></span>
+<span id="cb8-214"><a href="#cb8-214" tabindex="-1"></a><span class="do">## 28:                                                   report 18.50000000</span></span>
+<span id="cb8-215"><a href="#cb8-215" tabindex="-1"></a><span class="do">## 29:                                                       IM 10.68666667</span></span>
+<span id="cb8-216"><a href="#cb8-216" tabindex="-1"></a><span class="do">## 30:                                Clinical Trial, Phase III 12.53333333</span></span>
+<span id="cb8-217"><a href="#cb8-217" tabindex="-1"></a><span class="do">## 31:                                          chapter-article  8.25252525</span></span>
+<span id="cb8-218"><a href="#cb8-218" tabindex="-1"></a><span class="do">## 32:                                                  Comment  4.11706716</span></span>
+<span id="cb8-219"><a href="#cb8-219" tabindex="-1"></a><span class="do">## 33:                                    Retracted Publication 12.45000000</span></span>
+<span id="cb8-220"><a href="#cb8-220" tabindex="-1"></a><span class="do">## 34:                                                   Letter  2.44182140</span></span>
+<span id="cb8-221"><a href="#cb8-221" tabindex="-1"></a><span class="do">## 35:                                       article-commentary  3.71732817</span></span>
+<span id="cb8-222"><a href="#cb8-222" tabindex="-1"></a><span class="do">## 36:                                               discussion  4.23212710</span></span>
+<span id="cb8-223"><a href="#cb8-223" tabindex="-1"></a><span class="do">## 37:                                        Systematic Review  5.95135135</span></span>
+<span id="cb8-224"><a href="#cb8-224" tabindex="-1"></a><span class="do">## 38:                                       Practice Guideline  5.10416667</span></span>
+<span id="cb8-225"><a href="#cb8-225" tabindex="-1"></a><span class="do">## 39:                                           product-review  7.50000000</span></span>
+<span id="cb8-226"><a href="#cb8-226" tabindex="-1"></a><span class="do">## 40:                              Randomized Controlled Trial 12.00000000</span></span>
+<span id="cb8-227"><a href="#cb8-227" tabindex="-1"></a><span class="do">## 41:                                  Clinical Trial Protocol  3.71875000</span></span>
+<span id="cb8-228"><a href="#cb8-228" tabindex="-1"></a><span class="do">## 42:                                                     news  3.08219178</span></span>
+<span id="cb8-229"><a href="#cb8-229" tabindex="-1"></a><span class="do">## 43:                                                 Congress  4.83962264</span></span>
+<span id="cb8-230"><a href="#cb8-230" tabindex="-1"></a><span class="do">## 44:                                                  Lecture  6.33333333</span></span>
+<span id="cb8-231"><a href="#cb8-231" tabindex="-1"></a><span class="do">## 45:                                        Published Erratum  1.48019802</span></span>
+<span id="cb8-232"><a href="#cb8-232" tabindex="-1"></a><span class="do">## 46:                                       Evaluation Studies 10.22727273</span></span>
+<span id="cb8-233"><a href="#cb8-233" tabindex="-1"></a><span class="do">## 47:                                                 calendar  7.78947368</span></span>
+<span id="cb8-234"><a href="#cb8-234" tabindex="-1"></a><span class="do">## 48:                                                Editorial  1.47501086</span></span>
+<span id="cb8-235"><a href="#cb8-235" tabindex="-1"></a><span class="do">## 49:                                                     News  2.43279901</span></span>
+<span id="cb8-236"><a href="#cb8-236" tabindex="-1"></a><span class="do">## 50:                                                   letter  0.84408946</span></span>
+<span id="cb8-237"><a href="#cb8-237" tabindex="-1"></a><span class="do">## 51:                                         Evaluation Study  2.25000000</span></span>
+<span id="cb8-238"><a href="#cb8-238" tabindex="-1"></a><span class="do">## 52:                                                 abstract  4.27272727</span></span>
+<span id="cb8-239"><a href="#cb8-239" tabindex="-1"></a><span class="do">## 53:                                                 protocol  3.23076923</span></span>
+<span id="cb8-240"><a href="#cb8-240" tabindex="-1"></a><span class="do">## 54:                                Retraction of Publication  2.00000000</span></span>
+<span id="cb8-241"><a href="#cb8-241" tabindex="-1"></a><span class="do">## 55:                             Introductory Journal Article  1.42857143</span></span>
+<span id="cb8-242"><a href="#cb8-242" tabindex="-1"></a><span class="do">## 56:                                              book-review  2.00000000</span></span>
+<span id="cb8-243"><a href="#cb8-243" tabindex="-1"></a><span class="do">## 57:                                         Validation Study  2.80000000</span></span>
+<span id="cb8-244"><a href="#cb8-244" tabindex="-1"></a><span class="do">## 58:                                      rapid-communication  2.89655172</span></span>
+<span id="cb8-245"><a href="#cb8-245" tabindex="-1"></a><span class="do">## 59:                                                   filler  3.66666667</span></span>
+<span id="cb8-246"><a href="#cb8-246" tabindex="-1"></a><span class="do">## 60:                                          methods-article  1.11111111</span></span>
+<span id="cb8-247"><a href="#cb8-247" tabindex="-1"></a><span class="do">## 61:                                       Personal Narrative  0.50000000</span></span>
+<span id="cb8-248"><a href="#cb8-248" tabindex="-1"></a><span class="do">## 62:                                                  Address  1.12500000</span></span>
+<span id="cb8-249"><a href="#cb8-249" tabindex="-1"></a><span class="do">## 63:                                                Guideline  1.70000000</span></span>
+<span id="cb8-250"><a href="#cb8-250" tabindex="-1"></a><span class="do">## 64:                                               data-paper  0.32203390</span></span>
+<span id="cb8-251"><a href="#cb8-251" tabindex="-1"></a><span class="do">## 65:                                    expression-of-concern  2.00000000</span></span>
+<span id="cb8-252"><a href="#cb8-252" tabindex="-1"></a><span class="do">## 66:                  Randomized Controlled Trial, Veterinary  0.83333333</span></span>
+<span id="cb8-253"><a href="#cb8-253" tabindex="-1"></a><span class="do">## 67:                                                Interview  0.29411765</span></span>
+<span id="cb8-254"><a href="#cb8-254" tabindex="-1"></a><span class="do">## 68:                                               Legal Case  0.50000000</span></span>
+<span id="cb8-255"><a href="#cb8-255" tabindex="-1"></a><span class="do">## 69:                                        systematic-review  0.12500000</span></span>
+<span id="cb8-256"><a href="#cb8-256" tabindex="-1"></a><span class="do">## 70:                                               correction  0.07692308</span></span>
+<span id="cb8-257"><a href="#cb8-257" tabindex="-1"></a><span class="do">## 71:                                                 Portrait  0.00000000</span></span>
+<span id="cb8-258"><a href="#cb8-258" tabindex="-1"></a><span class="do">## 72:                                                    reply  0.00000000</span></span>
+<span id="cb8-259"><a href="#cb8-259" tabindex="-1"></a><span class="do">## 73:                                         English Abstract  0.00000000</span></span>
+<span id="cb8-260"><a href="#cb8-260" tabindex="-1"></a><span class="do">## 74:                                                  Webcast  0.00000000</span></span>
+<span id="cb8-261"><a href="#cb8-261" tabindex="-1"></a><span class="do">## 75:                                         Technical Report  0.00000000</span></span>
+<span id="cb8-262"><a href="#cb8-262" tabindex="-1"></a><span class="do">## 76:                                                 addendum  0.00000000</span></span>
+<span id="cb8-263"><a href="#cb8-263" tabindex="-1"></a><span class="do">## 77:                                                Addresses  0.00000000</span></span>
+<span id="cb8-264"><a href="#cb8-264" tabindex="-1"></a><span class="do">## 78:                                       Validation Studies  1.00000000</span></span>
+<span id="cb8-265"><a href="#cb8-265" tabindex="-1"></a><span class="do">## 79:                                      Personal Narratives  0.00000000</span></span>
+<span id="cb8-266"><a href="#cb8-266" tabindex="-1"></a><span class="do">## 80:                                        Equivalence Trial  0.00000000</span></span>
+<span id="cb8-267"><a href="#cb8-267" tabindex="-1"></a><span class="do">## 81:                                                 obituary  0.00000000</span></span>
+<span id="cb8-268"><a href="#cb8-268" tabindex="-1"></a><span class="do">## 82:                                           Clinical Study  0.00000000</span></span>
+<span id="cb8-269"><a href="#cb8-269" tabindex="-1"></a><span class="do">## 83:                                               Twin Study  0.00000000</span></span>
+<span id="cb8-270"><a href="#cb8-270" tabindex="-1"></a><span class="do">##                                                     pub_type       mean_</span></span>
+<span id="cb8-271"><a href="#cb8-271" tabindex="-1"></a><span class="do">##             sd_</span></span>
+<span id="cb8-272"><a href="#cb8-272" tabindex="-1"></a><span class="do">##           &lt;num&gt;</span></span>
+<span id="cb8-273"><a href="#cb8-273" tabindex="-1"></a><span class="do">##  1: 392.0440482</span></span>
+<span id="cb8-274"><a href="#cb8-274" tabindex="-1"></a><span class="do">##  2: 144.4506095</span></span>
+<span id="cb8-275"><a href="#cb8-275" tabindex="-1"></a><span class="do">##  3:  97.1025507</span></span>
+<span id="cb8-276"><a href="#cb8-276" tabindex="-1"></a><span class="do">##  4:  90.8481644</span></span>
+<span id="cb8-277"><a href="#cb8-277" tabindex="-1"></a><span class="do">##  5:  84.3037662</span></span>
+<span id="cb8-278"><a href="#cb8-278" tabindex="-1"></a><span class="do">##  6:  77.2227691</span></span>
+<span id="cb8-279"><a href="#cb8-279" tabindex="-1"></a><span class="do">##  7:  74.0307404</span></span>
+<span id="cb8-280"><a href="#cb8-280" tabindex="-1"></a><span class="do">##  8:  67.8386355</span></span>
+<span id="cb8-281"><a href="#cb8-281" tabindex="-1"></a><span class="do">##  9:  61.5753666</span></span>
+<span id="cb8-282"><a href="#cb8-282" tabindex="-1"></a><span class="do">## 10:  57.0578821</span></span>
+<span id="cb8-283"><a href="#cb8-283" tabindex="-1"></a><span class="do">## 11:  56.5568937</span></span>
+<span id="cb8-284"><a href="#cb8-284" tabindex="-1"></a><span class="do">## 12:  49.3189329</span></span>
+<span id="cb8-285"><a href="#cb8-285" tabindex="-1"></a><span class="do">## 13:  49.3114407</span></span>
+<span id="cb8-286"><a href="#cb8-286" tabindex="-1"></a><span class="do">## 14:  47.1319966</span></span>
+<span id="cb8-287"><a href="#cb8-287" tabindex="-1"></a><span class="do">## 15:  37.6506983</span></span>
+<span id="cb8-288"><a href="#cb8-288" tabindex="-1"></a><span class="do">## 16:  36.8637711</span></span>
+<span id="cb8-289"><a href="#cb8-289" tabindex="-1"></a><span class="do">## 17:  34.9256004</span></span>
+<span id="cb8-290"><a href="#cb8-290" tabindex="-1"></a><span class="do">## 18:  34.6890953</span></span>
+<span id="cb8-291"><a href="#cb8-291" tabindex="-1"></a><span class="do">## 19:  31.1126263</span></span>
+<span id="cb8-292"><a href="#cb8-292" tabindex="-1"></a><span class="do">## 20:  25.3956756</span></span>
+<span id="cb8-293"><a href="#cb8-293" tabindex="-1"></a><span class="do">## 21:  24.9359179</span></span>
+<span id="cb8-294"><a href="#cb8-294" tabindex="-1"></a><span class="do">## 22:  24.7487373</span></span>
+<span id="cb8-295"><a href="#cb8-295" tabindex="-1"></a><span class="do">## 23:  21.7561824</span></span>
+<span id="cb8-296"><a href="#cb8-296" tabindex="-1"></a><span class="do">## 24:  20.0573531</span></span>
+<span id="cb8-297"><a href="#cb8-297" tabindex="-1"></a><span class="do">## 25:  19.8278095</span></span>
+<span id="cb8-298"><a href="#cb8-298" tabindex="-1"></a><span class="do">## 26:  19.4500483</span></span>
+<span id="cb8-299"><a href="#cb8-299" tabindex="-1"></a><span class="do">## 27:  19.1693635</span></span>
+<span id="cb8-300"><a href="#cb8-300" tabindex="-1"></a><span class="do">## 28:  19.0918831</span></span>
+<span id="cb8-301"><a href="#cb8-301" tabindex="-1"></a><span class="do">## 29:  19.0369251</span></span>
+<span id="cb8-302"><a href="#cb8-302" tabindex="-1"></a><span class="do">## 30:  18.3297832</span></span>
+<span id="cb8-303"><a href="#cb8-303" tabindex="-1"></a><span class="do">## 31:  18.1978401</span></span>
+<span id="cb8-304"><a href="#cb8-304" tabindex="-1"></a><span class="do">## 32:  17.9116161</span></span>
+<span id="cb8-305"><a href="#cb8-305" tabindex="-1"></a><span class="do">## 33:  17.5063147</span></span>
+<span id="cb8-306"><a href="#cb8-306" tabindex="-1"></a><span class="do">## 34:  17.2729980</span></span>
+<span id="cb8-307"><a href="#cb8-307" tabindex="-1"></a><span class="do">## 35:  16.8649291</span></span>
+<span id="cb8-308"><a href="#cb8-308" tabindex="-1"></a><span class="do">## 36:  16.7167726</span></span>
+<span id="cb8-309"><a href="#cb8-309" tabindex="-1"></a><span class="do">## 37:  15.7415544</span></span>
+<span id="cb8-310"><a href="#cb8-310" tabindex="-1"></a><span class="do">## 38:  14.5714062</span></span>
+<span id="cb8-311"><a href="#cb8-311" tabindex="-1"></a><span class="do">## 39:  14.3410832</span></span>
+<span id="cb8-312"><a href="#cb8-312" tabindex="-1"></a><span class="do">## 40:  13.8263034</span></span>
+<span id="cb8-313"><a href="#cb8-313" tabindex="-1"></a><span class="do">## 41:  12.7487745</span></span>
+<span id="cb8-314"><a href="#cb8-314" tabindex="-1"></a><span class="do">## 42:  12.3897932</span></span>
+<span id="cb8-315"><a href="#cb8-315" tabindex="-1"></a><span class="do">## 43:  11.4568647</span></span>
+<span id="cb8-316"><a href="#cb8-316" tabindex="-1"></a><span class="do">## 44:  10.2891529</span></span>
+<span id="cb8-317"><a href="#cb8-317" tabindex="-1"></a><span class="do">## 45:   9.7302986</span></span>
+<span id="cb8-318"><a href="#cb8-318" tabindex="-1"></a><span class="do">## 46:   9.5614893</span></span>
+<span id="cb8-319"><a href="#cb8-319" tabindex="-1"></a><span class="do">## 47:   8.5347587</span></span>
+<span id="cb8-320"><a href="#cb8-320" tabindex="-1"></a><span class="do">## 48:   7.3288280</span></span>
+<span id="cb8-321"><a href="#cb8-321" tabindex="-1"></a><span class="do">## 49:   7.0326476</span></span>
+<span id="cb8-322"><a href="#cb8-322" tabindex="-1"></a><span class="do">## 50:   6.5417192</span></span>
+<span id="cb8-323"><a href="#cb8-323" tabindex="-1"></a><span class="do">## 51:   6.5166454</span></span>
+<span id="cb8-324"><a href="#cb8-324" tabindex="-1"></a><span class="do">## 52:   5.4264065</span></span>
+<span id="cb8-325"><a href="#cb8-325" tabindex="-1"></a><span class="do">## 53:   5.1986191</span></span>
+<span id="cb8-326"><a href="#cb8-326" tabindex="-1"></a><span class="do">## 54:   4.9359534</span></span>
+<span id="cb8-327"><a href="#cb8-327" tabindex="-1"></a><span class="do">## 55:   4.7338070</span></span>
+<span id="cb8-328"><a href="#cb8-328" tabindex="-1"></a><span class="do">## 56:   3.9370039</span></span>
+<span id="cb8-329"><a href="#cb8-329" tabindex="-1"></a><span class="do">## 57:   3.7013511</span></span>
+<span id="cb8-330"><a href="#cb8-330" tabindex="-1"></a><span class="do">## 58:   3.0512858</span></span>
+<span id="cb8-331"><a href="#cb8-331" tabindex="-1"></a><span class="do">## 59:   2.8867513</span></span>
+<span id="cb8-332"><a href="#cb8-332" tabindex="-1"></a><span class="do">## 60:   2.7200538</span></span>
+<span id="cb8-333"><a href="#cb8-333" tabindex="-1"></a><span class="do">## 61:   1.5811388</span></span>
+<span id="cb8-334"><a href="#cb8-334" tabindex="-1"></a><span class="do">## 62:   1.5526475</span></span>
+<span id="cb8-335"><a href="#cb8-335" tabindex="-1"></a><span class="do">## 63:   1.4944341</span></span>
+<span id="cb8-336"><a href="#cb8-336" tabindex="-1"></a><span class="do">## 64:   1.4790570</span></span>
+<span id="cb8-337"><a href="#cb8-337" tabindex="-1"></a><span class="do">## 65:   1.4142136</span></span>
+<span id="cb8-338"><a href="#cb8-338" tabindex="-1"></a><span class="do">## 66:   0.9831921</span></span>
+<span id="cb8-339"><a href="#cb8-339" tabindex="-1"></a><span class="do">## 67:   0.7717436</span></span>
+<span id="cb8-340"><a href="#cb8-340" tabindex="-1"></a><span class="do">## 68:   0.7071068</span></span>
+<span id="cb8-341"><a href="#cb8-341" tabindex="-1"></a><span class="do">## 69:   0.3535534</span></span>
+<span id="cb8-342"><a href="#cb8-342" tabindex="-1"></a><span class="do">## 70:   0.2773501</span></span>
+<span id="cb8-343"><a href="#cb8-343" tabindex="-1"></a><span class="do">## 71:   0.0000000</span></span>
+<span id="cb8-344"><a href="#cb8-344" tabindex="-1"></a><span class="do">## 72:   0.0000000</span></span>
+<span id="cb8-345"><a href="#cb8-345" tabindex="-1"></a><span class="do">## 73:   0.0000000</span></span>
+<span id="cb8-346"><a href="#cb8-346" tabindex="-1"></a><span class="do">## 74:   0.0000000</span></span>
+<span id="cb8-347"><a href="#cb8-347" tabindex="-1"></a><span class="do">## 75:   0.0000000</span></span>
+<span id="cb8-348"><a href="#cb8-348" tabindex="-1"></a><span class="do">## 76:   0.0000000</span></span>
+<span id="cb8-349"><a href="#cb8-349" tabindex="-1"></a><span class="do">## 77:          NA</span></span>
+<span id="cb8-350"><a href="#cb8-350" tabindex="-1"></a><span class="do">## 78:          NA</span></span>
+<span id="cb8-351"><a href="#cb8-351" tabindex="-1"></a><span class="do">## 79:          NA</span></span>
+<span id="cb8-352"><a href="#cb8-352" tabindex="-1"></a><span class="do">## 80:          NA</span></span>
+<span id="cb8-353"><a href="#cb8-353" tabindex="-1"></a><span class="do">## 81:          NA</span></span>
+<span id="cb8-354"><a href="#cb8-354" tabindex="-1"></a><span class="do">## 82:          NA</span></span>
+<span id="cb8-355"><a href="#cb8-355" tabindex="-1"></a><span class="do">## 83:          NA</span></span>
+<span id="cb8-356"><a href="#cb8-356" tabindex="-1"></a><span class="do">##             sd_</span></span>
+<span id="cb8-357"><a href="#cb8-357" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb8-358"><a href="#cb8-358" tabindex="-1"></a><span class="do">## 0.003 sec elapsed</span></span></code></pre></div>
+</div>
+</div>
+<div id="most-representative-countres-by-year" class="section level1"
+number="9">
+<h1><span class="header-section-number">9</span> Most representative
+countres by year ?</h1>
+<p>Which are the most representative countres by year ? Store this
+information in an other tibble by keep only pmid and authors, get the
+country for each author from the loc_cities.csv. You may want to
+separate rows for each authors to get all countries involved in the
+paper,if an authors have multiple affiliations, take the first one.</p>
+<div class="r">
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>countries <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">unique</span>(dt_cities<span class="sc">$</span>country))</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>countries_dt <span class="ot">=</span> dt_final_table[,<span class="fu">c</span>(<span class="st">&#39;pmid&#39;</span>,<span class="st">&#39;authors&#39;</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>                              ][,.(<span class="at">authors =</span> <span class="fu">unlist</span>(<span class="fu">tstrsplit</span>(authors, <span class="st">&quot;&lt;AUTHOR&gt;&quot;</span>))),</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>                                by<span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="do">## 2.864 sec elapsed</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>countries_dt</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="do">## Key: &lt;pmid&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="do">##             pmid</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="do">##           &lt;char&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="do">##      1: 10022847</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="do">##      2: 10022847</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="do">##      3: 10022847</span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="do">##      4: 10022847</span></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="do">##      5: 10022847</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="do">##     ---         </span></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="do">## 725403:  9988465</span></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="do">## 725404:  9989453</span></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="do">## 725405:  9989453</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="do">## 725406:  9989453</span></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="do">## 725407:  9989453</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="do">##                                                                                                                                                            authors</span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="do">##                                                                                                                                                             &lt;char&gt;</span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                           </span></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a><span class="do">##      2:                                                                                                                        Glombik MM Glombik&lt;AFFILIATION&gt;None</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="do">##      3:                                                                                                                           Krömer A Krömer&lt;AFFILIATION&gt;None</span></span>
+<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a><span class="do">##      4:                                                                                                                               Salm T Salm&lt;AFFILIATION&gt;None</span></span>
+<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a><span class="do">##      5:                                                                                                                        Huttner WB Huttner&lt;AFFILIATION&gt;None</span></span>
+<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                           </span></span>
+<span id="cb9-34"><a href="#cb9-34" tabindex="-1"></a><span class="do">## 725403:                                                                Johnston SL S L Johnston&lt;AFFILIATION&gt;University Medicine, Southampton General Hospital, UK.</span></span>
+<span id="cb9-35"><a href="#cb9-35" tabindex="-1"></a><span class="do">## 725404:                                                                                                                                                           </span></span>
+<span id="cb9-36"><a href="#cb9-36" tabindex="-1"></a><span class="do">## 725405:  Smith KJ K J Smith&lt;AFFILIATION&gt;Department of Clinical Neurological Sciences, Guy&#39;s, King&#39;s and St. Thomas&#39; School of Medicine, London. k.smith@umds.ac.uk</span></span>
+<span id="cb9-37"><a href="#cb9-37" tabindex="-1"></a><span class="do">## 725406:                                                                                                                         Kapoor R R Kapoor&lt;AFFILIATION&gt;None</span></span>
+<span id="cb9-38"><a href="#cb9-38" tabindex="-1"></a><span class="do">## 725407:                                                                                                                        Felts PA P A Felts&lt;AFFILIATION&gt;None</span></span>
+<span id="cb9-39"><a href="#cb9-39" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb9-41"><a href="#cb9-41" tabindex="-1"></a><span class="fu">setkey</span>(countries_dt,pmid,authors)</span>
+<span id="cb9-42"><a href="#cb9-42" tabindex="-1"></a>countries_dt <span class="ot">=</span> countries_dt[authors <span class="sc">!=</span> <span class="st">&#39;&#39;</span> </span>
+<span id="cb9-43"><a href="#cb9-43" tabindex="-1"></a>                              <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(authors,<span class="st">&#39;&lt;AFFILIATION&gt;None&#39;</span>)]</span>
+<span id="cb9-44"><a href="#cb9-44" tabindex="-1"></a>countries_dt <span class="ot">=</span> countries_dt[,</span>
+<span id="cb9-45"><a href="#cb9-45" tabindex="-1"></a>                            clean_aff <span class="sc">:=</span> .(<span class="fu">unlist</span>(<span class="fu">tstrsplit</span>(authors,<span class="st">&#39;&lt;AFFILIATION&gt;&#39;</span>,</span>
+<span id="cb9-46"><a href="#cb9-46" tabindex="-1"></a>                                                               <span class="at">keep =</span> <span class="dv">2</span>)))</span>
+<span id="cb9-47"><a href="#cb9-47" tabindex="-1"></a>                            ][,<span class="sc">-</span><span class="st">&#39;authors&#39;</span>]</span>
+<span id="cb9-48"><a href="#cb9-48" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" tabindex="-1"></a><span class="fu">setkey</span>(countries_dt,pmid,clean_aff)</span>
+<span id="cb9-50"><a href="#cb9-50" tabindex="-1"></a>countries_dt <span class="ot">=</span> <span class="fu">unique</span>(countries_dt)</span>
+<span id="cb9-51"><a href="#cb9-51" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb9-52"><a href="#cb9-52" tabindex="-1"></a><span class="do">## 2.828 sec elapsed</span></span>
+<span id="cb9-53"><a href="#cb9-53" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" tabindex="-1"></a>countries_dt</span>
+<span id="cb9-55"><a href="#cb9-55" tabindex="-1"></a><span class="do">## Key: &lt;pmid, clean_aff&gt;</span></span>
+<span id="cb9-56"><a href="#cb9-56" tabindex="-1"></a><span class="do">##             pmid</span></span>
+<span id="cb9-57"><a href="#cb9-57" tabindex="-1"></a><span class="do">##           &lt;char&gt;</span></span>
+<span id="cb9-58"><a href="#cb9-58" tabindex="-1"></a><span class="do">##      1: 10023135</span></span>
+<span id="cb9-59"><a href="#cb9-59" tabindex="-1"></a><span class="do">##      2: 10023767</span></span>
+<span id="cb9-60"><a href="#cb9-60" tabindex="-1"></a><span class="do">##      3: 10024427</span></span>
+<span id="cb9-61"><a href="#cb9-61" tabindex="-1"></a><span class="do">##      4: 10028170</span></span>
+<span id="cb9-62"><a href="#cb9-62" tabindex="-1"></a><span class="do">##      5: 10029323</span></span>
+<span id="cb9-63"><a href="#cb9-63" tabindex="-1"></a><span class="do">##     ---         </span></span>
+<span id="cb9-64"><a href="#cb9-64" tabindex="-1"></a><span class="do">## 291653:  9952375</span></span>
+<span id="cb9-65"><a href="#cb9-65" tabindex="-1"></a><span class="do">## 291654:  9971782</span></span>
+<span id="cb9-66"><a href="#cb9-66" tabindex="-1"></a><span class="do">## 291655:  9971783</span></span>
+<span id="cb9-67"><a href="#cb9-67" tabindex="-1"></a><span class="do">## 291656:  9988465</span></span>
+<span id="cb9-68"><a href="#cb9-68" tabindex="-1"></a><span class="do">## 291657:  9989453</span></span>
+<span id="cb9-69"><a href="#cb9-69" tabindex="-1"></a><span class="do">##                                                                                                                                                                                      clean_aff</span></span>
+<span id="cb9-70"><a href="#cb9-70" tabindex="-1"></a><span class="do">##                                                                                                                                                                                         &lt;char&gt;</span></span>
+<span id="cb9-71"><a href="#cb9-71" tabindex="-1"></a><span class="do">##      1:   Division of Neuropathology, Department of Pathology and Laboratory Medicine, University of Pennsylvania School of Medicine, Philadelphia, PA 19104-6085, USA.lavi@mail.med.upenn.edu</span></span>
+<span id="cb9-72"><a href="#cb9-72" tabindex="-1"></a><span class="do">##      2:                                                                               Department of Medicine, The Johns Hopkins University School of Medicine, Baltimore, Maryland 21205, USA.</span></span>
+<span id="cb9-73"><a href="#cb9-73" tabindex="-1"></a><span class="do">##      3:                                                                     Department of Pathobiology, University of Connecticut, U-89,61 North Eagleville Road, Storrs, CT, 06269-3089, USA.</span></span>
+<span id="cb9-74"><a href="#cb9-74" tabindex="-1"></a><span class="do">##      4:                                                                                 Centre d&#39;Etude et de Recherches Vétérinaires et Agrochimiques 99, Brussels, Belgium. calet@var.fgov.be</span></span>
+<span id="cb9-75"><a href="#cb9-75" tabindex="-1"></a><span class="do">##      5:                                                                                 Department of Internal Veterinary Medicine, University of Zurich, Switzerland. mgut@vetklinik.unizh.ch</span></span>
+<span id="cb9-76"><a href="#cb9-76" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                       </span></span>
+<span id="cb9-77"><a href="#cb9-77" tabindex="-1"></a><span class="do">## 291653: Department of Medicine, Health, and Biological Sciences, University of Southampton, School of Medicine, Southampton General Hospital, Southampton, Hampshire, United Kingdom S016 6YD.</span></span>
+<span id="cb9-78"><a href="#cb9-78" tabindex="-1"></a><span class="do">## 291654:                                                                                              Division of Electron Microscopy, Department of Biology, University of Oslo, Oslo, Norway.</span></span>
+<span id="cb9-79"><a href="#cb9-79" tabindex="-1"></a><span class="do">## 291655:                                                                                                     Department of Virology, Leiden University Medical Center, Leiden, The Netherlands.</span></span>
+<span id="cb9-80"><a href="#cb9-80" tabindex="-1"></a><span class="do">## 291656:                                                                                                                                 University Medicine, Southampton General Hospital, UK.</span></span>
+<span id="cb9-81"><a href="#cb9-81" tabindex="-1"></a><span class="do">## 291657:                                                             Department of Clinical Neurological Sciences, Guy&#39;s, King&#39;s and St. Thomas&#39; School of Medicine, London. k.smith@umds.ac.uk</span></span></code></pre></div>
+</div>
+<div class="r">
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># R data.table</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>countries_dt[, clean_aff <span class="sc">:=</span> <span class="fu">str_replace_all</span>(clean_aff,<span class="st">&#39; USA&#39;</span>,<span class="st">&#39;United States&#39;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>             ][, clean_aff <span class="sc">:=</span> <span class="fu">str_replace_all</span>(clean_aff,<span class="st">&#39; UK&#39;</span>,<span class="st">&#39;United Kingdom&#39;</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>               ][, clean_aff <span class="sc">:=</span> <span class="fu">str_replace_all</span>(clean_aff,<span class="st">&#39; Korea&#39;</span>,<span class="st">&#39;South Korea&#39;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                 ][, clean_aff <span class="sc">:=</span> <span class="fu">tolower</span>(clean_aff)]</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="do">## 1.442 sec elapsed</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>countries_dt</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="do">## Key: &lt;pmid&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="do">##             pmid</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="do">##           &lt;char&gt;</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="do">##      1: 10023135</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="do">##      2: 10023767</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="do">##      3: 10024427</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="do">##      4: 10028170</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="do">##      5: 10029323</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="do">##     ---         </span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="do">## 291653:  9952375</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="do">## 291654:  9971782</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="do">## 291655:  9971783</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="do">## 291656:  9988465</span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="do">## 291657:  9989453</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="do">##                                                                                                                                                                                             clean_aff</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                &lt;char&gt;</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="do">##      1: division of neuropathology, department of pathology and laboratory medicine, university of pennsylvania school of medicine, philadelphia, pa 19104-6085,united states.lavi@mail.med.upenn.edu</span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="do">##      2:                                                                             department of medicine, the johns hopkins university school of medicine, baltimore, maryland 21205,united states.</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="do">##      3:                                                                   department of pathobiology, university of connecticut, u-89,61 north eagleville road, storrs, ct, 06269-3089,united states.</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="do">##      4:                                                                                        centre d&#39;etude et de recherches vétérinaires et agrochimiques 99, brussels, belgium. calet@var.fgov.be</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="do">##      5:                                                                                        department of internal veterinary medicine, university of zurich, switzerland. mgut@vetklinik.unizh.ch</span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                              </span></span>
+<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="do">## 291653:        department of medicine, health, and biological sciences, university of southampton, school of medicine, southampton general hospital, southampton, hampshire, united kingdom s016 6yd.</span></span>
+<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="do">## 291654:                                                                                                     division of electron microscopy, department of biology, university of oslo, oslo, norway.</span></span>
+<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="do">## 291655:                                                                                                            department of virology, leiden university medical center, leiden, the netherlands.</span></span>
+<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a><span class="do">## 291656:                                                                                                                             university medicine, southampton general hospital,united kingdom.</span></span>
+<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a><span class="do">## 291657:                                                                    department of clinical neurological sciences, guy&#39;s, king&#39;s and st. thomas&#39; school of medicine, london. k.smith@umds.ac.uk</span></span>
+<span id="cb10-37"><a href="#cb10-37" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" tabindex="-1"></a><span class="fu">key</span>(countries_dt)</span>
+<span id="cb10-39"><a href="#cb10-39" tabindex="-1"></a><span class="do">## [1] &quot;pmid&quot;</span></span>
+<span id="cb10-40"><a href="#cb10-40" tabindex="-1"></a><span class="fu">setkey</span>(countries_dt,pmid,clean_aff)</span>
+<span id="cb10-41"><a href="#cb10-41" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" tabindex="-1"></a>pattern <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">b(&quot;</span>, <span class="fu">paste</span>(countries, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>), <span class="st">&quot;)</span><span class="sc">\\</span><span class="st">b&quot;</span>)</span>
+<span id="cb10-44"><a href="#cb10-44" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a>countries_dt[,country <span class="sc">:=</span> .(<span class="fu">str_extract</span>(clean_aff, pattern)),</span>
+<span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a>             by<span class="ot">=</span><span class="fu">c</span>(<span class="st">&#39;pmid&#39;</span>, <span class="st">&#39;clean_aff&#39;</span>)]</span>
+<span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a><span class="do">## 29.18 sec elapsed</span></span>
+<span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a>countries_dt</span>
+<span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a><span class="do">## Key: &lt;pmid, clean_aff&gt;</span></span>
+<span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a><span class="do">##             pmid</span></span>
+<span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a><span class="do">##           &lt;char&gt;</span></span>
+<span id="cb10-53"><a href="#cb10-53" tabindex="-1"></a><span class="do">##      1: 10023135</span></span>
+<span id="cb10-54"><a href="#cb10-54" tabindex="-1"></a><span class="do">##      2: 10023767</span></span>
+<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="do">##      3: 10024427</span></span>
+<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="do">##      4: 10028170</span></span>
+<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="do">##      5: 10029323</span></span>
+<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="do">##     ---         </span></span>
+<span id="cb10-59"><a href="#cb10-59" tabindex="-1"></a><span class="do">## 291653:  9952375</span></span>
+<span id="cb10-60"><a href="#cb10-60" tabindex="-1"></a><span class="do">## 291654:  9971782</span></span>
+<span id="cb10-61"><a href="#cb10-61" tabindex="-1"></a><span class="do">## 291655:  9971783</span></span>
+<span id="cb10-62"><a href="#cb10-62" tabindex="-1"></a><span class="do">## 291656:  9988465</span></span>
+<span id="cb10-63"><a href="#cb10-63" tabindex="-1"></a><span class="do">## 291657:  9989453</span></span>
+<span id="cb10-64"><a href="#cb10-64" tabindex="-1"></a><span class="do">##                                                                                                                                                                                             clean_aff</span></span>
+<span id="cb10-65"><a href="#cb10-65" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                &lt;char&gt;</span></span>
+<span id="cb10-66"><a href="#cb10-66" tabindex="-1"></a><span class="do">##      1: division of neuropathology, department of pathology and laboratory medicine, university of pennsylvania school of medicine, philadelphia, pa 19104-6085,united states.lavi@mail.med.upenn.edu</span></span>
+<span id="cb10-67"><a href="#cb10-67" tabindex="-1"></a><span class="do">##      2:                                                                             department of medicine, the johns hopkins university school of medicine, baltimore, maryland 21205,united states.</span></span>
+<span id="cb10-68"><a href="#cb10-68" tabindex="-1"></a><span class="do">##      3:                                                                   department of pathobiology, university of connecticut, u-89,61 north eagleville road, storrs, ct, 06269-3089,united states.</span></span>
+<span id="cb10-69"><a href="#cb10-69" tabindex="-1"></a><span class="do">##      4:                                                                                        centre d&#39;etude et de recherches vétérinaires et agrochimiques 99, brussels, belgium. calet@var.fgov.be</span></span>
+<span id="cb10-70"><a href="#cb10-70" tabindex="-1"></a><span class="do">##      5:                                                                                        department of internal veterinary medicine, university of zurich, switzerland. mgut@vetklinik.unizh.ch</span></span>
+<span id="cb10-71"><a href="#cb10-71" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                              </span></span>
+<span id="cb10-72"><a href="#cb10-72" tabindex="-1"></a><span class="do">## 291653:        department of medicine, health, and biological sciences, university of southampton, school of medicine, southampton general hospital, southampton, hampshire, united kingdom s016 6yd.</span></span>
+<span id="cb10-73"><a href="#cb10-73" tabindex="-1"></a><span class="do">## 291654:                                                                                                     division of electron microscopy, department of biology, university of oslo, oslo, norway.</span></span>
+<span id="cb10-74"><a href="#cb10-74" tabindex="-1"></a><span class="do">## 291655:                                                                                                            department of virology, leiden university medical center, leiden, the netherlands.</span></span>
+<span id="cb10-75"><a href="#cb10-75" tabindex="-1"></a><span class="do">## 291656:                                                                                                                             university medicine, southampton general hospital,united kingdom.</span></span>
+<span id="cb10-76"><a href="#cb10-76" tabindex="-1"></a><span class="do">## 291657:                                                                    department of clinical neurological sciences, guy&#39;s, king&#39;s and st. thomas&#39; school of medicine, london. k.smith@umds.ac.uk</span></span>
+<span id="cb10-77"><a href="#cb10-77" tabindex="-1"></a><span class="do">##                country</span></span>
+<span id="cb10-78"><a href="#cb10-78" tabindex="-1"></a><span class="do">##                 &lt;char&gt;</span></span>
+<span id="cb10-79"><a href="#cb10-79" tabindex="-1"></a><span class="do">##      1:  united states</span></span>
+<span id="cb10-80"><a href="#cb10-80" tabindex="-1"></a><span class="do">##      2:  united states</span></span>
+<span id="cb10-81"><a href="#cb10-81" tabindex="-1"></a><span class="do">##      3:  united states</span></span>
+<span id="cb10-82"><a href="#cb10-82" tabindex="-1"></a><span class="do">##      4:        belgium</span></span>
+<span id="cb10-83"><a href="#cb10-83" tabindex="-1"></a><span class="do">##      5:    switzerland</span></span>
+<span id="cb10-84"><a href="#cb10-84" tabindex="-1"></a><span class="do">##     ---               </span></span>
+<span id="cb10-85"><a href="#cb10-85" tabindex="-1"></a><span class="do">## 291653: united kingdom</span></span>
+<span id="cb10-86"><a href="#cb10-86" tabindex="-1"></a><span class="do">## 291654:         norway</span></span>
+<span id="cb10-87"><a href="#cb10-87" tabindex="-1"></a><span class="do">## 291655:    netherlands</span></span>
+<span id="cb10-88"><a href="#cb10-88" tabindex="-1"></a><span class="do">## 291656: united kingdom</span></span>
+<span id="cb10-89"><a href="#cb10-89" tabindex="-1"></a><span class="do">## 291657:           &lt;NA&gt;</span></span>
+<span id="cb10-90"><a href="#cb10-90" tabindex="-1"></a></span>
+<span id="cb10-91"><a href="#cb10-91" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb10-92"><a href="#cb10-92" tabindex="-1"></a>countries_dt <span class="ot">=</span> countries_dt[<span class="sc">!</span><span class="fu">is.na</span>(country), <span class="sc">-</span><span class="st">&#39;clean_aff&#39;</span>]</span>
+<span id="cb10-93"><a href="#cb10-93" tabindex="-1"></a><span class="fu">setkey</span>(countries_dt,pmid,country)</span>
+<span id="cb10-94"><a href="#cb10-94" tabindex="-1"></a>countries_dt <span class="ot">=</span> <span class="fu">unique</span>(countries_dt)</span>
+<span id="cb10-95"><a href="#cb10-95" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb10-96"><a href="#cb10-96" tabindex="-1"></a><span class="do">## 0.062 sec elapsed</span></span>
+<span id="cb10-97"><a href="#cb10-97" tabindex="-1"></a></span>
+<span id="cb10-98"><a href="#cb10-98" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb10-99"><a href="#cb10-99" tabindex="-1"></a>countries_year <span class="ot">=</span> countries_dt[dt_final_table[,<span class="fu">c</span>(<span class="st">&#39;pmid&#39;</span>,<span class="st">&#39;year_pub&#39;</span>)], on <span class="ot">=</span><span class="st">&#39;pmid&#39;</span>]</span>
+<span id="cb10-100"><a href="#cb10-100" tabindex="-1"></a>countries_year <span class="ot">=</span> <span class="fu">na.omit</span>(countries_year)</span>
+<span id="cb10-101"><a href="#cb10-101" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb10-102"><a href="#cb10-102" tabindex="-1"></a><span class="do">## 0.012 sec elapsed</span></span>
+<span id="cb10-103"><a href="#cb10-103" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb10-105"><a href="#cb10-105" tabindex="-1"></a>countries_pub_dt <span class="ot">=</span> countries_year[,</span>
+<span id="cb10-106"><a href="#cb10-106" tabindex="-1"></a>                                  .(<span class="at">n =</span> <span class="fu">length</span>(<span class="fu">unique</span>(pmid))),</span>
+<span id="cb10-107"><a href="#cb10-107" tabindex="-1"></a>                                  by<span class="ot">=</span><span class="fu">c</span>(<span class="st">&#39;country&#39;</span>,<span class="st">&#39;year_pub&#39;</span>)]</span>
+<span id="cb10-108"><a href="#cb10-108" tabindex="-1"></a></span>
+<span id="cb10-109"><a href="#cb10-109" tabindex="-1"></a><span class="fu">head</span>(countries_pub_dt[<span class="fu">order</span>(n,<span class="at">decreasing =</span> T)])</span>
+<span id="cb10-110"><a href="#cb10-110" tabindex="-1"></a><span class="do">##           country year_pub     n</span></span>
+<span id="cb10-111"><a href="#cb10-111" tabindex="-1"></a><span class="do">##            &lt;char&gt;   &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb10-112"><a href="#cb10-112" tabindex="-1"></a><span class="do">## 1:  united states     2020 10670</span></span>
+<span id="cb10-113"><a href="#cb10-113" tabindex="-1"></a><span class="do">## 2:          china     2020  7894</span></span>
+<span id="cb10-114"><a href="#cb10-114" tabindex="-1"></a><span class="do">## 3: united kingdom     2020  6058</span></span>
+<span id="cb10-115"><a href="#cb10-115" tabindex="-1"></a><span class="do">## 4:          italy     2020  5933</span></span>
+<span id="cb10-116"><a href="#cb10-116" tabindex="-1"></a><span class="do">## 5:          india     2020  3199</span></span>
+<span id="cb10-117"><a href="#cb10-117" tabindex="-1"></a><span class="do">## 6:         france     2020  2639</span></span>
+<span id="cb10-118"><a href="#cb10-118" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb10-119"><a href="#cb10-119" tabindex="-1"></a><span class="do">## 0.008 sec elapsed</span></span></code></pre></div>
+</div>
+</div>
+<div id="country-bar-plot-with-plotly" class="section level1"
+number="10">
+<h1><span class="header-section-number">10</span> Country bar plot with
+plotly</h1>
+<p>Select the top 25 of countries involved in coronavirus research since
+2001, plot the evolution on a bar chart with plot_ly</p>
+<p>Two usefull links:</p>
+<ul>
+<li><p><a
+href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html"
+class="uri">https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html</a></p></li>
+<li><p><a href="https://plotly.com/r/bar-charts/"
+class="uri">https://plotly.com/r/bar-charts/</a></p></li>
+</ul>
+<div class="r">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># R </span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="do">## Attaching package: &#39;plotly&#39;</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:ggplot2&#39;:</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">##     last_plot</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:stats&#39;:</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="do">##     filter</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:graphics&#39;:</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="do">##     layout</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>plot_top_n  <span class="ot">=</span> <span class="cf">function</span>(n_top,year){</span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>  </span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>  countries_to_plot <span class="ot">=</span> <span class="fu">as.matrix</span>(</span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>    countries_pub_dt[year_pub<span class="sc">&gt;=</span>year,</span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a>                     .(<span class="at">sum_paper =</span> <span class="fu">sum</span>(n)),</span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>                     <span class="at">by =</span> .(country)</span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>                     ][<span class="fu">order</span>(sum_paper, <span class="at">decreasing =</span> T)</span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>                       ][<span class="dv">1</span><span class="sc">:</span>n_top,<span class="st">&#39;country&#39;</span>]</span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a>    )</span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a>  fig <span class="ot">=</span> <span class="fu">plot_ly</span>(countries_pub_dt[year_pub<span class="sc">&gt;=</span>year <span class="sc">&amp;</span> country <span class="sc">%in%</span> countries_to_plot], </span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a>                <span class="at">x =</span> <span class="sc">~</span>year_pub,</span>
+<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>                <span class="at">y =</span> <span class="sc">~</span>n,</span>
+<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>                <span class="at">color =</span> <span class="sc">~</span>country) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>    <span class="fu">layout</span>(<span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;Count&#39;</span>,<span class="at">type =</span> <span class="st">&#39;log&#39;</span>),</span>
+<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a>           <span class="at">barmode =</span> <span class="st">&#39;stack&#39;</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a>  fig</span>
+<span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a>}</span>
+<span id="cb11-37"><a href="#cb11-37" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="#cb11-38" tabindex="-1"></a><span class="fu">plot_top_n</span>(<span class="dv">10</span>,<span class="dv">2001</span>)</span>
+<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a><span class="do">## No trace type specified:</span></span>
+<span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a><span class="do">##   Based on info supplied, a &#39;bar&#39; trace seems appropriate.</span></span>
+<span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a><span class="do">##   Read more about this trace type -&gt; https://plotly.com/r/reference/#bar</span></span></code></pre></div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-8fd39a5cc996dfbaa2bb" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-8fd39a5cc996dfbaa2bb">{"x":{"visdat":{"c8545ddd167e":["function () ","plotlyVisDat"]},"cur_data":"c8545ddd167e","attrs":{"c8545ddd167e":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count","type":"log"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"year_pub","type":"category","categoryorder":"array","categoryarray":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"]},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[2,4,10,21,25,32,39,43,51,26,45,42,71,96,120,114,115,127,137,2058,3],"type":"bar","name":"australia","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[16,13,45,70,61,72,62,71,70,64,64,73,90,113,130,136,120,134,172,2342,4],"type":"bar","name":"canada","marker":{"color":"rgba(228,156,113,1)","line":{"color":"rgba(228,156,113,1)"}},"textfont":{"color":"rgba(228,156,113,1)"},"error_y":{"color":"rgba(228,156,113,1)"},"error_x":{"color":"rgba(228,156,113,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[102,186,182,164,156,145,171,222,165,172,317,393,516,532,568,593,739,7894,25],"type":"bar","name":"china","marker":{"color":"rgba(201,152,157,1)","line":{"color":"rgba(201,152,157,1)"}},"textfont":{"color":"rgba(201,152,157,1)"},"error_y":{"color":"rgba(201,152,157,1)"},"error_x":{"color":"rgba(201,152,157,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[12,12,17,32,39,36,46,41,57,44,54,43,86,127,130,148,135,158,157,2639,4],"type":"bar","name":"france","marker":{"color":"rgba(175,154,200,1)","line":{"color":"rgba(175,154,200,1)"}},"textfont":{"color":"rgba(175,154,200,1)"},"error_y":{"color":"rgba(175,154,200,1)"},"error_x":{"color":"rgba(175,154,200,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[18,19,31,35,36,70,53,59,55,46,59,48,80,127,146,151,165,171,177,2108,1],"type":"bar","name":"germany","marker":{"color":"rgba(226,148,184,1)","line":{"color":"rgba(226,148,184,1)"}},"textfont":{"color":"rgba(226,148,184,1)"},"error_y":{"color":"rgba(226,148,184,1)"},"error_x":{"color":"rgba(226,148,184,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2015","2013","2014","2016","2017","2018","2019","2020","2021"],"y":[4,1,5,9,8,10,9,24,18,32,31,30,65,54,82,88,88,91,125,3199,8],"type":"bar","name":"india","marker":{"color":"rgba(176,208,99,1)","line":{"color":"rgba(176,208,99,1)"}},"textfont":{"color":"rgba(176,208,99,1)"},"error_y":{"color":"rgba(176,208,99,1)"},"error_x":{"color":"rgba(176,208,99,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[9,8,18,24,34,31,32,37,33,31,41,43,48,69,94,111,110,115,131,5933,5],"type":"bar","name":"italy","marker":{"color":"rgba(227,217,62,1)","line":{"color":"rgba(227,217,62,1)"}},"textfont":{"color":"rgba(227,217,62,1)"},"error_y":{"color":"rgba(227,217,62,1)"},"error_x":{"color":"rgba(227,217,62,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2019","2018","2020","2021"],"y":[8,10,17,14,18,18,19,38,31,25,34,44,44,63,79,87,76,110,98,2014,5],"type":"bar","name":"spain","marker":{"color":"rgba(245,207,100,1)","line":{"color":"rgba(245,207,100,1)"}},"textfont":{"color":"rgba(245,207,100,1)"},"error_y":{"color":"rgba(245,207,100,1)"},"error_x":{"color":"rgba(245,207,100,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2014","2013","2015","2016","2017","2018","2019","2020","2021"],"y":[22,20,56,68,72,81,74,85,101,87,89,90,175,125,252,201,229,206,287,6058,10],"type":"bar","name":"united kingdom","marker":{"color":"rgba(219,192,155,1)","line":{"color":"rgba(219,192,155,1)"}},"textfont":{"color":"rgba(219,192,155,1)"},"error_y":{"color":"rgba(219,192,155,1)"},"error_x":{"color":"rgba(219,192,155,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2012","2011","2013","2014","2015","2016","2017","2018","2020","2019","2021"],"y":[158,130,228,370,395,465,411,505,538,570,554,555,608,632,739,729,749,753,10670,803,20],"type":"bar","name":"united states","marker":{"color":"rgba(179,179,179,1)","line":{"color":"rgba(179,179,179,1)"}},"textfont":{"color":"rgba(179,179,179,1)"},"error_y":{"color":"rgba(179,179,179,1)"},"error_x":{"color":"rgba(179,179,179,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

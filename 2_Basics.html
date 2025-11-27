@@ -13,7 +13,7 @@
 
 <title>Basics</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -56,8 +56,9 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -68,7 +69,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -420,6 +421,12 @@ div.tocify {
 </li>
 <li>
   <a href="3_Arrays_Vectors.html">Arrays/Vectors</a>
+</li>
+<li>
+  <a href="5_Data_Analysis_R.html">Data Analysis</a>
+</li>
+<li>
+  <a href="7_Best_practices.html">Best Pratices</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -1375,7 +1382,7 @@ met.</p>
 <span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>}</span>
 <span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a>  </span>
 <span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a>total</span>
-<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a><span class="do">## [1] 1.249814</span></span></code></pre></div>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a><span class="do">## [1] 1.644882</span></span></code></pre></div>
 </div>
 </div>
 <p>
@@ -1466,7 +1473,7 @@ Functions</h2>
 <span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="fu">clean_sum</span>(<span class="at">seq =</span> seq)</span>
 <span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="do">## [1] 1560</span></span>
 <span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="do">## Time difference of 0.001230001 secs</span></span>
+<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="do">## Time difference of 0.001157045 secs</span></span>
 <span id="cb32-20"><a href="#cb32-20" tabindex="-1"></a></span>
 <span id="cb32-21"><a href="#cb32-21" tabindex="-1"></a></span>
 <span id="cb32-22"><a href="#cb32-22" tabindex="-1"></a></span>
@@ -1479,7 +1486,7 @@ Functions</h2>
 <span id="cb32-29"><a href="#cb32-29" tabindex="-1"></a><span class="fu">clean_sum</span>(<span class="at">seq =</span> seq)</span>
 <span id="cb32-30"><a href="#cb32-30" tabindex="-1"></a><span class="do">## [1] 1560</span></span>
 <span id="cb32-31"><a href="#cb32-31" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb32-32"><a href="#cb32-32" tabindex="-1"></a><span class="do">## Time difference of 0.0003221035 secs</span></span></code></pre></div>
+<span id="cb32-32"><a href="#cb32-32" tabindex="-1"></a><span class="do">## Time difference of 0.0003020763 secs</span></span></code></pre></div>
 </div>
 </div>
 <p>In R, it is not possible to unpack the output of a function into
@@ -1489,31 +1496,33 @@ using the <code>zeallot</code> package.</p>
 <div class="r">
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">library</span>(zeallot)</span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(nb){</span>
-<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>  nb <span class="ot">=</span> nb <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a>  <span class="fu">return</span>(nb)</span>
-<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a>}</span>
-<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>  </span>
-<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a>square_nb <span class="ot">&lt;-</span> <span class="cf">function</span>(nb){</span>
-<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a>  nb <span class="ot">=</span> nb<span class="sc">**</span><span class="dv">2</span></span>
-<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a>  <span class="fu">return</span>(nb)</span>
-<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a>}</span>
-<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a></span>
-<span id="cb33-14"><a href="#cb33-14" tabindex="-1"></a>global_function <span class="ot">&lt;-</span> <span class="cf">function</span>(nb){</span>
-<span id="cb33-15"><a href="#cb33-15" tabindex="-1"></a>  <span class="cf">for</span>(func <span class="cf">in</span> func_list){</span>
-<span id="cb33-16"><a href="#cb33-16" tabindex="-1"></a>    nb <span class="ot">=</span> <span class="fu">func</span>(nb)</span>
-<span id="cb33-17"><a href="#cb33-17" tabindex="-1"></a>      }</span>
-<span id="cb33-18"><a href="#cb33-18" tabindex="-1"></a>  <span class="fu">return</span>(nb)</span>
-<span id="cb33-19"><a href="#cb33-19" tabindex="-1"></a>}</span>
-<span id="cb33-20"><a href="#cb33-20" tabindex="-1"></a></span>
-<span id="cb33-21"><a href="#cb33-21" tabindex="-1"></a>func_list <span class="ot">=</span> <span class="fu">c</span>(add_two,square_nb)</span>
-<span id="cb33-22"><a href="#cb33-22" tabindex="-1"></a></span>
-<span id="cb33-23"><a href="#cb33-23" tabindex="-1"></a><span class="fu">c</span>(x1, x2) <span class="sc">%&lt;-%</span> <span class="fu">global_function</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb33-24"><a href="#cb33-24" tabindex="-1"></a>x1</span>
-<span id="cb33-25"><a href="#cb33-25" tabindex="-1"></a><span class="do">## [1] 16</span></span>
-<span id="cb33-26"><a href="#cb33-26" tabindex="-1"></a>x2</span>
-<span id="cb33-27"><a href="#cb33-27" tabindex="-1"></a><span class="do">## [1] 25</span></span></code></pre></div>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a><span class="do">## Error in library(zeallot): there is no package called &#39;zeallot&#39;</span></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(nb){</span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a>  nb <span class="ot">=</span> nb <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a>  <span class="fu">return</span>(nb)</span>
+<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>}</span>
+<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a>  </span>
+<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a>square_nb <span class="ot">&lt;-</span> <span class="cf">function</span>(nb){</span>
+<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a>  nb <span class="ot">=</span> nb<span class="sc">**</span><span class="dv">2</span></span>
+<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a>  <span class="fu">return</span>(nb)</span>
+<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a>}</span>
+<span id="cb33-14"><a href="#cb33-14" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" tabindex="-1"></a>global_function <span class="ot">&lt;-</span> <span class="cf">function</span>(nb){</span>
+<span id="cb33-16"><a href="#cb33-16" tabindex="-1"></a>  <span class="cf">for</span>(func <span class="cf">in</span> func_list){</span>
+<span id="cb33-17"><a href="#cb33-17" tabindex="-1"></a>    nb <span class="ot">=</span> <span class="fu">func</span>(nb)</span>
+<span id="cb33-18"><a href="#cb33-18" tabindex="-1"></a>      }</span>
+<span id="cb33-19"><a href="#cb33-19" tabindex="-1"></a>  <span class="fu">return</span>(nb)</span>
+<span id="cb33-20"><a href="#cb33-20" tabindex="-1"></a>}</span>
+<span id="cb33-21"><a href="#cb33-21" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" tabindex="-1"></a>func_list <span class="ot">=</span> <span class="fu">c</span>(add_two,square_nb)</span>
+<span id="cb33-23"><a href="#cb33-23" tabindex="-1"></a></span>
+<span id="cb33-24"><a href="#cb33-24" tabindex="-1"></a><span class="fu">c</span>(x1, x2) <span class="sc">%&lt;-%</span> <span class="fu">global_function</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb33-25"><a href="#cb33-25" tabindex="-1"></a><span class="do">## Error in c(x1, x2) %&lt;-% global_function(c(2, 3)): could not find function &quot;%&lt;-%&quot;</span></span>
+<span id="cb33-26"><a href="#cb33-26" tabindex="-1"></a>x1</span>
+<span id="cb33-27"><a href="#cb33-27" tabindex="-1"></a><span class="do">## Error: object &#39;x1&#39; not found</span></span>
+<span id="cb33-28"><a href="#cb33-28" tabindex="-1"></a>x2</span>
+<span id="cb33-29"><a href="#cb33-29" tabindex="-1"></a><span class="do">## Error: object &#39;x2&#39; not found</span></span></code></pre></div>
 </div>
 </div>
 <div

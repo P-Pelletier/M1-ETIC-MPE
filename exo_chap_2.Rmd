@@ -116,8 +116,8 @@ What is the 10 001st prime number?
 
 
 nth_prime <- function(nth){
-  primes = c(1,2)
-  i = 2
+  primes = c(2,3)
+  i = 3
   while(length(primes)<nth){
     i <- i+1
     is_prime = TRUE
@@ -166,95 +166,8 @@ Sys.time() - t
 </div>
 
 
+
 # Exercice 3
-
-2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-
-What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-
-<div class = "r">
-```{r}
-# R
-
-
-smalles_multiple <- function(n){
-  dividers = seq(1,n)
-  i = 10
-  is_multiple = FALSE
-  while(is_multiple == FALSE){
-    modulos = i%%dividers
-    len_multiple = length(modulos[which(modulos == 0)])
-    if(len_multiple == length(dividers)){
-      is_multiple = TRUE
-    } else {
-      i = i + 1
-    }
-  }
-  print(i)
-}
-
-t = Sys.time()
-smalles_multiple(10)
-Sys.time() - t
-
-t = Sys.time()
-#smalles_multiple(20)
-Sys.time() - t
-
-
-
-smalles_multiple <- function(n){
-  dividers_all = seq(1,n)
-  multiple = 1
-  i = 10
-  for(j in seq(1,n,10)){
-    dividers = dividers_all[j:(j+9)]
-    is_multiple = FALSE
-    while(is_multiple == FALSE){
-      modulos = i%%dividers
-      len_multiple = length(modulos[which(modulos == 0)])
-      if(len_multiple == length(dividers)){
-        is_multiple = TRUE
-        multiple = i
-      } else {
-        i = i + multiple
-      }
-    }
-  }
-  print(i)
-}
-
-t = Sys.time()
-smalles_multiple(10)
-Sys.time() - t
-
-
-t = Sys.time()
-smalles_multiple(20)
-Sys.time() - t
-
-
-```
-
-
-</div>
-
-# Exercice 4
-
-$2^{15}$=32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
-
-What is the sum of the digits of the number $2^{1000}$?
-
-<div class = "r">
-```{r}
-library(gmp)
-bigq = as.bigz(2**1000)
-sum(as.integer(stringr::str_split(as.character(bigq),'')[[1]]))
-```
-</div>
-
-
-# Exercice 5
  
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 

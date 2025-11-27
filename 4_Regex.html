@@ -13,7 +13,7 @@
 
 <title>Regex</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -56,8 +56,9 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -68,7 +69,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -421,6 +422,12 @@ div.tocify {
 <li>
   <a href="3_Arrays_Vectors.html">Arrays/Vectors</a>
 </li>
+<li>
+  <a href="5_Data_Analysis_R.html">Data Analysis</a>
+</li>
+<li>
+  <a href="7_Best_practices.html">Best Pratices</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -548,10 +555,10 @@ function.</li>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>infos <span class="ot">&lt;-</span> <span class="fu">paste0</span>(time_info,time_,</span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>           wd_info,wd)</span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="fu">print</span>(infos) </span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">## [1] &quot;Time: 2025-11-26 09:15:20.377048\nCurrent working directory: /Users/peltouz/Documents/GitHub/M1-ETIC-MPE&quot;</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">## [1] &quot;Time: 2025-11-27 12:43:00.570289\nCurrent working directory: /Users/peltouz/Documents/GitHub/M1-ETIC-MPE&quot;</span></span>
 <span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
 <span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="fu">cat</span>(infos) </span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">## Time: 2025-11-26 09:15:20.377048</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">## Time: 2025-11-27 12:43:00.570289</span></span>
 <span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="do">## Current working directory: /Users/peltouz/Documents/GitHub/M1-ETIC-MPE</span></span></code></pre></div>
 </div>
 </div>
@@ -646,11 +653,11 @@ containing escape characters, or we can use writeLines as shown in the
 <span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>}</span>
 <span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a></span>
 <span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="fu">get_infos</span>()</span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="do">## Time: 2025-11-26 09:15:20.382016</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="do">## Time: 2025-11-27 12:43:00.575854</span></span>
 <span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="do">## Current working directory: /Users/peltouz/Documents/GitHub/M1-ETIC-MPE</span></span>
 <span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a></span>
 <span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="fu">get_infos_2</span>()</span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="do">## Time: 2025-11-26 09:15:20.382277 </span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="do">## Time: 2025-11-27 12:43:00.576085 </span></span>
 <span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="do">## Current working directory: /Users/peltouz/Documents/GitHub/M1-ETIC-MPE</span></span></code></pre></div>
 </div>
 </div>

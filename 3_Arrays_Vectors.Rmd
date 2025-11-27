@@ -611,20 +611,6 @@ Try to vectorize exercices 1 and 2 from chapter 1, you can also compare it with 
  
 
 **Exercise 3**
-
-2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-
-What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-
-</div>
-
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-<div style="border:1px solid; padding:10px; margin-bottom:10px; border-radius: 10px; background-color: #f9f9f9;">
-
-**Exercise 4**
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 
 Find the largest palindrome made from the product of two 3-digit numbers.
@@ -637,6 +623,6 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 <p>&nbsp;</p>
 
 
-<a href="">Solutions</a> 
-<!-- exo_chap_2.html -->
+<a href="exo_chap_2.html">Solutions</a> 
+<!--  -->
 

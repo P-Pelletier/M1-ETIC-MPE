@@ -2413,7 +2413,7 @@ Using first ```dplyr``` and the ```tidyverse```, Use ```table_1.csv```, ```table
 
 - What is the pub type with the highest mean/sd of citation for each type of publication ? (use cited and the cleaned pub_type)
 
-- Which are the most representative country by year ? You may want to separate rows for each authors to get all countries involved in the paper, in an authors have multiple affiliations, take the first one. Store it in an other tibble, keep only pmid and authors, get the country for each author from the loc_cities.csv.
+- Which are the most representative country by year ? In an other tibble, keep only pmid and authors, get the country for each author from the loc_cities.csv. You may want to separate rows for each authors to get all countries involved in the paper. If an authors have multiple affiliations, take the first one. 
 
 - Select the top 25 of countries involved in coronavirus research since 2001, plot the evolution on a bar chart with plot_ly
 

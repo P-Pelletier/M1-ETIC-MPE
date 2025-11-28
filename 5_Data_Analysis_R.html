@@ -612,17 +612,17 @@ full_join, inner_join, anti_join)</td>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="do">## ── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="do">## ── Attaching core tidyverse packages ─────────────────── tidyverse 2.0.0 ──</span></span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="do">## ✔ forcats   1.0.1     ✔ purrr     1.2.0</span></span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## ✔ ggplot2   4.0.1     ✔ tibble    3.3.0</span></span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="do">## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">## ── Conflicts ─────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──</span></span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="do">## ✖ dplyr::filter() masks stats::filter()</span></span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="do">## ✖ dplyr::lag()    masks stats::lag()</span></span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="do">## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>covid_papers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/covid_papers.csv&quot;</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="do">## Rows: 148916 Columns: 19</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="do">## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="do">## ── Column specification ───────────────────────────────────────────────────</span></span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">## Delimiter: &quot;,&quot;</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="do">## chr  (17): _id, pmid, pmcid, doi, title, source, year_pub, month_pub, author...</span></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="do">## dbl   (1): cited</span></span>
@@ -661,7 +661,7 @@ full_join, inner_join, anti_join)</td>
 <span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> <span class="fu">filter</span>(covid_papers,doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="fu">Sys.time</span>()<span class="sc">-</span>t</span>
-<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">## Time difference of 0.01407599 secs</span></span></code></pre></div>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">## Time difference of 0.0151 secs</span></span></code></pre></div>
 <p><b> Using Pipes </b></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
@@ -673,12 +673,12 @@ full_join, inner_join, anti_join)</td>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01344299 secs</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01460385 secs</span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers[<span class="fu">which</span>(covid_papers<span class="sc">$</span>doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>),]</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.01435113 secs</span></span></code></pre></div>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.01553702 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="select-columns" class="section level3" number="1.1.2">
@@ -1465,28 +1465,31 @@ manipulation</h2>
 <span id="cb23-45"><a href="#cb23-45" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb23-46"><a href="#cb23-46" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb23-47"><a href="#cb23-47" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cur_group_rows</span>()[<span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">n</span>())])</span>
-<span id="cb23-48"><a href="#cb23-48" tabindex="-1"></a><span class="do">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.</span></span>
-<span id="cb23-49"><a href="#cb23-49" tabindex="-1"></a><span class="do">## ℹ Please use `reframe()` instead.</span></span>
-<span id="cb23-50"><a href="#cb23-50" tabindex="-1"></a><span class="do">## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and</span></span>
-<span id="cb23-51"><a href="#cb23-51" tabindex="-1"></a><span class="do">##   adjust accordingly.</span></span>
-<span id="cb23-52"><a href="#cb23-52" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
-<span id="cb23-53"><a href="#cb23-53" tabindex="-1"></a><span class="do">## `summarise()` has grouped output by &#39;PY&#39;. You can override using the `.groups`</span></span>
-<span id="cb23-54"><a href="#cb23-54" tabindex="-1"></a><span class="do">## argument.</span></span>
-<span id="cb23-55"><a href="#cb23-55" tabindex="-1"></a><span class="do">## # A tibble: 226 × 2</span></span>
-<span id="cb23-56"><a href="#cb23-56" tabindex="-1"></a><span class="do">## # Groups:   PY [113]</span></span>
-<span id="cb23-57"><a href="#cb23-57" tabindex="-1"></a><span class="do">##       PY `cur_group_rows()[c(1, n())]`</span></span>
-<span id="cb23-58"><a href="#cb23-58" tabindex="-1"></a><span class="do">##    &lt;dbl&gt;                         &lt;int&gt;</span></span>
-<span id="cb23-59"><a href="#cb23-59" tabindex="-1"></a><span class="do">##  1  1830                        113846</span></span>
-<span id="cb23-60"><a href="#cb23-60" tabindex="-1"></a><span class="do">##  2  1830                        113846</span></span>
-<span id="cb23-61"><a href="#cb23-61" tabindex="-1"></a><span class="do">##  3  1832                        113890</span></span>
-<span id="cb23-62"><a href="#cb23-62" tabindex="-1"></a><span class="do">##  4  1832                        113890</span></span>
-<span id="cb23-63"><a href="#cb23-63" tabindex="-1"></a><span class="do">##  5  1833                        113879</span></span>
-<span id="cb23-64"><a href="#cb23-64" tabindex="-1"></a><span class="do">##  6  1833                        113879</span></span>
-<span id="cb23-65"><a href="#cb23-65" tabindex="-1"></a><span class="do">##  7  1836                        113827</span></span>
-<span id="cb23-66"><a href="#cb23-66" tabindex="-1"></a><span class="do">##  8  1836                        113888</span></span>
-<span id="cb23-67"><a href="#cb23-67" tabindex="-1"></a><span class="do">##  9  1842                        113769</span></span>
-<span id="cb23-68"><a href="#cb23-68" tabindex="-1"></a><span class="do">## 10  1842                        113885</span></span>
-<span id="cb23-69"><a href="#cb23-69" tabindex="-1"></a><span class="do">## # ℹ 216 more rows</span></span></code></pre></div>
+<span id="cb23-48"><a href="#cb23-48" tabindex="-1"></a><span class="do">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated</span></span>
+<span id="cb23-49"><a href="#cb23-49" tabindex="-1"></a><span class="do">## in dplyr 1.1.0.</span></span>
+<span id="cb23-50"><a href="#cb23-50" tabindex="-1"></a><span class="do">## ℹ Please use `reframe()` instead.</span></span>
+<span id="cb23-51"><a href="#cb23-51" tabindex="-1"></a><span class="do">## ℹ When switching from `summarise()` to `reframe()`, remember that</span></span>
+<span id="cb23-52"><a href="#cb23-52" tabindex="-1"></a><span class="do">##   `reframe()` always returns an ungrouped data frame and adjust</span></span>
+<span id="cb23-53"><a href="#cb23-53" tabindex="-1"></a><span class="do">##   accordingly.</span></span>
+<span id="cb23-54"><a href="#cb23-54" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span id="cb23-55"><a href="#cb23-55" tabindex="-1"></a><span class="do">## generated.</span></span>
+<span id="cb23-56"><a href="#cb23-56" tabindex="-1"></a><span class="do">## `summarise()` has grouped output by &#39;PY&#39;. You can override using the</span></span>
+<span id="cb23-57"><a href="#cb23-57" tabindex="-1"></a><span class="do">## `.groups` argument.</span></span>
+<span id="cb23-58"><a href="#cb23-58" tabindex="-1"></a><span class="do">## # A tibble: 226 × 2</span></span>
+<span id="cb23-59"><a href="#cb23-59" tabindex="-1"></a><span class="do">## # Groups:   PY [113]</span></span>
+<span id="cb23-60"><a href="#cb23-60" tabindex="-1"></a><span class="do">##       PY `cur_group_rows()[c(1, n())]`</span></span>
+<span id="cb23-61"><a href="#cb23-61" tabindex="-1"></a><span class="do">##    &lt;dbl&gt;                         &lt;int&gt;</span></span>
+<span id="cb23-62"><a href="#cb23-62" tabindex="-1"></a><span class="do">##  1  1830                        113846</span></span>
+<span id="cb23-63"><a href="#cb23-63" tabindex="-1"></a><span class="do">##  2  1830                        113846</span></span>
+<span id="cb23-64"><a href="#cb23-64" tabindex="-1"></a><span class="do">##  3  1832                        113890</span></span>
+<span id="cb23-65"><a href="#cb23-65" tabindex="-1"></a><span class="do">##  4  1832                        113890</span></span>
+<span id="cb23-66"><a href="#cb23-66" tabindex="-1"></a><span class="do">##  5  1833                        113879</span></span>
+<span id="cb23-67"><a href="#cb23-67" tabindex="-1"></a><span class="do">##  6  1833                        113879</span></span>
+<span id="cb23-68"><a href="#cb23-68" tabindex="-1"></a><span class="do">##  7  1836                        113827</span></span>
+<span id="cb23-69"><a href="#cb23-69" tabindex="-1"></a><span class="do">##  8  1836                        113888</span></span>
+<span id="cb23-70"><a href="#cb23-70" tabindex="-1"></a><span class="do">##  9  1842                        113769</span></span>
+<span id="cb23-71"><a href="#cb23-71" tabindex="-1"></a><span class="do">## 10  1842                        113885</span></span>
+<span id="cb23-72"><a href="#cb23-72" tabindex="-1"></a><span class="do">## # ℹ 216 more rows</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1860,7 +1863,7 @@ to include in the .SD.</p>
 <span id="cb30-27"><a href="#cb30-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character),</span>
 <span id="cb30-28"><a href="#cb30-28" tabindex="-1"></a>         toupper))</span>
 <span id="cb30-29"><a href="#cb30-29" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 2.839098 secs</span></span></code></pre></div>
+<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 2.841844 secs</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1886,7 +1889,7 @@ to include in the .SD.</p>
 <span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span>  <span class="fu">which</span>(<span class="fu">sapply</span>(cp_datatable, class)<span class="sc">==</span><span class="st">&#39;character&#39;</span>)){<span class="fu">set</span>(cp_datatable, <span class="at">i=</span><span class="cn">NULL</span>, <span class="at">j=</span>j, <span class="at">value=</span><span class="fu">toupper</span>(cp_datatable[[j]]))}</span>
 <span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t </span>
-<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 2.968262 secs</span></span></code></pre></div>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 2.9729 secs</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -2721,8 +2724,9 @@ of the data.table before applying set</em>() functions.</p>
 <span id="cb78-7"><a href="#cb78-7" tabindex="-1"></a><span class="do">## ℹ Please use `all.equal()` instead.</span></span>
 <span id="cb78-8"><a href="#cb78-8" tabindex="-1"></a><span class="do">## ℹ And manually order the rows/cols as needed</span></span>
 <span id="cb78-9"><a href="#cb78-9" tabindex="-1"></a><span class="do">## This warning is displayed once every 8 hours.</span></span>
-<span id="cb78-10"><a href="#cb78-10" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
-<span id="cb78-11"><a href="#cb78-11" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
+<span id="cb78-10"><a href="#cb78-10" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span id="cb78-11"><a href="#cb78-11" tabindex="-1"></a><span class="do">## generated.</span></span>
+<span id="cb78-12"><a href="#cb78-12" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -3208,7 +3212,7 @@ class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb1
 <span id="cb102-3"><a href="#cb102-3" tabindex="-1"></a></span>
 <span id="cb102-4"><a href="#cb102-4" tabindex="-1"></a>covid_papers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/covid_papers.csv&quot;</span>)</span>
 <span id="cb102-5"><a href="#cb102-5" tabindex="-1"></a><span class="do">## Rows: 148916 Columns: 19</span></span>
-<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a><span class="do">## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a><span class="do">## ── Column specification ───────────────────────────────────────────────────</span></span>
 <span id="cb102-7"><a href="#cb102-7" tabindex="-1"></a><span class="do">## Delimiter: &quot;,&quot;</span></span>
 <span id="cb102-8"><a href="#cb102-8" tabindex="-1"></a><span class="do">## chr  (17): _id, pmid, pmcid, doi, title, source, year_pub, month_pub, author...</span></span>
 <span id="cb102-9"><a href="#cb102-9" tabindex="-1"></a><span class="do">## dbl   (1): cited</span></span>
@@ -3471,11 +3475,11 @@ share of ML paper that are oa</p></li>
 <li><p>Clean up pubtype, for simplicity just get the first type</p></li>
 <li><p>What is the pub type with the highest mean/sd of citation for
 each type of publication ? (use cited and the cleaned pub_type)</p></li>
-<li><p>Which are the most representative country by year ? You may want
-to separate rows for each authors to get all countries involved in the
-paper, in an authors have multiple affiliations, take the first one.
-Store it in an other tibble, keep only pmid and authors, get the country
-for each author from the loc_cities.csv.</p></li>
+<li><p>Which are the most representative country by year ? In an other
+tibble, keep only pmid and authors, get the country for each author from
+the loc_cities.csv. You may want to separate rows for each authors to
+get all countries involved in the paper. If an authors have multiple
+affiliations, take the first one.</p></li>
 <li><p>Select the top 25 of countries involved in coronavirus research
 since 2001, plot the evolution on a bar chart with plot_ly</p></li>
 </ul>

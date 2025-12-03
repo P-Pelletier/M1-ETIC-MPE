@@ -661,7 +661,7 @@ full_join, inner_join, anti_join)</td>
 <span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> <span class="fu">filter</span>(covid_papers,doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="fu">Sys.time</span>()<span class="sc">-</span>t</span>
-<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">## Time difference of 0.0151 secs</span></span></code></pre></div>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">## Time difference of 0.01498389 secs</span></span></code></pre></div>
 <p><b> Using Pipes </b></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
@@ -673,12 +673,12 @@ full_join, inner_join, anti_join)</td>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01460385 secs</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01536798 secs</span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers[<span class="fu">which</span>(covid_papers<span class="sc">$</span>doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>),]</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.01553702 secs</span></span></code></pre></div>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.01624918 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="select-columns" class="section level3" number="1.1.2">
@@ -1863,7 +1863,7 @@ to include in the .SD.</p>
 <span id="cb30-27"><a href="#cb30-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character),</span>
 <span id="cb30-28"><a href="#cb30-28" tabindex="-1"></a>         toupper))</span>
 <span id="cb30-29"><a href="#cb30-29" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 2.841844 secs</span></span></code></pre></div>
+<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 3.244808 secs</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1889,7 +1889,7 @@ to include in the .SD.</p>
 <span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span>  <span class="fu">which</span>(<span class="fu">sapply</span>(cp_datatable, class)<span class="sc">==</span><span class="st">&#39;character&#39;</span>)){<span class="fu">set</span>(cp_datatable, <span class="at">i=</span><span class="cn">NULL</span>, <span class="at">j=</span>j, <span class="at">value=</span><span class="fu">toupper</span>(cp_datatable[[j]]))}</span>
 <span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t </span>
-<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 2.9729 secs</span></span></code></pre></div>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 2.811877 secs</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -3475,10 +3475,10 @@ share of ML paper that are oa</p></li>
 <li><p>Clean up pubtype, for simplicity just get the first type</p></li>
 <li><p>What is the pub type with the highest mean/sd of citation for
 each type of publication ? (use cited and the cleaned pub_type)</p></li>
-<li><p>Which are the most representative country by year ? In an other
-tibble, keep only pmid and authors, get the country for each author from
-the loc_cities.csv. You may want to separate rows for each authors to
-get all countries involved in the paper. If an authors have multiple
+<li><p>What are the most representative country by year ? In another
+tibble, keep only pmid and authors, and get the country for each author
+from the loc_cities.csv. You may want to separate rows for each authors
+to get all countries involved in the paper. If an author have multiple
 affiliations, take the first one.</p></li>
 <li><p>Select the top 25 of countries involved in coronavirus research
 since 2001, plot the evolution on a bar chart with plot_ly</p></li>

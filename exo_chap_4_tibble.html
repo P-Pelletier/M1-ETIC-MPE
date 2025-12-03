@@ -33,14 +33,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.11.0/plotly.js"></script>
-<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -501,7 +493,7 @@ div.r pre { background-color: #fff5fd; }
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0.529 sec elapsed</code></pre>
+<pre><code>## 0.584 sec elapsed</code></pre>
 </div>
 </div>
 <div id="clean" class="section level1" number="2">
@@ -529,7 +521,7 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>final_table <span class="ot">=</span> <span class="fu">inner_join</span>(table_1, table_2, <span class="at">by =</span> <span class="st">&#39;pmid&#39;</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0.033 sec elapsed</code></pre>
+<pre><code>## 0.035 sec elapsed</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>final_table <span class="ot">=</span> <span class="fu">na.omit</span>(final_table)</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>final_table</span></code></pre></div>
 <pre><code>## # A tibble: 108,721 × 12
@@ -558,9 +550,9 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>final_table <span class="ot">=</span> final_table <span class="sc">%&gt;%</span> </span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nb_aut =</span> <span class="fu">dim</span>(<span class="fu">str_match_all</span>(authors, <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)[[<span class="dv">1</span>]])[<span class="dv">1</span>]) </span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nb_aut =</span> <span class="fu">str_count</span>(authors, <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)) </span>
 <span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 1.487 sec elapsed</code></pre>
+<pre><code>## 1.265 sec elapsed</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>final_table <span class="ot">=</span> final_table <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">filter</span>(nb_aut <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
@@ -611,7 +603,7 @@ binary variable also, what is the share of ML paper that are oa ?</p>
 <span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>         <span class="at">has_data =</span> <span class="fu">ifelse</span>(has_data <span class="sc">==</span> <span class="st">&#39;Y&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
 <span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>         <span class="at">oa =</span> <span class="fu">ifelse</span>(oa <span class="sc">==</span> <span class="st">&#39;Y&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
 <span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 2.54 sec elapsed</code></pre>
+<pre><code>## 2.228 sec elapsed</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">sum</span>(final_table<span class="sc">$</span>ML)</span></code></pre></div>
 <pre><code>## [1] 222</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">sum</span>(final_table<span class="sc">$</span>oa)</span></code></pre></div>
@@ -652,7 +644,7 @@ binary variable also, what is the share of ML paper that are oa ?</p>
 <span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>final_table <span class="ot">=</span> final_table <span class="sc">%&gt;%</span></span>
 <span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pub_type =</span> <span class="fu">str_match_all</span>(pubtype, <span class="st">&#39;</span><span class="sc">\\</span><span class="st">[</span><span class="sc">\\</span><span class="st">&quot;(.*?)</span><span class="sc">\\</span><span class="st">&quot;&#39;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
 <span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 1.375 sec elapsed</code></pre>
+<pre><code>## 1.171 sec elapsed</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>final_table <span class="sc">%&gt;%</span> </span>
 <span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>  <span class="fu">select</span>(pubtype,pub_type)</span></code></pre></div>
 <pre><code>## # A tibble: 107,103 × 2
@@ -724,70 +716,70 @@ cited and the cleaned pub_type)</p>
 number="9">
 <h1><span class="header-section-number">9</span> Most representative
 countres by year ?</h1>
-<p>Which are the most representative country by year ? In an other
-tibble, keep only pmid and authors, get the country for each author from
-the loc_cities.csv. You may want to separate rows for each authors to
-get all countries involved in the paper. If an authors have multiple
+<p>What are the most representative country by year ? In another tibble,
+keep only pmid and authors, and get the country for each author from the
+loc_cities.csv. You may want to separate rows for each authors to get
+all countries involved in the paper. If an author have multiple
 affiliations, take the first one.</p>
 <div class="r">
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># R dplyr</span></span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>countries <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">unique</span>(cities<span class="sc">$</span>country))</span>
-<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a>countries_tibble <span class="ot">=</span> final_table <span class="sc">%&gt;%</span></span>
-<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a>  <span class="fu">select</span>(pmid,authors) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>  <span class="fu">separate_rows</span>(authors, <span class="at">sep =</span> <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)</span>
-<span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 3.186 sec elapsed</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>  <span class="fu">select</span>(authors)</span></code></pre></div>
-<pre><code>## # A tibble: 725,396 × 1
-##    authors                                                                      
-##    &lt;chr&gt;                                                                        
-##  1 &quot;&quot;                                                                           
-##  2 &quot; Das SK Subir Kumar Das&lt;AFFILIATION&gt;Department of Biochemistry, College of …
-##  3 &quot;&quot;                                                                           
-##  4 &quot; Lin L Ling Lin&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Union…
-##  5 &quot; Lu L Lianfeng Lu&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Uni…
-##  6 &quot; Cao W Wei Cao&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Union …
-##  7 &quot; Li T Taisheng Li&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Uni…
-##  8 &quot;&quot;                                                                           
-##  9 &quot; Bchetnia M Mbarka Bchetnia&lt;AFFILIATION&gt;Université du Québec à Chicoutimi (…
-## 10 &quot; Girard C Catherine Girard&lt;AFFILIATION&gt;Université du Québec à Chicoutimi (U…
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>final_table<span class="sc">$</span>authors[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;&lt;AUTHOR&gt; Das SK Subir Kumar Das&lt;AFFILIATION&gt;Department of Biochemistry, College of Medicine and JNM Hospital, WBUHS, Kalyani, Nadia, West Bengal 741235 India.&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>countries <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">unique</span>(cities<span class="sc">$</span>country))</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a>countries_tibble <span class="ot">=</span> final_table <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>  <span class="fu">select</span>(pmid,authors) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>  <span class="fu">separate_rows</span>(authors, <span class="at">sep =</span> <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)</span>
+<span id="cb46-6"><a href="#cb46-6" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 2.914 sec elapsed</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>  <span class="fu">select</span>(pmid,authors)</span></code></pre></div>
+<pre><code>## # A tibble: 725,396 × 2
+##    pmid     authors                                                             
+##    &lt;chr&gt;    &lt;chr&gt;                                                               
+##  1 32837036 &quot;&quot;                                                                  
+##  2 32837036 &quot; Das SK Subir Kumar Das&lt;AFFILIATION&gt;Department of Biochemistry, Co…
+##  3 32196410 &quot;&quot;                                                                  
+##  4 32196410 &quot; Lin L Ling Lin&lt;AFFILIATION&gt;Department of Infectious Diseases, Pek…
+##  5 32196410 &quot; Lu L Lianfeng Lu&lt;AFFILIATION&gt;Department of Infectious Diseases, P…
+##  6 32196410 &quot; Cao W Wei Cao&lt;AFFILIATION&gt;Department of Infectious Diseases, Peki…
+##  7 32196410 &quot; Li T Taisheng Li&lt;AFFILIATION&gt;Department of Infectious Diseases, P…
+##  8 32778421 &quot;&quot;                                                                  
+##  9 32778421 &quot; Bchetnia M Mbarka Bchetnia&lt;AFFILIATION&gt;Université du Québec à Chi…
+## 10 32778421 &quot; Girard C Catherine Girard&lt;AFFILIATION&gt;Université du Québec à Chic…
 ## # ℹ 725,386 more rows</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>  <span class="fu">filter</span>(authors <span class="sc">!=</span><span class="st">&quot;&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(authors, <span class="st">&#39;&lt;AFFILIATION&gt;None&#39;</span>))</span>
-<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 7.614 sec elapsed</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>  <span class="fu">select</span>(authors)</span></code></pre></div>
-<pre><code>## # A tibble: 476,357 × 1
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a>  <span class="fu">filter</span>(authors <span class="sc">!=</span><span class="st">&quot;&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(authors, <span class="st">&#39;&lt;AFFILIATION&gt;None&#39;</span>))</span>
+<span id="cb50-5"><a href="#cb50-5" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 8.876 sec elapsed</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>  <span class="fu">select</span>(pmid,authors)</span></code></pre></div>
+<pre><code>## # A tibble: 476,357 × 2
 ## # Rowwise: 
-##    authors                                                                      
-##    &lt;chr&gt;                                                                        
-##  1 &quot; Das SK Subir Kumar Das&lt;AFFILIATION&gt;Department of Biochemistry, College of …
-##  2 &quot; Lin L Ling Lin&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Union…
-##  3 &quot; Lu L Lianfeng Lu&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Uni…
-##  4 &quot; Cao W Wei Cao&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Union …
-##  5 &quot; Li T Taisheng Li&lt;AFFILIATION&gt;Department of Infectious Diseases, Peking Uni…
-##  6 &quot; Bchetnia M Mbarka Bchetnia&lt;AFFILIATION&gt;Université du Québec à Chicoutimi (…
-##  7 &quot; Girard C Catherine Girard&lt;AFFILIATION&gt;Université du Québec à Chicoutimi (U…
-##  8 &quot; Duchaine C Caroline Duchaine&lt;AFFILIATION&gt;Centre de recherche, Institut uni…
-##  9 &quot; Laprise C Catherine Laprise&lt;AFFILIATION&gt;Université du Québec à Chicoutimi …
-## 10 &quot; Liu J Jie Liu&lt;AFFILIATION&gt;Department of Anesthesiology, Union Hospital, To…
+##    pmid     authors                                                             
+##    &lt;chr&gt;    &lt;chr&gt;                                                               
+##  1 32837036 &quot; Das SK Subir Kumar Das&lt;AFFILIATION&gt;Department of Biochemistry, Co…
+##  2 32196410 &quot; Lin L Ling Lin&lt;AFFILIATION&gt;Department of Infectious Diseases, Pek…
+##  3 32196410 &quot; Lu L Lianfeng Lu&lt;AFFILIATION&gt;Department of Infectious Diseases, P…
+##  4 32196410 &quot; Cao W Wei Cao&lt;AFFILIATION&gt;Department of Infectious Diseases, Peki…
+##  5 32196410 &quot; Li T Taisheng Li&lt;AFFILIATION&gt;Department of Infectious Diseases, P…
+##  6 32778421 &quot; Bchetnia M Mbarka Bchetnia&lt;AFFILIATION&gt;Université du Québec à Chi…
+##  7 32778421 &quot; Girard C Catherine Girard&lt;AFFILIATION&gt;Université du Québec à Chic…
+##  8 32778421 &quot; Duchaine C Caroline Duchaine&lt;AFFILIATION&gt;Centre de recherche, Ins…
+##  9 32778421 &quot; Laprise C Catherine Laprise&lt;AFFILIATION&gt;Université du Québec à Ch…
+## 10 32730205 &quot; Liu J Jie Liu&lt;AFFILIATION&gt;Department of Anesthesiology, Union Hos…
 ## # ℹ 476,347 more rows</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
-<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>  <span class="fu">group_by</span>(pmid,authors) <span class="sc">%&gt;%</span></span>
-<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">authors =</span> <span class="fu">unlist</span>(<span class="fu">str_split</span>(authors, <span class="st">&#39;&lt;AFFILIATION&gt;&#39;</span>))[<span class="dv">2</span>]) <span class="sc">%&gt;%</span> </span>
-<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(pmid, authors))</span>
-<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 9.19 sec elapsed</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
-<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>  <span class="fu">select</span>(authors)</span></code></pre></div>
-<pre><code>## Adding missing grouping variables: `pmid`</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>  <span class="fu">group_by</span>(pmid,authors) <span class="sc">%&gt;%</span></span>
+<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">authors =</span> <span class="fu">unlist</span>(<span class="fu">str_split</span>(authors, <span class="st">&#39;&lt;AFFILIATION&gt;&#39;</span>))[<span class="dv">2</span>]) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(pmid, authors))</span>
+<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 8.626 sec elapsed</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>countries_tibble <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>  <span class="fu">select</span>(pmid,authors)</span></code></pre></div>
 <pre><code>## # A tibble: 291,650 × 2
 ## # Groups:   pmid, authors [291,650]
 ##    pmid     authors                                                             
@@ -805,31 +797,31 @@ affiliations, take the first one.</p>
 ## # ℹ 291,640 more rows</code></pre>
 </div>
 <div class="r">
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="co"># R dplyr</span></span>
-<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a>countries_tibble  <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
-<span id="cb57-4"><a href="#cb57-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">authors =</span> <span class="fu">str_replace_all</span>(authors, <span class="st">&#39; USA&#39;</span>, <span class="st">&#39;United States&#39;</span>),</span>
-<span id="cb57-5"><a href="#cb57-5" tabindex="-1"></a>         <span class="at">authors =</span> <span class="fu">str_replace_all</span>(authors, <span class="st">&#39; UK&#39;</span>, <span class="st">&#39;United Kingdom&#39;</span>),</span>
-<span id="cb57-6"><a href="#cb57-6" tabindex="-1"></a>         <span class="at">authors =</span> <span class="fu">str_replace_all</span>(authors, <span class="st">&#39; Korea&#39;</span>, <span class="st">&#39;South Korea&#39;</span>),</span>
-<span id="cb57-7"><a href="#cb57-7" tabindex="-1"></a>         <span class="at">authors =</span> <span class="fu">tolower</span>(authors)) </span>
-<span id="cb57-8"><a href="#cb57-8" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 30.741 sec elapsed</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>pattern <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">b(&quot;</span>, <span class="fu">paste</span>(countries, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>), <span class="st">&quot;)</span><span class="sc">\\</span><span class="st">b&quot;</span>)</span>
-<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb59-3"><a href="#cb59-3" tabindex="-1"></a>countries_tibble <span class="ot">&lt;-</span> countries_tibble <span class="sc">%&gt;%</span></span>
-<span id="cb59-4"><a href="#cb59-4" tabindex="-1"></a>  <span class="fu">group_by</span>(pmid,authors) <span class="sc">%&gt;%</span></span>
-<span id="cb59-5"><a href="#cb59-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">str_extract</span>(authors, pattern)) <span class="sc">%&gt;%</span></span>
-<span id="cb59-6"><a href="#cb59-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>authors)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="co"># R dplyr</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>countries_tibble  <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">authors =</span> <span class="fu">str_replace_all</span>(authors, <span class="st">&#39; USA&#39;</span>, <span class="st">&#39;United States&#39;</span>),</span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1"></a>         <span class="at">authors =</span> <span class="fu">str_replace_all</span>(authors, <span class="st">&#39; UK&#39;</span>, <span class="st">&#39;United Kingdom&#39;</span>),</span>
+<span id="cb58-6"><a href="#cb58-6" tabindex="-1"></a>         <span class="at">authors =</span> <span class="fu">str_replace_all</span>(authors, <span class="st">&#39; Korea&#39;</span>, <span class="st">&#39;South Korea&#39;</span>),</span>
+<span id="cb58-7"><a href="#cb58-7" tabindex="-1"></a>         <span class="at">authors =</span> <span class="fu">tolower</span>(authors)) </span>
+<span id="cb58-8"><a href="#cb58-8" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 33.36 sec elapsed</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>pattern <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">b(&quot;</span>, <span class="fu">paste</span>(countries, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>), <span class="st">&quot;)</span><span class="sc">\\</span><span class="st">b&quot;</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>countries_tibble <span class="ot">&lt;-</span> countries_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a>  <span class="fu">group_by</span>(pmid,authors) <span class="sc">%&gt;%</span></span>
+<span id="cb60-5"><a href="#cb60-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">country =</span> <span class="fu">str_extract</span>(authors, pattern)) <span class="sc">%&gt;%</span></span>
+<span id="cb60-6"><a href="#cb60-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>authors)</span></code></pre></div>
 <pre><code>## Adding missing grouping variables: `authors`</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 29.214 sec elapsed</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
-<span id="cb63-3"><a href="#cb63-3" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">!=</span> <span class="st">&#39;&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb63-4"><a href="#cb63-4" tabindex="-1"></a>  <span class="fu">distinct</span>(pmid, country)</span>
-<span id="cb63-5"><a href="#cb63-5" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 1.242 sec elapsed</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>countries_tibble</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 28.568 sec elapsed</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">!=</span> <span class="st">&#39;&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a>  <span class="fu">distinct</span>(pmid, country)</span>
+<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 1.136 sec elapsed</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>countries_tibble</span></code></pre></div>
 <pre><code>## # A tibble: 249,182 × 3
 ## # Groups:   pmid, authors [249,182]
 ##    authors                                                         pmid  country
@@ -845,21 +837,37 @@ affiliations, take the first one.</p>
 ##  9 &quot;department of immunology, semnan university of medical scienc… 3239… iran   
 ## 10 &quot;department of bacteriology and virology, semnan university of… 3239… iran   
 ## # ℹ 249,172 more rows</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb67-2"><a href="#cb67-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> <span class="fu">left_join</span>(countries_tibble,</span>
-<span id="cb67-3"><a href="#cb67-3" tabindex="-1"></a>                             final_table[,<span class="fu">c</span>(<span class="st">&#39;pmid&#39;</span>,<span class="st">&#39;year_pub&#39;</span>)],</span>
-<span id="cb67-4"><a href="#cb67-4" tabindex="-1"></a>                             <span class="at">by =</span> <span class="st">&#39;pmid&#39;</span>)</span>
-<span id="cb67-5"><a href="#cb67-5" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0.173 sec elapsed</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
-<span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a>countries_pub <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span> </span>
-<span id="cb69-3"><a href="#cb69-3" tabindex="-1"></a>  <span class="fu">group_by</span>(country, year_pub) <span class="sc">%&gt;%</span></span>
-<span id="cb69-4"><a href="#cb69-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">length</span>(<span class="fu">unique</span>(pmid))) <span class="sc">%&gt;%</span> </span>
-<span id="cb69-5"><a href="#cb69-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a>countries_tibble <span class="ot">=</span> <span class="fu">left_join</span>(countries_tibble,</span>
+<span id="cb68-3"><a href="#cb68-3" tabindex="-1"></a>                             final_table[,<span class="fu">c</span>(<span class="st">&#39;pmid&#39;</span>,<span class="st">&#39;year_pub&#39;</span>)],</span>
+<span id="cb68-4"><a href="#cb68-4" tabindex="-1"></a>                             <span class="at">by =</span> <span class="st">&#39;pmid&#39;</span>)</span>
+<span id="cb68-5"><a href="#cb68-5" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 0.119 sec elapsed</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a>countries_pub <span class="ot">=</span> countries_tibble <span class="sc">%&gt;%</span> </span>
+<span id="cb70-3"><a href="#cb70-3" tabindex="-1"></a>  <span class="fu">group_by</span>(country, year_pub) <span class="sc">%&gt;%</span></span>
+<span id="cb70-4"><a href="#cb70-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">length</span>(<span class="fu">unique</span>(pmid))) <span class="sc">%&gt;%</span> </span>
+<span id="cb70-5"><a href="#cb70-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the
 ## `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0.018 sec elapsed</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
+<pre><code>## 0.076 sec elapsed</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a>countries_pub</span></code></pre></div>
+<pre><code>## # A tibble: 1,964 × 3
+## # Groups:   country [198]
+##    country        year_pub     n
+##    &lt;chr&gt;          &lt;chr&gt;    &lt;int&gt;
+##  1 united states  2020     10670
+##  2 china          2020      7894
+##  3 united kingdom 2020      6058
+##  4 italy          2020      5933
+##  5 india          2020      3199
+##  6 france         2020      2639
+##  7 canada         2020      2342
+##  8 germany        2020      2108
+##  9 australia      2020      2058
+## 10 spain          2020      2014
+## # ℹ 1,954 more rows</code></pre>
 </div>
 </div>
 <div id="country-bar-plot-with-plotly" class="section level1"
@@ -877,40 +885,91 @@ class="uri">https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome
 class="uri">https://plotly.com/r/bar-charts/</a></p></li>
 </ul>
 <div class="r">
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="co"># R </span></span>
-<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb73-3"><a href="#cb73-3" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a><span class="co"># R </span></span>
+<span id="cb76-2"><a href="#cb76-2" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb76-3"><a href="#cb76-3" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;kableExtra&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     group_rows</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a>plot_top_n  <span class="ot">=</span> <span class="cf">function</span>(n_top,year){</span>
-<span id="cb76-2"><a href="#cb76-2" tabindex="-1"></a>  </span>
-<span id="cb76-3"><a href="#cb76-3" tabindex="-1"></a>  countries_top <span class="ot">=</span> countries_pub <span class="sc">%&gt;%</span></span>
-<span id="cb76-4"><a href="#cb76-4" tabindex="-1"></a>    <span class="fu">filter</span>(year_pub <span class="sc">&gt;=</span> year) <span class="sc">%&gt;%</span></span>
-<span id="cb76-5"><a href="#cb76-5" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-6"><a href="#cb76-6" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-7"><a href="#cb76-7" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-8"><a href="#cb76-8" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb76-9"><a href="#cb76-9" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span>n_top)</span>
-<span id="cb76-10"><a href="#cb76-10" tabindex="-1"></a></span>
-<span id="cb76-11"><a href="#cb76-11" tabindex="-1"></a>  countries_top <span class="sc">%&gt;%</span> </span>
-<span id="cb76-12"><a href="#cb76-12" tabindex="-1"></a>    <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">&quot;Top 25 most active countries in coronavirus research  (2001-2021)&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb76-13"><a href="#cb76-13" tabindex="-1"></a>    <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F, <span class="at">html_font =</span> <span class="st">&quot;Cambria&quot;</span>)</span>
-<span id="cb76-14"><a href="#cb76-14" tabindex="-1"></a>  </span>
-<span id="cb76-15"><a href="#cb76-15" tabindex="-1"></a>  countries_pub <span class="sc">%&gt;%</span> </span>
-<span id="cb76-16"><a href="#cb76-16" tabindex="-1"></a>    <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">as.matrix</span>(countries_top<span class="sc">$</span>country) <span class="sc">&amp;</span> year_pub <span class="sc">&gt;=</span> year) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-17"><a href="#cb76-17" tabindex="-1"></a>    <span class="fu">plot_ly</span>(<span class="at">x =</span> <span class="sc">~</span>year_pub, <span class="at">y =</span> <span class="sc">~</span>n, <span class="at">color =</span> <span class="sc">~</span>country) <span class="sc">%&gt;%</span> </span>
-<span id="cb76-18"><a href="#cb76-18" tabindex="-1"></a>    <span class="fu">layout</span>(<span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;Count&#39;</span>,<span class="at">type =</span> <span class="st">&#39;log&#39;</span>), <span class="at">barmode =</span> <span class="st">&#39;stack&#39;</span>)</span>
-<span id="cb76-19"><a href="#cb76-19" tabindex="-1"></a>}</span>
-<span id="cb76-20"><a href="#cb76-20" tabindex="-1"></a></span>
-<span id="cb76-21"><a href="#cb76-21" tabindex="-1"></a><span class="fu">plot_top_n</span>(<span class="dv">10</span>,<span class="dv">2001</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a>plot_top_n  <span class="ot">=</span> <span class="cf">function</span>(n_top,year){</span>
+<span id="cb79-2"><a href="#cb79-2" tabindex="-1"></a>  </span>
+<span id="cb79-3"><a href="#cb79-3" tabindex="-1"></a>  countries_top <span class="ot">=</span> countries_pub <span class="sc">%&gt;%</span></span>
+<span id="cb79-4"><a href="#cb79-4" tabindex="-1"></a>    <span class="fu">filter</span>(year_pub <span class="sc">&gt;=</span> year) <span class="sc">%&gt;%</span></span>
+<span id="cb79-5"><a href="#cb79-5" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-6"><a href="#cb79-6" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-7"><a href="#cb79-7" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-8"><a href="#cb79-8" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb79-9"><a href="#cb79-9" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span>n_top)</span>
+<span id="cb79-10"><a href="#cb79-10" tabindex="-1"></a></span>
+<span id="cb79-11"><a href="#cb79-11" tabindex="-1"></a>  table <span class="ot">=</span> countries_top <span class="sc">%&gt;%</span> </span>
+<span id="cb79-12"><a href="#cb79-12" tabindex="-1"></a>    <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">&quot;Top 25 most active countries in coronavirus research  (2001-2021)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb79-13"><a href="#cb79-13" tabindex="-1"></a>    <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F, <span class="at">html_font =</span> <span class="st">&quot;Cambria&quot;</span>)</span>
+<span id="cb79-14"><a href="#cb79-14" tabindex="-1"></a>  </span>
+<span id="cb79-15"><a href="#cb79-15" tabindex="-1"></a>  graph <span class="ot">=</span> countries_pub <span class="sc">%&gt;%</span> </span>
+<span id="cb79-16"><a href="#cb79-16" tabindex="-1"></a>    <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">as.matrix</span>(countries_top<span class="sc">$</span>country) <span class="sc">&amp;</span> year_pub <span class="sc">&gt;=</span> year) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-17"><a href="#cb79-17" tabindex="-1"></a>    <span class="fu">plot_ly</span>(<span class="at">x =</span> <span class="sc">~</span>year_pub, <span class="at">y =</span> <span class="sc">~</span>n, <span class="at">color =</span> <span class="sc">~</span>country) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-18"><a href="#cb79-18" tabindex="-1"></a>    <span class="fu">layout</span>(<span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;Count&#39;</span>,<span class="at">type =</span> <span class="st">&#39;log&#39;</span>), <span class="at">barmode =</span> <span class="st">&#39;stack&#39;</span>)</span>
+<span id="cb79-19"><a href="#cb79-19" tabindex="-1"></a>  <span class="fu">print</span>(table)</span>
+<span id="cb79-20"><a href="#cb79-20" tabindex="-1"></a>  <span class="fu">print</span>(graph)</span>
+<span id="cb79-21"><a href="#cb79-21" tabindex="-1"></a>}</span>
+<span id="cb79-22"><a href="#cb79-22" tabindex="-1"></a></span>
+<span id="cb79-23"><a href="#cb79-23" tabindex="-1"></a><span class="fu">plot_top_n</span>(<span class="dv">10</span>,<span class="dv">2001</span>)</span></code></pre></div>
+<pre><code>## &lt;table class=&quot; lightable-classic&quot; style=&quot;font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;&quot;&gt;
+## &lt;caption&gt;Top 25 most active countries in coronavirus research  (2001-2021)&lt;/caption&gt;
+##  &lt;thead&gt;
+##   &lt;tr&gt;
+##    &lt;th style=&quot;text-align:left;&quot;&gt; country &lt;/th&gt;
+##    &lt;th style=&quot;text-align:right;&quot;&gt; n &lt;/th&gt;
+##   &lt;/tr&gt;
+##  &lt;/thead&gt;
+## &lt;tbody&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; united states &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 20582 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; china &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 13242 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; united kingdom &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 8388 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; italy &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 6957 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; france &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 4017 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; india &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 3981 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; canada &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 3922 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; germany &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 3655 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; australia &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 3181 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:left;&quot;&gt; spain &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 2852 &lt;/td&gt;
+##   &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;</code></pre>
 <pre><code>## No trace type specified:
 ##   Based on info supplied, a &#39;bar&#39; trace seems appropriate.
 ##   Read more about this trace type -&gt; https://plotly.com/r/reference/#bar</code></pre>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-fcda48b8bdcb16220aac" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-fcda48b8bdcb16220aac">{"x":{"visdat":{"dce61c2c6102":["function () ","plotlyVisDat"]},"cur_data":"dce61c2c6102","attrs":{"dce61c2c6102":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count","type":"log"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"year_pub","type":"category","categoryorder":"array","categoryarray":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"]},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2020","2019","2018","2015","2017","2016","2014","2013","2009","2011","2008","2012","2007","2006","2010","2005","2004","2003","2002","2021","2001"],"y":[2058,137,127,120,115,114,96,71,51,45,43,42,39,32,26,25,21,10,4,3,2],"type":"bar","name":"australia","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2016","2018","2015","2017","2014","2013","2012","2006","2008","2004","2009","2010","2011","2007","2005","2003","2001","2002","2021"],"y":[2342,172,136,134,130,120,113,90,73,72,71,70,70,64,64,62,61,45,16,13,4],"type":"bar","name":"canada","marker":{"color":"rgba(228,156,113,1)","line":{"color":"rgba(228,156,113,1)"}},"textfont":{"color":"rgba(228,156,113,1)"},"error_y":{"color":"rgba(228,156,113,1)"},"error_x":{"color":"rgba(228,156,113,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2018","2017","2016","2015","2014","2013","2010","2004","2005","2012","2009","2011","2006","2007","2008","2003","2021"],"y":[7894,739,593,568,532,516,393,317,222,186,182,172,171,165,164,156,145,102,25],"type":"bar","name":"china","marker":{"color":"rgba(201,152,157,1)","line":{"color":"rgba(201,152,157,1)"}},"textfont":{"color":"rgba(201,152,157,1)"},"error_y":{"color":"rgba(201,152,157,1)"},"error_x":{"color":"rgba(201,152,157,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2018","2019","2016","2017","2015","2014","2013","2009","2011","2007","2010","2012","2008","2005","2006","2004","2003","2001","2002","2021"],"y":[2639,158,157,148,135,130,127,86,57,54,46,44,43,41,39,36,32,17,12,12,4],"type":"bar","name":"france","marker":{"color":"rgba(175,154,200,1)","line":{"color":"rgba(175,154,200,1)"}},"textfont":{"color":"rgba(175,154,200,1)"},"error_y":{"color":"rgba(175,154,200,1)"},"error_x":{"color":"rgba(175,154,200,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2018","2017","2016","2015","2014","2013","2006","2008","2011","2009","2007","2012","2010","2005","2004","2003","2002","2001","2021"],"y":[2108,177,171,165,151,146,127,80,70,59,59,55,53,48,46,36,35,31,19,18,1],"type":"bar","name":"germany","marker":{"color":"rgba(226,148,184,1)","line":{"color":"rgba(226,148,184,1)"}},"textfont":{"color":"rgba(226,148,184,1)"},"error_y":{"color":"rgba(226,148,184,1)"},"error_x":{"color":"rgba(226,148,184,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2018","2016","2017","2014","2015","2013","2010","2011","2012","2008","2009","2006","2004","2007","2005","2021","2003","2001","2002"],"y":[3199,125,91,88,88,82,65,54,32,31,30,24,18,10,9,9,8,8,5,4,1],"type":"bar","name":"india","marker":{"color":"rgba(176,208,99,1)","line":{"color":"rgba(176,208,99,1)"}},"textfont":{"color":"rgba(176,208,99,1)"},"error_y":{"color":"rgba(176,208,99,1)"},"error_x":{"color":"rgba(176,208,99,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2018","2016","2017","2015","2014","2013","2012","2011","2008","2005","2009","2007","2006","2010","2004","2003","2001","2002","2021"],"y":[5933,131,115,111,110,94,69,48,43,41,37,34,33,32,31,31,24,18,9,8,5],"type":"bar","name":"italy","marker":{"color":"rgba(227,217,62,1)","line":{"color":"rgba(227,217,62,1)"}},"textfont":{"color":"rgba(227,217,62,1)"},"error_y":{"color":"rgba(227,217,62,1)"},"error_x":{"color":"rgba(227,217,62,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2018","2016","2015","2017","2014","2012","2013","2008","2011","2009","2010","2007","2005","2006","2003","2004","2002","2001","2021"],"y":[2014,110,98,87,79,76,63,44,44,38,34,31,25,19,18,18,17,14,10,8,5],"type":"bar","name":"spain","marker":{"color":"rgba(245,207,100,1)","line":{"color":"rgba(245,207,100,1)"}},"textfont":{"color":"rgba(245,207,100,1)"},"error_y":{"color":"rgba(245,207,100,1)"},"error_x":{"color":"rgba(245,207,100,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2015","2017","2018","2016","2014","2013","2009","2012","2011","2010","2008","2006","2007","2005","2004","2003","2001","2002","2021"],"y":[6058,287,252,229,206,201,175,125,101,90,89,87,85,81,74,72,68,56,22,20,10],"type":"bar","name":"united kingdom","marker":{"color":"rgba(219,192,155,1)","line":{"color":"rgba(219,192,155,1)"}},"textfont":{"color":"rgba(219,192,155,1)"},"error_y":{"color":"rgba(219,192,155,1)"},"error_x":{"color":"rgba(219,192,155,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2020","2019","2018","2017","2015","2016","2014","2013","2010","2011","2012","2009","2008","2006","2007","2005","2004","2003","2001","2002","2021"],"y":[10670,803,753,749,739,729,632,608,570,555,554,538,505,465,411,395,370,228,158,130,20],"type":"bar","name":"united states","marker":{"color":"rgba(179,179,179,1)","line":{"color":"rgba(179,179,179,1)"}},"textfont":{"color":"rgba(179,179,179,1)"},"error_y":{"color":"rgba(179,179,179,1)"},"error_x":{"color":"rgba(179,179,179,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 

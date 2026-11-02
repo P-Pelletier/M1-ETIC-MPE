@@ -39,7 +39,7 @@ There are 3 different grades in this course :
 
 <p>&nbsp;</p>
 
-- A written exam at the end of the semester (**<span style="font-size: 1.2em;">15/12/2025</span>**).
+- A written exam at the end of the semester (**<span style="font-size: 1.2em;">14/12/2026</span>**), on paper and without a computer.
 <p>&nbsp;</p>
 
 - A project to be handed in by groups of 2-3 (**<span style="font-size: 1.2em;">13/01/2026</span>**). This project is completely unbounded, but here is a guideline:
@@ -52,7 +52,7 @@ There are 3 different grades in this course :
     
 <p>&nbsp;</p>
 
-- The project must be presented orally the **13/01/2026**. Students will present the project, discussing both the strengths and weaknesses of their code and the approaches they used during the tool's development. Students who ask questions during others’ presentations will receive bonus points towards their oral grade.
+- The project must be presented orally on a date **to be announced**. Students will present the project, discussing both the strengths and weaknesses of their code and the approaches they used during the tool's development. Students who ask questions during others’ presentations will receive bonus points towards their oral grade.
 
 
 <!--

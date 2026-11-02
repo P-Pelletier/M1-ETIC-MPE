@@ -15,20 +15,14 @@
 
 <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-5.3.1/bootstrap.bundle.min.js"></script>
+<link href="site_libs/Inter-0.4.10/font.css" rel="stylesheet" />
+<link href="site_libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet" />
+<script src="site_libs/bs3compat-0.9.0/transition.js"></script>
+<script src="site_libs/bs3compat-0.9.0/tabs.js"></script>
+<script src="site_libs/bs3compat-0.9.0/bs3compat.js"></script>
 <script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -157,7 +151,6 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
 
 
-<link rel="stylesheet" href="custom.css" type="text/css" />
 
 
 
@@ -485,7 +478,7 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>dt_table_2 <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="st">&#39;data/table_2.csv&#39;</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>dt_cities <span class="ot">=</span> <span class="fu">fread</span>(<span class="at">file =</span> <span class="st">&#39;data/cities_loc.csv&#39;</span>)</span>
 <span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">## 0.931 sec elapsed</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">## 0.986 sec elapsed</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">setDT</span>(dt_table_1)</span>
 <span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">setDT</span>(dt_table_2)</span>
@@ -573,7 +566,7 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>dt_table_1 <span class="ot">=</span> dt_table_1[pmid <span class="sc">!=</span> <span class="st">&#39;null&#39;</span> <span class="sc">&amp;</span> doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>]</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>dt_table_2 <span class="ot">=</span> dt_table_2[pmid <span class="sc">!=</span> <span class="st">&#39;null&#39;</span> <span class="sc">&amp;</span> year_pub <span class="sc">&gt;</span> <span class="dv">1975</span>]</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="do">## 0.016 sec elapsed</span></span></code></pre></div>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="do">## 0.014 sec elapsed</span></span></code></pre></div>
 </div>
 </div>
 <div id="merge" class="section level1" number="3">
@@ -585,7 +578,7 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>dt_final_table <span class="ot">=</span> <span class="fu">na.omit</span>(dt_table_2[dt_table_1, <span class="at">on =</span> <span class="st">&#39;pmid&#39;</span>])</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="do">## 0.021 sec elapsed</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="do">## 0.143 sec elapsed</span></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>dt_final_table</span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="do">## Key: &lt;pmid&gt;</span></span>
@@ -604,7 +597,7 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="do">## 108722:  9989453</span></span>
 <span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               authors</span></span>
 <span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                &lt;char&gt;</span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                                                                                                                                                                                                              &lt;AUTHOR&gt; Glombik MM Glombik&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Krömer A Krömer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Salm T Salm&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Huttner WB Huttner&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gerdes HH Gerdes&lt;AFFILIATION&gt;None</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                                                                                                                                                                                                &lt;AUTHOR&gt; Glombik MM Glombik&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Kr\303\266mer A Kr\303\266mer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Salm T Salm&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Huttner WB Huttner&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gerdes HH Gerdes&lt;AFFILIATION&gt;None</span></span>
 <span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="do">##      2:                                                                                                                                                                                                                                          &lt;AUTHOR&gt; Lavi E E Lavi&lt;AFFILIATION&gt;Division of Neuropathology, Department of Pathology and Laboratory Medicine, University of Pennsylvania School of Medicine, Philadelphia, PA 19104-6085, USA.lavi@mail.med.upenn.edu&lt;AUTHOR&gt; Das Sarma J J Das Sarma&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Weiss SR S R Weiss&lt;AFFILIATION&gt;None</span></span>
 <span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="do">##      3:                                                                                                            &lt;AUTHOR&gt; Saura M M Saura&lt;AFFILIATION&gt;Department of Medicine, The Johns Hopkins University School of Medicine, Baltimore, Maryland 21205, USA.&lt;AUTHOR&gt; Zaragoza C C Zaragoza&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; McMillan A A McMillan&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Quick RA R A Quick&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Hohenadl C C Hohenadl&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein JM J M Lowenstein&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein CJ C J Lowenstein&lt;AFFILIATION&gt;None</span></span>
 <span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="do">##      4:                                                                                                                                                                                                                                                                                                                                                               &lt;AUTHOR&gt; Wang X X Wang&lt;AFFILIATION&gt;Department of Pathobiology, University of Connecticut, U-89,61 North Eagleville Road, Storrs, CT, 06269-3089, USA.&lt;AUTHOR&gt; Khan MI M I Khan&lt;AFFILIATION&gt;None</span></span>
@@ -691,14 +684,14 @@ div.r pre { background-color: #fff5fd; }
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>dt_final_table[,nb_aut <span class="sc">:=</span> <span class="fu">dim</span>(<span class="fu">str_match_all</span>(authors, <span class="st">&#39;&lt;AUTHOR&gt;&#39;</span>)[[<span class="dv">1</span>]])[<span class="dv">1</span>],</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>               by <span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="do">## 1.343 sec elapsed</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="do">## 1.188 sec elapsed</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>dt_final_table <span class="ot">=</span> dt_final_table[nb_aut<span class="sc">&gt;</span><span class="dv">0</span>]</span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>dt_final_table[,<span class="fu">c</span>(<span class="st">&#39;authors&#39;</span>, <span class="st">&#39;nb_aut&#39;</span>)]</span>
 <span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               authors</span></span>
 <span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="do">##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                &lt;char&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                                                                                                                                                                                                              &lt;AUTHOR&gt; Glombik MM Glombik&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Krömer A Krömer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Salm T Salm&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Huttner WB Huttner&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gerdes HH Gerdes&lt;AFFILIATION&gt;None</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                                                                                                                                                                                                &lt;AUTHOR&gt; Glombik MM Glombik&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Kr\303\266mer A Kr\303\266mer&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Salm T Salm&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Huttner WB Huttner&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Gerdes HH Gerdes&lt;AFFILIATION&gt;None</span></span>
 <span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">##      2:                                                                                                                                                                                                                                          &lt;AUTHOR&gt; Lavi E E Lavi&lt;AFFILIATION&gt;Division of Neuropathology, Department of Pathology and Laboratory Medicine, University of Pennsylvania School of Medicine, Philadelphia, PA 19104-6085, USA.lavi@mail.med.upenn.edu&lt;AUTHOR&gt; Das Sarma J J Das Sarma&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Weiss SR S R Weiss&lt;AFFILIATION&gt;None</span></span>
 <span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="do">##      3:                                                                                                            &lt;AUTHOR&gt; Saura M M Saura&lt;AFFILIATION&gt;Department of Medicine, The Johns Hopkins University School of Medicine, Baltimore, Maryland 21205, USA.&lt;AUTHOR&gt; Zaragoza C C Zaragoza&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; McMillan A A McMillan&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Quick RA R A Quick&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Hohenadl C C Hohenadl&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein JM J M Lowenstein&lt;AFFILIATION&gt;None&lt;AUTHOR&gt; Lowenstein CJ C J Lowenstein&lt;AFFILIATION&gt;None</span></span>
 <span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="do">##      4:                                                                                                                                                                                                                                                                                                                                                               &lt;AUTHOR&gt; Wang X X Wang&lt;AFFILIATION&gt;Department of Pathobiology, University of Connecticut, U-89,61 North Eagleville Road, Storrs, CT, 06269-3089, USA.&lt;AUTHOR&gt; Khan MI M I Khan&lt;AFFILIATION&gt;None</span></span>
@@ -756,7 +749,7 @@ binary variable also, what is the share of ML paper that are oa ?</p>
 <span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                                              <span class="fu">ifelse</span>(oa <span class="sc">==</span> <span class="st">&#39;Y&#39;</span>,<span class="dv">1</span>,<span class="dv">0</span>)),</span>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>                 by <span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="do">## 2.241 sec elapsed</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="do">## 1.83 sec elapsed</span></span>
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a></span>
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a></span>
 <span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="fu">sum</span>(dt_final_table<span class="sc">$</span>ML)</span>
@@ -774,7 +767,7 @@ binary variable also, what is the share of ML paper that are oa ?</p>
 <span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="do">## 1:     0    5.772328</span></span>
 <span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="do">## 2:     1    6.058559</span></span>
 <span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="do">## 0.003 sec elapsed</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="do">## 0.005 sec elapsed</span></span>
 <span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a></span>
 <span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a>dt_final_table[,.(<span class="at">share_oa =</span> <span class="fu">sum</span>(<span class="fu">as.numeric</span>(oa))<span class="sc">/</span>.N,</span>
@@ -785,7 +778,7 @@ binary variable also, what is the share of ML paper that are oa ?</p>
 <span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="do">## 1:     0 0.7266799  11.277353</span></span>
 <span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="do">## 2:     1 0.8018018   1.054054</span></span>
 <span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="do">## 0.054 sec elapsed</span></span></code></pre></div>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="do">## 0.006 sec elapsed</span></span></code></pre></div>
 </div>
 </div>
 <div id="clean-up-pub_type" class="section level1" number="7">
@@ -796,7 +789,7 @@ binary variable also, what is the share of ML paper that are oa ?</p>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>dt_final_table[,pub_type <span class="sc">:=</span> <span class="fu">str_match_all</span>(pubtype, <span class="st">&#39;</span><span class="sc">\\</span><span class="st">[&quot;&quot;(.*?)&quot;&quot;&#39;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>],by <span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">## 1.154 sec elapsed</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">## 0.965 sec elapsed</span></span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>dt_final_table[,.(pubtype,pub_type)]</span>
 <span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="do">##                                                                                                                                                     pubtype</span></span>
@@ -1011,7 +1004,7 @@ cited and the cleaned pub_type)</p>
 <span id="cb8-176"><a href="#cb8-176" tabindex="-1"></a><span class="do">## 83:          NA</span></span>
 <span id="cb8-177"><a href="#cb8-177" tabindex="-1"></a><span class="do">##             sd_</span></span>
 <span id="cb8-178"><a href="#cb8-178" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb8-179"><a href="#cb8-179" tabindex="-1"></a><span class="do">## 0.004 sec elapsed</span></span>
+<span id="cb8-179"><a href="#cb8-179" tabindex="-1"></a><span class="do">## 0.003 sec elapsed</span></span>
 <span id="cb8-180"><a href="#cb8-180" tabindex="-1"></a></span>
 <span id="cb8-181"><a href="#cb8-181" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb8-182"><a href="#cb8-182" tabindex="-1"></a>dt_final_table[,</span>
@@ -1212,7 +1205,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>                              ][,.(<span class="at">authors =</span> <span class="fu">unlist</span>(<span class="fu">tstrsplit</span>(authors, <span class="st">&quot;&lt;AUTHOR&gt;&quot;</span>))),</span>
 <span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>                                by<span class="ot">=</span> <span class="st">&#39;pmid&#39;</span>]</span>
 <span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="do">## 3.058 sec elapsed</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="do">## 3.034 sec elapsed</span></span>
 <span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>countries_dt</span>
 <span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="do">## Key: &lt;pmid&gt;</span></span>
 <span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="do">##             pmid</span></span>
@@ -1232,7 +1225,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="do">##                                                                                                                                                             &lt;char&gt;</span></span>
 <span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="do">##      1:                                                                                                                                                           </span></span>
 <span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a><span class="do">##      2:                                                                                                                        Glombik MM Glombik&lt;AFFILIATION&gt;None</span></span>
-<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="do">##      3:                                                                                                                           Krömer A Krömer&lt;AFFILIATION&gt;None</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="do">##      3:                                                                                                             Kr\303\266mer A Kr\303\266mer&lt;AFFILIATION&gt;None</span></span>
 <span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a><span class="do">##      4:                                                                                                                               Salm T Salm&lt;AFFILIATION&gt;None</span></span>
 <span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a><span class="do">##      5:                                                                                                                        Huttner WB Huttner&lt;AFFILIATION&gt;None</span></span>
 <span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                           </span></span>
@@ -1254,7 +1247,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb9-49"><a href="#cb9-49" tabindex="-1"></a><span class="fu">setkey</span>(countries_dt,pmid,clean_aff)</span>
 <span id="cb9-50"><a href="#cb9-50" tabindex="-1"></a>countries_dt <span class="ot">=</span> <span class="fu">unique</span>(countries_dt)</span>
 <span id="cb9-51"><a href="#cb9-51" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb9-52"><a href="#cb9-52" tabindex="-1"></a><span class="do">## 3.287 sec elapsed</span></span>
+<span id="cb9-52"><a href="#cb9-52" tabindex="-1"></a><span class="do">## 3.755 sec elapsed</span></span>
 <span id="cb9-53"><a href="#cb9-53" tabindex="-1"></a></span>
 <span id="cb9-54"><a href="#cb9-54" tabindex="-1"></a>countries_dt</span>
 <span id="cb9-55"><a href="#cb9-55" tabindex="-1"></a><span class="do">## Key: &lt;pmid, clean_aff&gt;</span></span>
@@ -1276,7 +1269,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb9-71"><a href="#cb9-71" tabindex="-1"></a><span class="do">##      1:   Division of Neuropathology, Department of Pathology and Laboratory Medicine, University of Pennsylvania School of Medicine, Philadelphia, PA 19104-6085, USA.lavi@mail.med.upenn.edu</span></span>
 <span id="cb9-72"><a href="#cb9-72" tabindex="-1"></a><span class="do">##      2:                                                                               Department of Medicine, The Johns Hopkins University School of Medicine, Baltimore, Maryland 21205, USA.</span></span>
 <span id="cb9-73"><a href="#cb9-73" tabindex="-1"></a><span class="do">##      3:                                                                     Department of Pathobiology, University of Connecticut, U-89,61 North Eagleville Road, Storrs, CT, 06269-3089, USA.</span></span>
-<span id="cb9-74"><a href="#cb9-74" tabindex="-1"></a><span class="do">##      4:                                                                                 Centre d&#39;Etude et de Recherches Vétérinaires et Agrochimiques 99, Brussels, Belgium. calet@var.fgov.be</span></span>
+<span id="cb9-74"><a href="#cb9-74" tabindex="-1"></a><span class="do">##      4:                                                                   Centre d&#39;Etude et de Recherches V\303\251t\303\251rinaires et Agrochimiques 99, Brussels, Belgium. calet@var.fgov.be</span></span>
 <span id="cb9-75"><a href="#cb9-75" tabindex="-1"></a><span class="do">##      5:                                                                                 Department of Internal Veterinary Medicine, University of Zurich, Switzerland. mgut@vetklinik.unizh.ch</span></span>
 <span id="cb9-76"><a href="#cb9-76" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                       </span></span>
 <span id="cb9-77"><a href="#cb9-77" tabindex="-1"></a><span class="do">## 291653: Department of Medicine, Health, and Biological Sciences, University of Southampton, School of Medicine, Southampton General Hospital, Southampton, Hampshire, United Kingdom S016 6YD.</span></span>
@@ -1293,7 +1286,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>               ][, clean_aff <span class="sc">:=</span> <span class="fu">str_replace_all</span>(clean_aff,<span class="st">&#39; Korea&#39;</span>,<span class="st">&#39;South Korea&#39;</span>)</span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                 ][, clean_aff <span class="sc">:=</span> <span class="fu">tolower</span>(clean_aff)]</span>
 <span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="do">## 1.411 sec elapsed</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="do">## 1.595 sec elapsed</span></span>
 <span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>countries_dt</span>
 <span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="do">## Key: &lt;pmid&gt;</span></span>
 <span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="do">##             pmid</span></span>
@@ -1314,7 +1307,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="do">##      1: division of neuropathology, department of pathology and laboratory medicine, university of pennsylvania school of medicine, philadelphia, pa 19104-6085,united states.lavi@mail.med.upenn.edu</span></span>
 <span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="do">##      2:                                                                             department of medicine, the johns hopkins university school of medicine, baltimore, maryland 21205,united states.</span></span>
 <span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="do">##      3:                                                                   department of pathobiology, university of connecticut, u-89,61 north eagleville road, storrs, ct, 06269-3089,united states.</span></span>
-<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="do">##      4:                                                                                        centre d&#39;etude et de recherches vétérinaires et agrochimiques 99, brussels, belgium. calet@var.fgov.be</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="do">##      4:                                                                          centre d&#39;etude et de recherches v&lt;U+00E9&gt;t&lt;U+00E9&gt;rinaires et agrochimiques 99, brussels, belgium. calet@var.fgov.be</span></span>
 <span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="do">##      5:                                                                                        department of internal veterinary medicine, university of zurich, switzerland. mgut@vetklinik.unizh.ch</span></span>
 <span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                              </span></span>
 <span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="do">## 291653:        department of medicine, health, and biological sciences, university of southampton, school of medicine, southampton general hospital, southampton, hampshire, united kingdom s016 6yd.</span></span>
@@ -1333,7 +1326,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a>countries_dt[,country <span class="sc">:=</span> .(<span class="fu">str_extract</span>(clean_aff, pattern)),</span>
 <span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a>             by<span class="ot">=</span><span class="fu">c</span>(<span class="st">&#39;pmid&#39;</span>, <span class="st">&#39;clean_aff&#39;</span>)]</span>
 <span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a><span class="do">## 28.199 sec elapsed</span></span>
+<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a><span class="do">## 31.362 sec elapsed</span></span>
 <span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a>countries_dt</span>
 <span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a><span class="do">## Key: &lt;pmid, clean_aff&gt;</span></span>
 <span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a><span class="do">##             pmid</span></span>
@@ -1354,7 +1347,7 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb10-66"><a href="#cb10-66" tabindex="-1"></a><span class="do">##      1: division of neuropathology, department of pathology and laboratory medicine, university of pennsylvania school of medicine, philadelphia, pa 19104-6085,united states.lavi@mail.med.upenn.edu</span></span>
 <span id="cb10-67"><a href="#cb10-67" tabindex="-1"></a><span class="do">##      2:                                                                             department of medicine, the johns hopkins university school of medicine, baltimore, maryland 21205,united states.</span></span>
 <span id="cb10-68"><a href="#cb10-68" tabindex="-1"></a><span class="do">##      3:                                                                   department of pathobiology, university of connecticut, u-89,61 north eagleville road, storrs, ct, 06269-3089,united states.</span></span>
-<span id="cb10-69"><a href="#cb10-69" tabindex="-1"></a><span class="do">##      4:                                                                                        centre d&#39;etude et de recherches vétérinaires et agrochimiques 99, brussels, belgium. calet@var.fgov.be</span></span>
+<span id="cb10-69"><a href="#cb10-69" tabindex="-1"></a><span class="do">##      4:                                                                          centre d&#39;etude et de recherches v&lt;U+00E9&gt;t&lt;U+00E9&gt;rinaires et agrochimiques 99, brussels, belgium. calet@var.fgov.be</span></span>
 <span id="cb10-70"><a href="#cb10-70" tabindex="-1"></a><span class="do">##      5:                                                                                        department of internal veterinary medicine, university of zurich, switzerland. mgut@vetklinik.unizh.ch</span></span>
 <span id="cb10-71"><a href="#cb10-71" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                                                              </span></span>
 <span id="cb10-72"><a href="#cb10-72" tabindex="-1"></a><span class="do">## 291653:        department of medicine, health, and biological sciences, university of southampton, school of medicine, southampton general hospital, southampton, hampshire, united kingdom s016 6yd.</span></span>
@@ -1381,13 +1374,13 @@ paper,if an authors have multiple affiliations, take the first one.</p>
 <span id="cb10-93"><a href="#cb10-93" tabindex="-1"></a><span class="fu">setkey</span>(countries_dt,pmid,country)</span>
 <span id="cb10-94"><a href="#cb10-94" tabindex="-1"></a>countries_dt <span class="ot">=</span> <span class="fu">unique</span>(countries_dt)</span>
 <span id="cb10-95"><a href="#cb10-95" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb10-96"><a href="#cb10-96" tabindex="-1"></a><span class="do">## 0.054 sec elapsed</span></span>
+<span id="cb10-96"><a href="#cb10-96" tabindex="-1"></a><span class="do">## 0.064 sec elapsed</span></span>
 <span id="cb10-97"><a href="#cb10-97" tabindex="-1"></a></span>
 <span id="cb10-98"><a href="#cb10-98" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb10-99"><a href="#cb10-99" tabindex="-1"></a>countries_year <span class="ot">=</span> countries_dt[dt_final_table[,<span class="fu">c</span>(<span class="st">&#39;pmid&#39;</span>,<span class="st">&#39;year_pub&#39;</span>)], on <span class="ot">=</span><span class="st">&#39;pmid&#39;</span>]</span>
 <span id="cb10-100"><a href="#cb10-100" tabindex="-1"></a>countries_year <span class="ot">=</span> <span class="fu">na.omit</span>(countries_year)</span>
 <span id="cb10-101"><a href="#cb10-101" tabindex="-1"></a><span class="fu">toc</span>()</span>
-<span id="cb10-102"><a href="#cb10-102" tabindex="-1"></a><span class="do">## 0.011 sec elapsed</span></span>
+<span id="cb10-102"><a href="#cb10-102" tabindex="-1"></a><span class="do">## 0.014 sec elapsed</span></span>
 <span id="cb10-103"><a href="#cb10-103" tabindex="-1"></a></span>
 <span id="cb10-104"><a href="#cb10-104" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb10-105"><a href="#cb10-105" tabindex="-1"></a>countries_pub_dt <span class="ot">=</span> countries_year[,</span>
@@ -1424,50 +1417,109 @@ class="uri">https://plotly.com/r/bar-charts/</a></p></li>
 <div class="r">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># R </span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="do">## Attaching package: &#39;plotly&#39;</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:ggplot2&#39;:</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">##     last_plot</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:stats&#39;:</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="do">##     filter</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:graphics&#39;:</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="do">##     layout</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="do">## Loading required package: ggplot2</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="do">## Attaching package: &#39;plotly&#39;</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:ggplot2&#39;:</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="do">##     last_plot</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:stats&#39;:</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="do">##     filter</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:graphics&#39;:</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="do">##     layout</span></span>
 <span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a></span>
 <span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>plot_top_n  <span class="ot">=</span> <span class="cf">function</span>(n_top,year){</span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>  </span>
-<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>  countries_to_plot <span class="ot">=</span> <span class="fu">as.matrix</span>(</span>
-<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>    countries_pub_dt[year_pub<span class="sc">&gt;=</span>year,</span>
-<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a>                     .(<span class="at">sum_paper =</span> <span class="fu">sum</span>(n)),</span>
-<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>                     <span class="at">by =</span> .(country)</span>
-<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>                     ][<span class="fu">order</span>(sum_paper, <span class="at">decreasing =</span> T)</span>
-<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>                       ][<span class="dv">1</span><span class="sc">:</span>n_top,<span class="st">&#39;country&#39;</span>]</span>
-<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a>    )</span>
-<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>plot_top_n  <span class="ot">=</span> <span class="cf">function</span>(n_top,year){</span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>  </span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>  countries_to_plot <span class="ot">=</span> <span class="fu">as.matrix</span>(</span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a>    countries_pub_dt[year_pub<span class="sc">&gt;=</span>year,</span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>                     .(<span class="at">sum_paper =</span> <span class="fu">sum</span>(n)),</span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>                     <span class="at">by =</span> .(country)</span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>                     ][<span class="fu">order</span>(sum_paper, <span class="at">decreasing =</span> T)</span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a>                       ][<span class="dv">1</span><span class="sc">:</span>n_top,<span class="st">&#39;country&#39;</span>]</span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a>    )</span>
 <span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a></span>
-<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a>  fig <span class="ot">=</span> <span class="fu">plot_ly</span>(countries_pub_dt[year_pub<span class="sc">&gt;=</span>year <span class="sc">&amp;</span> country <span class="sc">%in%</span> countries_to_plot], </span>
-<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a>                <span class="at">x =</span> <span class="sc">~</span>year_pub,</span>
-<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>                <span class="at">y =</span> <span class="sc">~</span>n,</span>
-<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>                <span class="at">color =</span> <span class="sc">~</span>country) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>    <span class="fu">layout</span>(<span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;Count&#39;</span>,<span class="at">type =</span> <span class="st">&#39;log&#39;</span>),</span>
-<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a>           <span class="at">barmode =</span> <span class="st">&#39;stack&#39;</span>)</span>
-<span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a></span>
-<span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a>  fig</span>
-<span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a>}</span>
-<span id="cb11-37"><a href="#cb11-37" tabindex="-1"></a></span>
-<span id="cb11-38"><a href="#cb11-38" tabindex="-1"></a><span class="fu">plot_top_n</span>(<span class="dv">10</span>,<span class="dv">2001</span>)</span>
-<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a><span class="do">## No trace type specified:</span></span>
-<span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a><span class="do">##   Based on info supplied, a &#39;bar&#39; trace seems appropriate.</span></span>
-<span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a><span class="do">##   Read more about this trace type -&gt; https://plotly.com/r/reference/#bar</span></span></code></pre></div>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-e21563ca70baf3f0334a" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e21563ca70baf3f0334a">{"x":{"visdat":{"1321a2c431838":["function () ","plotlyVisDat"]},"cur_data":"1321a2c431838","attrs":{"1321a2c431838":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count","type":"log"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"year_pub","type":"category","categoryorder":"array","categoryarray":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"]},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[2,4,10,21,25,32,39,43,51,26,45,42,71,96,120,114,115,127,137,2058,3],"type":"bar","name":"australia","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[16,13,45,70,61,72,62,71,70,64,64,73,90,113,130,136,120,134,172,2342,4],"type":"bar","name":"canada","marker":{"color":"rgba(228,156,113,1)","line":{"color":"rgba(228,156,113,1)"}},"textfont":{"color":"rgba(228,156,113,1)"},"error_y":{"color":"rgba(228,156,113,1)"},"error_x":{"color":"rgba(228,156,113,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[102,186,182,164,156,145,171,222,165,172,317,393,516,532,568,593,739,7894,25],"type":"bar","name":"china","marker":{"color":"rgba(201,152,157,1)","line":{"color":"rgba(201,152,157,1)"}},"textfont":{"color":"rgba(201,152,157,1)"},"error_y":{"color":"rgba(201,152,157,1)"},"error_x":{"color":"rgba(201,152,157,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[12,12,17,32,39,36,46,41,57,44,54,43,86,127,130,148,135,158,157,2639,4],"type":"bar","name":"france","marker":{"color":"rgba(175,154,200,1)","line":{"color":"rgba(175,154,200,1)"}},"textfont":{"color":"rgba(175,154,200,1)"},"error_y":{"color":"rgba(175,154,200,1)"},"error_x":{"color":"rgba(175,154,200,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[18,19,31,35,36,70,53,59,55,46,59,48,80,127,146,151,165,171,177,2108,1],"type":"bar","name":"germany","marker":{"color":"rgba(226,148,184,1)","line":{"color":"rgba(226,148,184,1)"}},"textfont":{"color":"rgba(226,148,184,1)"},"error_y":{"color":"rgba(226,148,184,1)"},"error_x":{"color":"rgba(226,148,184,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2015","2013","2014","2016","2017","2018","2019","2020","2021"],"y":[4,1,5,9,8,10,9,24,18,32,31,30,65,54,82,88,88,91,125,3199,8],"type":"bar","name":"india","marker":{"color":"rgba(176,208,99,1)","line":{"color":"rgba(176,208,99,1)"}},"textfont":{"color":"rgba(176,208,99,1)"},"error_y":{"color":"rgba(176,208,99,1)"},"error_x":{"color":"rgba(176,208,99,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[9,8,18,24,34,31,32,37,33,31,41,43,48,69,94,111,110,115,131,5933,5],"type":"bar","name":"italy","marker":{"color":"rgba(227,217,62,1)","line":{"color":"rgba(227,217,62,1)"}},"textfont":{"color":"rgba(227,217,62,1)"},"error_y":{"color":"rgba(227,217,62,1)"},"error_x":{"color":"rgba(227,217,62,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2019","2018","2020","2021"],"y":[8,10,17,14,18,18,19,38,31,25,34,44,44,63,79,87,76,110,98,2014,5],"type":"bar","name":"spain","marker":{"color":"rgba(245,207,100,1)","line":{"color":"rgba(245,207,100,1)"}},"textfont":{"color":"rgba(245,207,100,1)"},"error_y":{"color":"rgba(245,207,100,1)"},"error_x":{"color":"rgba(245,207,100,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2014","2013","2015","2016","2017","2018","2019","2020","2021"],"y":[22,20,56,68,72,81,74,85,101,87,89,90,175,125,252,201,229,206,287,6058,10],"type":"bar","name":"united kingdom","marker":{"color":"rgba(219,192,155,1)","line":{"color":"rgba(219,192,155,1)"}},"textfont":{"color":"rgba(219,192,155,1)"},"error_y":{"color":"rgba(219,192,155,1)"},"error_x":{"color":"rgba(219,192,155,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2012","2011","2013","2014","2015","2016","2017","2018","2020","2019","2021"],"y":[158,130,228,370,395,465,411,505,538,570,554,555,608,632,739,729,749,753,10670,803,20],"type":"bar","name":"united states","marker":{"color":"rgba(179,179,179,1)","line":{"color":"rgba(179,179,179,1)"}},"textfont":{"color":"rgba(179,179,179,1)"},"error_y":{"color":"rgba(179,179,179,1)"},"error_x":{"color":"rgba(179,179,179,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a>  fig <span class="ot">=</span> <span class="fu">plot_ly</span>(countries_pub_dt[year_pub<span class="sc">&gt;=</span>year <span class="sc">&amp;</span> country <span class="sc">%in%</span> countries_to_plot], </span>
+<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>                <span class="at">x =</span> <span class="sc">~</span>year_pub,</span>
+<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>                <span class="at">y =</span> <span class="sc">~</span>n,</span>
+<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>                <span class="at">color =</span> <span class="sc">~</span>country) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a>    <span class="fu">layout</span>(<span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&#39;Count&#39;</span>,<span class="at">type =</span> <span class="st">&#39;log&#39;</span>),</span>
+<span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a>           <span class="at">barmode =</span> <span class="st">&#39;stack&#39;</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a>  fig</span>
+<span id="cb11-37"><a href="#cb11-37" tabindex="-1"></a>}</span>
+<span id="cb11-38"><a href="#cb11-38" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a><span class="fu">plot_top_n</span>(<span class="dv">10</span>,<span class="dv">2001</span>)</span>
+<span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a><span class="do">## No trace type specified:</span></span>
+<span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a><span class="do">##   Based on info supplied, a &#39;bar&#39; trace seems appropriate.</span></span>
+<span id="cb11-42"><a href="#cb11-42" tabindex="-1"></a><span class="do">##   Read more about this trace type -&gt; https://plotly.com/r/reference/#bar</span></span></code></pre></div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5c550621be7c72aa9fc9" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5c550621be7c72aa9fc9">{"x":{"visdat":{"abf827731fb1":["function () ","plotlyVisDat"]},"cur_data":"abf827731fb1","attrs":{"abf827731fb1":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count","type":"log"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"year_pub","type":"category","categoryorder":"array","categoryarray":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"]},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[2,4,10,21,25,32,39,43,51,26,45,42,71,96,120,114,115,127,137,2058,3],"type":"bar","name":"australia","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[16,13,45,70,61,72,62,71,70,64,64,73,90,113,130,136,120,134,172,2342,4],"type":"bar","name":"canada","marker":{"color":"rgba(228,156,113,1)","line":{"color":"rgba(228,156,113,1)"}},"textfont":{"color":"rgba(228,156,113,1)"},"error_y":{"color":"rgba(228,156,113,1)"},"error_x":{"color":"rgba(228,156,113,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[102,186,182,164,156,145,171,222,165,172,317,393,516,532,568,593,739,7894,25],"type":"bar","name":"china","marker":{"color":"rgba(201,152,157,1)","line":{"color":"rgba(201,152,157,1)"}},"textfont":{"color":"rgba(201,152,157,1)"},"error_y":{"color":"rgba(201,152,157,1)"},"error_x":{"color":"rgba(201,152,157,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[12,12,17,32,39,36,46,41,57,44,54,43,86,127,130,148,135,158,157,2639,4],"type":"bar","name":"france","marker":{"color":"rgba(175,154,200,1)","line":{"color":"rgba(175,154,200,1)"}},"textfont":{"color":"rgba(175,154,200,1)"},"error_y":{"color":"rgba(175,154,200,1)"},"error_x":{"color":"rgba(175,154,200,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[18,19,31,35,36,70,53,59,55,46,59,48,80,127,146,151,165,171,177,2108,1],"type":"bar","name":"germany","marker":{"color":"rgba(226,148,184,1)","line":{"color":"rgba(226,148,184,1)"}},"textfont":{"color":"rgba(226,148,184,1)"},"error_y":{"color":"rgba(226,148,184,1)"},"error_x":{"color":"rgba(226,148,184,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2015","2013","2014","2016","2017","2018","2019","2020","2021"],"y":[4,1,5,9,8,10,9,24,18,32,31,30,65,54,82,88,88,91,125,3199,8],"type":"bar","name":"india","marker":{"color":"rgba(176,208,99,1)","line":{"color":"rgba(176,208,99,1)"}},"textfont":{"color":"rgba(176,208,99,1)"},"error_y":{"color":"rgba(176,208,99,1)"},"error_x":{"color":"rgba(176,208,99,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021"],"y":[9,8,18,24,34,31,32,37,33,31,41,43,48,69,94,111,110,115,131,5933,5],"type":"bar","name":"italy","marker":{"color":"rgba(227,217,62,1)","line":{"color":"rgba(227,217,62,1)"}},"textfont":{"color":"rgba(227,217,62,1)"},"error_y":{"color":"rgba(227,217,62,1)"},"error_x":{"color":"rgba(227,217,62,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2019","2018","2020","2021"],"y":[8,10,17,14,18,18,19,38,31,25,34,44,44,63,79,87,76,110,98,2014,5],"type":"bar","name":"spain","marker":{"color":"rgba(245,207,100,1)","line":{"color":"rgba(245,207,100,1)"}},"textfont":{"color":"rgba(245,207,100,1)"},"error_y":{"color":"rgba(245,207,100,1)"},"error_x":{"color":"rgba(245,207,100,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2014","2013","2015","2016","2017","2018","2019","2020","2021"],"y":[22,20,56,68,72,81,74,85,101,87,89,90,175,125,252,201,229,206,287,6058,10],"type":"bar","name":"united kingdom","marker":{"color":"rgba(219,192,155,1)","line":{"color":"rgba(219,192,155,1)"}},"textfont":{"color":"rgba(219,192,155,1)"},"error_y":{"color":"rgba(219,192,155,1)"},"error_x":{"color":"rgba(219,192,155,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2012","2011","2013","2014","2015","2016","2017","2018","2020","2019","2021"],"y":[158,130,228,370,395,465,411,505,538,570,554,555,608,632,739,729,749,753,10670,803,20],"type":"bar","name":"united states","marker":{"color":"rgba(179,179,179,1)","line":{"color":"rgba(179,179,179,1)"}},"textfont":{"color":"rgba(179,179,179,1)"},"error_y":{"color":"rgba(179,179,179,1)"},"error_x":{"color":"rgba(179,179,179,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
+<!-- Small UX helpers: reading progress, back-to-top, copy buttons on code -->
+<div id="read-progress"></div>
+<button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+<script>
+(function () {
+  var bar = document.getElementById('read-progress');
+  var top = document.getElementById('back-to-top');
+
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    top.classList.toggle('show', h.scrollTop > 600);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  // Phones: the TOC is stacked above the title, so collapse it behind a button
+  var toc = document.getElementById('TOC');
+  if (toc) {
+    var phone = window.matchMedia('(max-width: 767.98px)');
+    var toggle = document.createElement('button');
+    toggle.id = 'toc-toggle';
+    toggle.type = 'button';
+    toggle.textContent = 'Contents';
+    toggle.setAttribute('aria-controls', 'TOC');
+    toggle.setAttribute('aria-expanded', 'false');
+    toc.parentNode.insertBefore(toggle, toc);
+    toggle.addEventListener('click', function () {
+      toggle.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+    });
+    // close it again once a section is picked
+    toc.addEventListener('click', function (e) {
+      if (phone.matches && e.target.closest('.tocify-item')) toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // Copy button on source code blocks only (not on printed output)
+  document.querySelectorAll('pre.sourceCode, pre.r, pre.python').forEach(function (pre) {
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', function () {
+      // collapse = TRUE merges output (## ...) into the block: strip it
+      var text = pre.querySelector('code').innerText
+        .split('\n').filter(function (l) { return !/^## /.test(l); }).join('\n');
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+      });
+    });
+    pre.appendChild(btn);
+  });
+})();
+</script>
 
 
 </div>

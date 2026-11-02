@@ -15,20 +15,14 @@
 
 <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-5.3.1/bootstrap.bundle.min.js"></script>
+<link href="site_libs/Inter-0.4.10/font.css" rel="stylesheet" />
+<link href="site_libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet" />
+<script src="site_libs/bs3compat-0.9.0/transition.js"></script>
+<script src="site_libs/bs3compat-0.9.0/tabs.js"></script>
+<script src="site_libs/bs3compat-0.9.0/bs3compat.js"></script>
 <script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -148,7 +142,6 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
 
 
-<link rel="stylesheet" href="custom.css" type="text/css" />
 
 
 
@@ -612,56 +605,58 @@ full_join, inner_join, anti_join)</td>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="do">## ── Attaching core tidyverse packages ─────────────────── tidyverse 2.0.0 ──</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="do">## ✔ forcats   1.0.1     ✔ purrr     1.2.0</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## ✔ ggplot2   4.0.1     ✔ tibble    3.3.0</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="do">## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="do">## ✖ dplyr::filter() masks stats::filter()</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="do">## ✖ dplyr::lag()    masks stats::lag()</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="do">## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>covid_papers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/covid_papers.csv&quot;</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="do">## Rows: 148916 Columns: 19</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="do">## ── Column specification ───────────────────────────────────────────────────</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">## Delimiter: &quot;,&quot;</span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="do">## chr  (17): _id, pmid, pmcid, doi, title, source, year_pub, month_pub, author...</span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="do">## dbl   (1): cited</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="do">## date  (1): creation</span></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="do">## ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="do">## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>covid_papers</span>
-<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="do">## # A tibble: 148,916 × 19</span></span>
-<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="do">##    `_id`            pmid  pmcid doi   title source year_pub month_pub creation  </span></span>
-<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="do">##    &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;     &lt;date&gt;    </span></span>
-<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="do">##  1 5f69d6fa65a250f… 3283… PMC7… 10.1… The … MED    2020     null      2020-08-25</span></span>
-<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="do">##  2 5f69d6fa65a250f… 3219… PMC7… 10.1… Hypo… MED    2020     null      2020-03-21</span></span>
-<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="do">##  3 5f69d6fa65a250f… 3277… PMC7… 10.1… The … MED    2020     null      2020-08-12</span></span>
-<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="do">##  4 5f69d6fa65a250f… 3273… PMC7… 10.1… A co… MED    2020     null      2020-07-31</span></span>
-<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="do">##  5 5f69d6fa65a250f… null  null  10.2… Viri… PPR    2020     null      2020-08-16</span></span>
-<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="do">##  6 5f69d6fa65a250f… null  PMC7… null  Inte… PMC    2020     null      2020-09-13</span></span>
-<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="do">##  7 5f69d6fa65a250f… 3239… PMC7… 10.1… A gl… MED    2020     null      2020-05-13</span></span>
-<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="do">##  8 5f69d6fa65a250f… 3225… PMC7… 10.1… COVI… MED    2020     null      2020-04-08</span></span>
-<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="do">##  9 5f69d6fa65a250f… 3272… PMC7… 10.1… The … MED    2020     null      2020-07-29</span></span>
-<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="do">## 10 5f69d6fa65a250f… 3219… PMC7… 10.1… Labo… MED    2020     null      2020-03-21</span></span>
-<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="do">## # ℹ 148,906 more rows</span></span>
-<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="do">## # ℹ 10 more variables: authors_gender &lt;chr&gt;, journal &lt;chr&gt;, language &lt;chr&gt;,</span></span>
-<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="do">## #   pubmodel &lt;chr&gt;, pubtype &lt;chr&gt;, mesh &lt;chr&gt;, keywords &lt;chr&gt;, cited &lt;dbl&gt;,</span></span>
-<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a><span class="do">## #   has_data &lt;chr&gt;, oa &lt;chr&gt;</span></span>
-<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a><span class="co">#which(is.na(covid_papers),arr.ind = T)</span></span>
-<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a>covid_papers <span class="ot">=</span> <span class="fu">na.omit</span>(covid_papers)</span>
-<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">slice</span>(covid_papers,<span class="dv">2</span>))</span>
-<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a><span class="do">## [1]  1 19</span></span>
-<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">slice_sample</span>(covid_papers,<span class="at">prop =</span> <span class="fl">0.001</span>))</span>
-<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="do">## [1] 148  19</span></span>
-<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> <span class="fu">filter</span>(covid_papers,doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
-<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="fu">Sys.time</span>()<span class="sc">-</span>t</span>
-<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="do">## Time difference of 0.01498389 secs</span></span></code></pre></div>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="do">## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="do">## v dplyr     1.1.4     v readr     2.1.6</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="do">## v forcats   1.0.1     v stringr   1.6.0</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="do">## v ggplot2   4.0.1     v tibble    3.3.0</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="do">## v lubridate 1.9.4     v tidyr     1.3.1</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="do">## v purrr     1.2.0     </span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="do">## -- Conflicts ------------------------------------------ tidyverse_conflicts() --</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="do">## x dplyr::filter() masks stats::filter()</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="do">## x dplyr::lag()    masks stats::lag()</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="do">## i Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>covid_papers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/covid_papers.csv&quot;</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="do">## Rows: 148916 Columns: 19</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="do">## -- Column specification --------------------------------------------------------</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="do">## Delimiter: &quot;,&quot;</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="do">## chr  (17): _id, pmid, pmcid, doi, title, source, year_pub, month_pub, author...</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="do">## dbl   (1): cited</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="do">## date  (1): creation</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="do">## i Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="do">## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>covid_papers</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="do">## # A tibble: 148,916 x 19</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="do">##    `_id`            pmid  pmcid doi   title source year_pub month_pub creation  </span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="do">##    &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;     &lt;date&gt;    </span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="do">##  1 5f69d6fa65a250f~ 3283~ PMC7~ 10.1~ The ~ MED    2020     null      2020-08-25</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="do">##  2 5f69d6fa65a250f~ 3219~ PMC7~ 10.1~ Hypo~ MED    2020     null      2020-03-21</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="do">##  3 5f69d6fa65a250f~ 3277~ PMC7~ 10.1~ The ~ MED    2020     null      2020-08-12</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="do">##  4 5f69d6fa65a250f~ 3273~ PMC7~ 10.1~ A co~ MED    2020     null      2020-07-31</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="do">##  5 5f69d6fa65a250f~ null  null  10.2~ Viri~ PPR    2020     null      2020-08-16</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="do">##  6 5f69d6fa65a250f~ null  PMC7~ null  Inte~ PMC    2020     null      2020-09-13</span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="do">##  7 5f69d6fa65a250f~ 3239~ PMC7~ 10.1~ A gl~ MED    2020     null      2020-05-13</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="do">##  8 5f69d6fa65a250f~ 3225~ PMC7~ 10.1~ COVI~ MED    2020     null      2020-04-08</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="do">##  9 5f69d6fa65a250f~ 3272~ PMC7~ 10.1~ The ~ MED    2020     null      2020-07-29</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="do">## 10 5f69d6fa65a250f~ 3219~ PMC7~ 10.1~ Labo~ MED    2020     null      2020-03-21</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="do">## # i 148,906 more rows</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a><span class="do">## # i 10 more variables: authors_gender &lt;chr&gt;, journal &lt;chr&gt;, language &lt;chr&gt;,</span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="do">## #   pubmodel &lt;chr&gt;, pubtype &lt;chr&gt;, mesh &lt;chr&gt;, keywords &lt;chr&gt;, cited &lt;dbl&gt;,</span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a><span class="do">## #   has_data &lt;chr&gt;, oa &lt;chr&gt;</span></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="co">#which(is.na(covid_papers),arr.ind = T)</span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a>covid_papers <span class="ot">=</span> <span class="fu">na.omit</span>(covid_papers)</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">slice</span>(covid_papers,<span class="dv">2</span>))</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="do">## [1]  1 19</span></span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">slice_sample</span>(covid_papers,<span class="at">prop =</span> <span class="fl">0.001</span>))</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="do">## [1] 148  19</span></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> <span class="fu">filter</span>(covid_papers,doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="fu">Sys.time</span>()<span class="sc">-</span>t</span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a><span class="do">## Time difference of 0.01812792 secs</span></span></code></pre></div>
 <p><b> Using Pipes </b></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
@@ -673,12 +668,12 @@ full_join, inner_join, anti_join)</td>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01536798 secs</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="do">## Time difference of 0.01705503 secs</span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>doi_clean <span class="ot">&lt;-</span> covid_papers[<span class="fu">which</span>(covid_papers<span class="sc">$</span>doi <span class="sc">!=</span> <span class="st">&#39;null&#39;</span>),]</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.01624918 secs</span></span></code></pre></div>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="do">## Time difference of 0.04753804 secs</span></span></code></pre></div>
 </div>
 </div>
 <div id="select-columns" class="section level3" number="1.1.2">
@@ -728,12 +723,12 @@ full_join, inner_join, anti_join)</td>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="do">##     hour, isoweek, mday, minute, month, quarter, second, wday, week,</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="do">##     yday, year</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:purrr&#39;:</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:dplyr&#39;:</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">##     transpose</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:dplyr&#39;:</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="do">##     between, first, last</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:purrr&#39;:</span></span>
 <span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">##     between, first, last</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="do">##     transpose</span></span>
 <span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>cp_datatable <span class="ot">=</span> <span class="fu">as.data.table</span>(covid_papers)</span>
 <span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a></span>
 <span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="fu">dim</span>(cp_datatable[[<span class="dv">4</span>]]) <span class="co"># returns a vector</span></span>
@@ -815,7 +810,7 @@ full_join, inner_join, anti_join)</td>
 <div class="r">
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>cp_tibble <span class="ot">=</span> cp_tibble <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year_pub =</span> <span class="fu">as.integer</span>(year_pub))</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## Warning: There was 1 warning in `mutate()`.</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## ℹ In argument: `year_pub = as.integer(year_pub)`.</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## i In argument: `year_pub = as.integer(year_pub)`.</span></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## Caused by warning:</span></span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">## ! NAs introduced by coercion</span></span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># R using Tibbles</span></span>
@@ -886,7 +881,7 @@ filter rows efficiently (keys and indices).</p>
 <div class="r">
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># R using Tibbles</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">head</span>(cp_tibble <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(creation) <span class="sc">%&gt;%</span> <span class="fu">select</span>(creation))</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="do">## # A tibble: 6 × 1</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="do">## # A tibble: 6 x 1</span></span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="do">##   creation  </span></span>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="do">##   &lt;date&gt;    </span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="do">## 1 1929-01-01</span></span>
@@ -896,7 +891,7 @@ filter rows efficiently (keys and indices).</p>
 <span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="do">## 5 1951-09-08</span></span>
 <span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="do">## 6 1951-12-01</span></span>
 <span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="fu">head</span>(cp_tibble <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(creation)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(creation)) </span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="do">## # A tibble: 6 × 1</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="do">## # A tibble: 6 x 1</span></span>
 <span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="do">##   creation  </span></span>
 <span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="do">##   &lt;date&gt;    </span></span>
 <span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="do">## 1 2020-09-16</span></span>
@@ -907,7 +902,7 @@ filter rows efficiently (keys and indices).</p>
 <span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="do">## 6 2020-09-16</span></span>
 <span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a></span>
 <span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="fu">head</span>(cp_tibble <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(year_pub, <span class="fu">desc</span>(creation)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(year_pub,creation))</span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="do">## # A tibble: 6 x 2</span></span>
 <span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="do">##   year_pub creation  </span></span>
 <span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="do">##      &lt;int&gt; &lt;date&gt;    </span></span>
 <span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="do">## 1     1820 2018-12-05</span></span>
@@ -940,18 +935,18 @@ filter rows efficiently (keys and indices).</p>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="do">## [1] 148913</span></span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">sum</span>(cited)) <span class="co"># returns a tibble</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="do">##   `sum(cited)`</span></span>
 <span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="do">##          &lt;dbl&gt;</span></span>
 <span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="do">## 1      1241805</span></span>
 <span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">sum_citation =</span> <span class="fu">sum</span>(cited)) <span class="co"># returns a tibble</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="do">##   sum_citation</span></span>
 <span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="do">##          &lt;dbl&gt;</span></span>
 <span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="do">## 1      1241805</span></span>
 <span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a></span>
 <span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="fu">summarise</span>(cp_tibble, <span class="fu">sum</span>(cited), <span class="fu">sd</span>(cited))</span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="do">##   `sum(cited)` `sd(cited)`</span></span>
 <span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="do">##          &lt;dbl&gt;       &lt;dbl&gt;</span></span>
 <span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="do">## 1      1241805        38.8</span></span>
@@ -959,7 +954,7 @@ filter rows efficiently (keys and indices).</p>
 <span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_citation =</span> <span class="fu">sum</span>(cited),</span>
 <span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>            <span class="at">sd_citation =</span> <span class="fu">sd</span>(cited))</span>
-<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a><span class="do">##   sum_citation sd_citation</span></span>
 <span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a><span class="do">##          &lt;dbl&gt;       &lt;dbl&gt;</span></span>
 <span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a><span class="do">## 1      1241805        38.8</span></span>
@@ -967,28 +962,28 @@ filter rows efficiently (keys and indices).</p>
 <span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">sum</span>(cited))</span>
-<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a><span class="do">##   `sum(cited)`</span></span>
 <span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a><span class="do">##          &lt;dbl&gt;</span></span>
 <span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a><span class="do">## 1           61</span></span>
 <span id="cb11-37"><a href="#cb11-37" tabindex="-1"></a></span>
 <span id="cb11-38"><a href="#cb11-38" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(dplyr<span class="sc">::</span><span class="fu">first</span>(year_pub))</span>
-<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a><span class="do">##   `dplyr::first(year_pub)`</span></span>
 <span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a><span class="do">##                      &lt;int&gt;</span></span>
 <span id="cb11-42"><a href="#cb11-42" tabindex="-1"></a><span class="do">## 1                     2020</span></span>
 <span id="cb11-43"><a href="#cb11-43" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(dplyr<span class="sc">::</span><span class="fu">last</span>(year_pub))</span>
-<span id="cb11-44"><a href="#cb11-44" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb11-44"><a href="#cb11-44" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb11-45"><a href="#cb11-45" tabindex="-1"></a><span class="do">##   `dplyr::last(year_pub)`</span></span>
 <span id="cb11-46"><a href="#cb11-46" tabindex="-1"></a><span class="do">##                     &lt;int&gt;</span></span>
 <span id="cb11-47"><a href="#cb11-47" tabindex="-1"></a><span class="do">## 1                    2016</span></span>
 <span id="cb11-48"><a href="#cb11-48" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">nth</span>(year_pub, <span class="dv">5</span>))</span>
-<span id="cb11-49"><a href="#cb11-49" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb11-49"><a href="#cb11-49" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb11-50"><a href="#cb11-50" tabindex="-1"></a><span class="do">##   `nth(year_pub, 5)`</span></span>
 <span id="cb11-51"><a href="#cb11-51" tabindex="-1"></a><span class="do">##                &lt;int&gt;</span></span>
 <span id="cb11-52"><a href="#cb11-52" tabindex="-1"></a><span class="do">## 1               2020</span></span>
 <span id="cb11-53"><a href="#cb11-53" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">n_distinct</span>(language))</span>
-<span id="cb11-54"><a href="#cb11-54" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb11-54"><a href="#cb11-54" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb11-55"><a href="#cb11-55" tabindex="-1"></a><span class="do">##   `n_distinct(language)`</span></span>
 <span id="cb11-56"><a href="#cb11-56" tabindex="-1"></a><span class="do">##                    &lt;int&gt;</span></span>
 <span id="cb11-57"><a href="#cb11-57" tabindex="-1"></a><span class="do">## 1                     31</span></span></code></pre></div>
@@ -1057,21 +1052,21 @@ creating a copy. With dplyr, the results must be assigned.</p>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co"># Create one column and remove the others</span></span>
 <span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="fu">transmute</span>(cp_tibble, <span class="at">title_lower =</span> <span class="fu">tolower</span>(title))</span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="do">## # A tibble: 148,913 × 1</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="do">## # A tibble: 148,913 x 1</span></span>
 <span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="do">## # Rowwise: </span></span>
 <span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="do">##    title_lower                                                                  </span></span>
 <span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="do">##    &lt;chr&gt;                                                                        </span></span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="do">##  1 the pathophysiology, diagnosis and treatment of corona virus disease 2019 (c…</span></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="do">##  2 hypothesis for potential pathogenesis of sars-cov-2 infection-a review of im…</span></span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="do">##  3 the outbreak of the novel severe acute respiratory syndrome coronavirus 2 (s…</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="do">##  1 the pathophysiology, diagnosis and treatment of corona virus disease 2019 (c~</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="do">##  2 hypothesis for potential pathogenesis of sars-cov-2 infection-a review of im~</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="do">##  3 the outbreak of the novel severe acute respiratory syndrome coronavirus 2 (s~</span></span>
 <span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="do">##  4 a comparative overview of covid-19, mers and sars: review article.           </span></span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="do">##  5 virion structure and mechanism of propagation of coronaviruses including sar…</span></span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="do">##  6 interaction of sars-cov-2 and other coronavirus with ace (angiotensin-conver…</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="do">##  5 virion structure and mechanism of propagation of coronaviruses including sar~</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="do">##  6 interaction of sars-cov-2 and other coronavirus with ace (angiotensin-conver~</span></span>
 <span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="do">##  7 a global treatments for coronaviruses including covid-19.                    </span></span>
-<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="do">##  8 covid-19 infection: origin, transmission, and characteristics of human coron…</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="do">##  8 covid-19 infection: origin, transmission, and characteristics of human coron~</span></span>
 <span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="do">##  9 the kidney, covid-19, and the chemokine network: an intriguing trio.         </span></span>
-<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="do">## 10 laboratory diagnosis of emerging human coronavirus infections - the state of…</span></span>
-<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="do">## # ℹ 148,903 more rows</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="do">## 10 laboratory diagnosis of emerging human coronavirus infections - the state of~</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="do">## # i 148,903 more rows</span></span>
 <span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a></span>
 <span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a>cp_tibble <span class="ot">&lt;-</span> cp_tibble <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>V1, <span class="sc">-</span>V2)</span>
 <span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a></span>
@@ -1097,7 +1092,7 @@ creating a copy. With dplyr, the results must be assigned.</p>
 <span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="do">##      5: virion structure and mechanism of propagation of coronaviruses including sars-cov 2 (covid -19 ) and some meaningful points for drug or vaccine development</span></span>
 <span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="do">##     ---                                                                                                                                                            </span></span>
 <span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="do">## 148909:                                                                                                               bmt settings, infection and infection control</span></span>
-<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="do">## 148910:                                                                                       early and acute complications and the principles of hsct nursing care</span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="do">## 148910:                                                                                early and acute complications and the&lt;U+00A0&gt;principles of hsct nursing care</span></span>
 <span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="do">## 148911:                                                                                                                                            viral infections</span></span>
 <span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="do">## 148912:                                                                                                        international collaboration for global public health</span></span>
 <span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="do">## 148913:                                                                                                                    resource allocation and priority setting</span></span>
@@ -1139,7 +1134,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="fu">group_by</span>(year_pub) <span class="sc">%&gt;%</span></span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nb_language =</span> <span class="fu">length</span>(<span class="fu">unique</span>(language)))</span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="do">## # A tibble: 113 × 2</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="do">## # A tibble: 113 x 2</span></span>
 <span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="do">##    year_pub nb_language</span></span>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="do">##    &lt;chr&gt;          &lt;int&gt;</span></span>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="do">##  1 1830               1</span></span>
@@ -1152,7 +1147,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="do">##  8 1864               1</span></span>
 <span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="do">##  9 1874               1</span></span>
 <span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a><span class="do">## 10 1876               1</span></span>
-<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="do">## # ℹ 103 more rows</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="do">## # i 103 more rows</span></span>
 <span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a></span>
 <span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a><span class="co"># By several groups</span></span>
 <span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
@@ -1160,7 +1155,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_cited =</span> <span class="fu">mean</span>(cited))</span>
 <span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a><span class="do">## `summarise()` has grouped output by &#39;year_pub&#39;. You can override using the</span></span>
 <span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a><span class="do">## `.groups` argument.</span></span>
-<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="do">## # A tibble: 113 × 3</span></span>
+<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="do">## # A tibble: 113 x 3</span></span>
 <span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a><span class="do">## # Groups:   year_pub [113]</span></span>
 <span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a><span class="do">##    year_pub source mean_cited</span></span>
 <span id="cb15-31"><a href="#cb15-31" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;</span></span>
@@ -1174,13 +1169,13 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-39"><a href="#cb15-39" tabindex="-1"></a><span class="do">##  8 1864     MED             0</span></span>
 <span id="cb15-40"><a href="#cb15-40" tabindex="-1"></a><span class="do">##  9 1874     MED             0</span></span>
 <span id="cb15-41"><a href="#cb15-41" tabindex="-1"></a><span class="do">## 10 1876     MED             0</span></span>
-<span id="cb15-42"><a href="#cb15-42" tabindex="-1"></a><span class="do">## # ℹ 103 more rows</span></span>
+<span id="cb15-42"><a href="#cb15-42" tabindex="-1"></a><span class="do">## # i 103 more rows</span></span>
 <span id="cb15-43"><a href="#cb15-43" tabindex="-1"></a></span>
 <span id="cb15-44"><a href="#cb15-44" tabindex="-1"></a><span class="co"># Assigning column name in by</span></span>
 <span id="cb15-45"><a href="#cb15-45" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb15-46"><a href="#cb15-46" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">PY =</span> <span class="fu">as.numeric</span>(year_pub)) <span class="sc">%&gt;%</span></span>
 <span id="cb15-47"><a href="#cb15-47" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_cited =</span> <span class="fu">sum</span>(cited))</span>
-<span id="cb15-48"><a href="#cb15-48" tabindex="-1"></a><span class="do">## # A tibble: 113 × 2</span></span>
+<span id="cb15-48"><a href="#cb15-48" tabindex="-1"></a><span class="do">## # A tibble: 113 x 2</span></span>
 <span id="cb15-49"><a href="#cb15-49" tabindex="-1"></a><span class="do">##       PY sum_cited</span></span>
 <span id="cb15-50"><a href="#cb15-50" tabindex="-1"></a><span class="do">##    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb15-51"><a href="#cb15-51" tabindex="-1"></a><span class="do">##  1  1830         0</span></span>
@@ -1193,13 +1188,13 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-58"><a href="#cb15-58" tabindex="-1"></a><span class="do">##  8  1864         0</span></span>
 <span id="cb15-59"><a href="#cb15-59" tabindex="-1"></a><span class="do">##  9  1874         0</span></span>
 <span id="cb15-60"><a href="#cb15-60" tabindex="-1"></a><span class="do">## 10  1876         0</span></span>
-<span id="cb15-61"><a href="#cb15-61" tabindex="-1"></a><span class="do">## # ℹ 103 more rows</span></span>
+<span id="cb15-61"><a href="#cb15-61" tabindex="-1"></a><span class="do">## # i 103 more rows</span></span>
 <span id="cb15-62"><a href="#cb15-62" tabindex="-1"></a></span>
 <span id="cb15-63"><a href="#cb15-63" tabindex="-1"></a><span class="co"># Using a condition</span></span>
 <span id="cb15-64"><a href="#cb15-64" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb15-65"><a href="#cb15-65" tabindex="-1"></a>  <span class="fu">group_by</span>(source <span class="sc">==</span> <span class="st">&quot;MED&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb15-66"><a href="#cb15-66" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(cited))</span>
-<span id="cb15-67"><a href="#cb15-67" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb15-67"><a href="#cb15-67" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb15-68"><a href="#cb15-68" tabindex="-1"></a><span class="do">##   `source == &quot;MED&quot;` `mean(cited)`</span></span>
 <span id="cb15-69"><a href="#cb15-69" tabindex="-1"></a><span class="do">##   &lt;lgl&gt;                     &lt;dbl&gt;</span></span>
 <span id="cb15-70"><a href="#cb15-70" tabindex="-1"></a><span class="do">## 1 TRUE                       10.9</span></span>
@@ -1208,7 +1203,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-73"><a href="#cb15-73" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb15-74"><a href="#cb15-74" tabindex="-1"></a>  <span class="fu">group_by</span>(source) <span class="sc">%&gt;%</span></span>
 <span id="cb15-75"><a href="#cb15-75" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
-<span id="cb15-76"><a href="#cb15-76" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb15-76"><a href="#cb15-76" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb15-77"><a href="#cb15-77" tabindex="-1"></a><span class="do">##   source      n</span></span>
 <span id="cb15-78"><a href="#cb15-78" tabindex="-1"></a><span class="do">##   &lt;chr&gt;   &lt;int&gt;</span></span>
 <span id="cb15-79"><a href="#cb15-79" tabindex="-1"></a><span class="do">## 1 MED    113917</span></span>
@@ -1216,7 +1211,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-81"><a href="#cb15-81" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb15-82"><a href="#cb15-82" tabindex="-1"></a>  <span class="fu">group_by</span>(source) <span class="sc">%&gt;%</span></span>
 <span id="cb15-83"><a href="#cb15-83" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>())</span>
-<span id="cb15-84"><a href="#cb15-84" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb15-84"><a href="#cb15-84" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb15-85"><a href="#cb15-85" tabindex="-1"></a><span class="do">##   source  `n()`</span></span>
 <span id="cb15-86"><a href="#cb15-86" tabindex="-1"></a><span class="do">##   &lt;chr&gt;   &lt;int&gt;</span></span>
 <span id="cb15-87"><a href="#cb15-87" tabindex="-1"></a><span class="do">## 1 MED    113917</span></span>
@@ -1228,7 +1223,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-93"><a href="#cb15-93" tabindex="-1"></a></span>
 <span id="cb15-94"><a href="#cb15-94" tabindex="-1"></a><span class="co"># Add a column with number of observations for each group</span></span>
 <span id="cb15-95"><a href="#cb15-95" tabindex="-1"></a><span class="fu">add_count</span>(cp_tibble, year_pub) <span class="sc">%&gt;%</span> <span class="fu">select</span>(year_pub,n)</span>
-<span id="cb15-96"><a href="#cb15-96" tabindex="-1"></a><span class="do">## # A tibble: 113,917 × 2</span></span>
+<span id="cb15-96"><a href="#cb15-96" tabindex="-1"></a><span class="do">## # A tibble: 113,917 x 2</span></span>
 <span id="cb15-97"><a href="#cb15-97" tabindex="-1"></a><span class="do">##    year_pub     n</span></span>
 <span id="cb15-98"><a href="#cb15-98" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;int&gt;</span></span>
 <span id="cb15-99"><a href="#cb15-99" tabindex="-1"></a><span class="do">##  1 2020     63760</span></span>
@@ -1241,7 +1236,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb15-106"><a href="#cb15-106" tabindex="-1"></a><span class="do">##  8 2020     63760</span></span>
 <span id="cb15-107"><a href="#cb15-107" tabindex="-1"></a><span class="do">##  9 2020     63760</span></span>
 <span id="cb15-108"><a href="#cb15-108" tabindex="-1"></a><span class="do">## 10 2020     63760</span></span>
-<span id="cb15-109"><a href="#cb15-109" tabindex="-1"></a><span class="do">## # ℹ 113,907 more rows</span></span>
+<span id="cb15-109"><a href="#cb15-109" tabindex="-1"></a><span class="do">## # i 113,907 more rows</span></span>
 <span id="cb15-110"><a href="#cb15-110" tabindex="-1"></a></span>
 <span id="cb15-111"><a href="#cb15-111" tabindex="-1"></a><span class="fu">dim</span>(cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb15-112"><a href="#cb15-112" tabindex="-1"></a>  <span class="fu">group_by</span>(year_pub) <span class="sc">%&gt;%</span></span>
@@ -1320,7 +1315,7 @@ grouping in dplyr while in data.table you don’t need to do that.</p>
 <span id="cb16-67"><a href="#cb16-67" tabindex="-1"></a><span class="do">##    &lt;char&gt;  &lt;int&gt;</span></span>
 <span id="cb16-68"><a href="#cb16-68" tabindex="-1"></a><span class="do">## 1:    MED 113917</span></span>
 <span id="cb16-69"><a href="#cb16-69" tabindex="-1"></a><span class="fu">count</span>(cp_tibble, source)</span>
-<span id="cb16-70"><a href="#cb16-70" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb16-70"><a href="#cb16-70" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb16-71"><a href="#cb16-71" tabindex="-1"></a><span class="do">##   source      n</span></span>
 <span id="cb16-72"><a href="#cb16-72" tabindex="-1"></a><span class="do">##   &lt;chr&gt;   &lt;int&gt;</span></span>
 <span id="cb16-73"><a href="#cb16-73" tabindex="-1"></a><span class="do">## 1 MED    113917</span></span>
@@ -1422,22 +1417,22 @@ manipulation</h2>
 <span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">cur_group_rows</span>())</span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="do">## # A tibble: 113,917 × 22</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="do">## # A tibble: 113,917 x 22</span></span>
 <span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="do">## # Groups:   PY [113]</span></span>
 <span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="do">##    `_id`            pmid  pmcid doi   title source year_pub month_pub creation  </span></span>
 <span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="do">##    &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;     &lt;date&gt;    </span></span>
-<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="do">##  1 5f69d6fa65a250f… 3283… PMC7… 10.1… The … MED    2020     null      2020-08-25</span></span>
-<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="do">##  2 5f69d6fa65a250f… 3219… PMC7… 10.1… Hypo… MED    2020     null      2020-03-21</span></span>
-<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="do">##  3 5f69d6fa65a250f… 3277… PMC7… 10.1… The … MED    2020     null      2020-08-12</span></span>
-<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="do">##  4 5f69d6fa65a250f… 3273… PMC7… 10.1… A co… MED    2020     null      2020-07-31</span></span>
-<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="do">##  5 5f69d6fa65a250f… 3239… PMC7… 10.1… A gl… MED    2020     null      2020-05-13</span></span>
-<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="do">##  6 5f69d6fa65a250f… 3225… PMC7… 10.1… COVI… MED    2020     null      2020-04-08</span></span>
-<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="do">##  7 5f69d6fa65a250f… 3272… PMC7… 10.1… The … MED    2020     null      2020-07-29</span></span>
-<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="do">##  8 5f69d6fa65a250f… 3219… PMC7… 10.1… Labo… MED    2020     null      2020-03-21</span></span>
-<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="do">##  9 5f69d6fa65a250f… 3265… PMC7… 10.1… The … MED    2020     null      2020-07-14</span></span>
-<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a><span class="do">## 10 5f69d6fa65a250f… 3273… PMC7… 10.1… Cycl… MED    2020     null      2020-08-01</span></span>
-<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a><span class="do">## # ℹ 113,907 more rows</span></span>
-<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a><span class="do">## # ℹ 13 more variables: authors_gender &lt;chr&gt;, journal &lt;chr&gt;, language &lt;chr&gt;,</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="do">##  1 5f69d6fa65a250f~ 3283~ PMC7~ 10.1~ The ~ MED    2020     null      2020-08-25</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="do">##  2 5f69d6fa65a250f~ 3219~ PMC7~ 10.1~ Hypo~ MED    2020     null      2020-03-21</span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="do">##  3 5f69d6fa65a250f~ 3277~ PMC7~ 10.1~ The ~ MED    2020     null      2020-08-12</span></span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="do">##  4 5f69d6fa65a250f~ 3273~ PMC7~ 10.1~ A co~ MED    2020     null      2020-07-31</span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="do">##  5 5f69d6fa65a250f~ 3239~ PMC7~ 10.1~ A gl~ MED    2020     null      2020-05-13</span></span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="do">##  6 5f69d6fa65a250f~ 3225~ PMC7~ 10.1~ COVI~ MED    2020     null      2020-04-08</span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="do">##  7 5f69d6fa65a250f~ 3272~ PMC7~ 10.1~ The ~ MED    2020     null      2020-07-29</span></span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="do">##  8 5f69d6fa65a250f~ 3219~ PMC7~ 10.1~ Labo~ MED    2020     null      2020-03-21</span></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="do">##  9 5f69d6fa65a250f~ 3265~ PMC7~ 10.1~ The ~ MED    2020     null      2020-07-14</span></span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a><span class="do">## 10 5f69d6fa65a250f~ 3273~ PMC7~ 10.1~ Cycl~ MED    2020     null      2020-08-01</span></span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a><span class="do">## # i 113,907 more rows</span></span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a><span class="do">## # i 13 more variables: authors_gender &lt;chr&gt;, journal &lt;chr&gt;, language &lt;chr&gt;,</span></span>
 <span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a><span class="do">## #   pubmodel &lt;chr&gt;, pubtype &lt;chr&gt;, mesh &lt;chr&gt;, keywords &lt;chr&gt;, cited &lt;dbl&gt;,</span></span>
 <span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a><span class="do">## #   has_data &lt;chr&gt;, oa &lt;chr&gt;, PY &lt;dbl&gt;, log_cited &lt;dbl&gt;,</span></span>
 <span id="cb23-23"><a href="#cb23-23" tabindex="-1"></a><span class="do">## #   `cur_group_rows()` &lt;int&gt;</span></span>
@@ -1448,7 +1443,7 @@ manipulation</h2>
 <span id="cb23-28"><a href="#cb23-28" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb23-29"><a href="#cb23-29" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb23-30"><a href="#cb23-30" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cur_group_rows</span>()[<span class="dv">1</span>])</span>
-<span id="cb23-31"><a href="#cb23-31" tabindex="-1"></a><span class="do">## # A tibble: 113 × 2</span></span>
+<span id="cb23-31"><a href="#cb23-31" tabindex="-1"></a><span class="do">## # A tibble: 113 x 2</span></span>
 <span id="cb23-32"><a href="#cb23-32" tabindex="-1"></a><span class="do">##       PY `cur_group_rows()[1]`</span></span>
 <span id="cb23-33"><a href="#cb23-33" tabindex="-1"></a><span class="do">##    &lt;dbl&gt;                 &lt;int&gt;</span></span>
 <span id="cb23-34"><a href="#cb23-34" tabindex="-1"></a><span class="do">##  1  1830                113846</span></span>
@@ -1461,35 +1456,34 @@ manipulation</h2>
 <span id="cb23-41"><a href="#cb23-41" tabindex="-1"></a><span class="do">##  8  1864                113838</span></span>
 <span id="cb23-42"><a href="#cb23-42" tabindex="-1"></a><span class="do">##  9  1874                113544</span></span>
 <span id="cb23-43"><a href="#cb23-43" tabindex="-1"></a><span class="do">## 10  1876                113787</span></span>
-<span id="cb23-44"><a href="#cb23-44" tabindex="-1"></a><span class="do">## # ℹ 103 more rows</span></span>
+<span id="cb23-44"><a href="#cb23-44" tabindex="-1"></a><span class="do">## # i 103 more rows</span></span>
 <span id="cb23-45"><a href="#cb23-45" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb23-46"><a href="#cb23-46" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb23-47"><a href="#cb23-47" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cur_group_rows</span>()[<span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">n</span>())])</span>
-<span id="cb23-48"><a href="#cb23-48" tabindex="-1"></a><span class="do">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated</span></span>
-<span id="cb23-49"><a href="#cb23-49" tabindex="-1"></a><span class="do">## in dplyr 1.1.0.</span></span>
-<span id="cb23-50"><a href="#cb23-50" tabindex="-1"></a><span class="do">## ℹ Please use `reframe()` instead.</span></span>
-<span id="cb23-51"><a href="#cb23-51" tabindex="-1"></a><span class="do">## ℹ When switching from `summarise()` to `reframe()`, remember that</span></span>
-<span id="cb23-52"><a href="#cb23-52" tabindex="-1"></a><span class="do">##   `reframe()` always returns an ungrouped data frame and adjust</span></span>
-<span id="cb23-53"><a href="#cb23-53" tabindex="-1"></a><span class="do">##   accordingly.</span></span>
-<span id="cb23-54"><a href="#cb23-54" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
-<span id="cb23-55"><a href="#cb23-55" tabindex="-1"></a><span class="do">## generated.</span></span>
-<span id="cb23-56"><a href="#cb23-56" tabindex="-1"></a><span class="do">## `summarise()` has grouped output by &#39;PY&#39;. You can override using the</span></span>
-<span id="cb23-57"><a href="#cb23-57" tabindex="-1"></a><span class="do">## `.groups` argument.</span></span>
-<span id="cb23-58"><a href="#cb23-58" tabindex="-1"></a><span class="do">## # A tibble: 226 × 2</span></span>
-<span id="cb23-59"><a href="#cb23-59" tabindex="-1"></a><span class="do">## # Groups:   PY [113]</span></span>
-<span id="cb23-60"><a href="#cb23-60" tabindex="-1"></a><span class="do">##       PY `cur_group_rows()[c(1, n())]`</span></span>
-<span id="cb23-61"><a href="#cb23-61" tabindex="-1"></a><span class="do">##    &lt;dbl&gt;                         &lt;int&gt;</span></span>
-<span id="cb23-62"><a href="#cb23-62" tabindex="-1"></a><span class="do">##  1  1830                        113846</span></span>
-<span id="cb23-63"><a href="#cb23-63" tabindex="-1"></a><span class="do">##  2  1830                        113846</span></span>
-<span id="cb23-64"><a href="#cb23-64" tabindex="-1"></a><span class="do">##  3  1832                        113890</span></span>
-<span id="cb23-65"><a href="#cb23-65" tabindex="-1"></a><span class="do">##  4  1832                        113890</span></span>
-<span id="cb23-66"><a href="#cb23-66" tabindex="-1"></a><span class="do">##  5  1833                        113879</span></span>
-<span id="cb23-67"><a href="#cb23-67" tabindex="-1"></a><span class="do">##  6  1833                        113879</span></span>
-<span id="cb23-68"><a href="#cb23-68" tabindex="-1"></a><span class="do">##  7  1836                        113827</span></span>
-<span id="cb23-69"><a href="#cb23-69" tabindex="-1"></a><span class="do">##  8  1836                        113888</span></span>
-<span id="cb23-70"><a href="#cb23-70" tabindex="-1"></a><span class="do">##  9  1842                        113769</span></span>
-<span id="cb23-71"><a href="#cb23-71" tabindex="-1"></a><span class="do">## 10  1842                        113885</span></span>
-<span id="cb23-72"><a href="#cb23-72" tabindex="-1"></a><span class="do">## # ℹ 216 more rows</span></span></code></pre></div>
+<span id="cb23-48"><a href="#cb23-48" tabindex="-1"></a><span class="do">## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in</span></span>
+<span id="cb23-49"><a href="#cb23-49" tabindex="-1"></a><span class="do">## dplyr 1.1.0.</span></span>
+<span id="cb23-50"><a href="#cb23-50" tabindex="-1"></a><span class="do">## i Please use `reframe()` instead.</span></span>
+<span id="cb23-51"><a href="#cb23-51" tabindex="-1"></a><span class="do">## i When switching from `summarise()` to `reframe()`, remember that `reframe()`</span></span>
+<span id="cb23-52"><a href="#cb23-52" tabindex="-1"></a><span class="do">##   always returns an ungrouped data frame and adjust accordingly.</span></span>
+<span id="cb23-53"><a href="#cb23-53" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span id="cb23-54"><a href="#cb23-54" tabindex="-1"></a><span class="do">## generated.</span></span>
+<span id="cb23-55"><a href="#cb23-55" tabindex="-1"></a><span class="do">## `summarise()` has grouped output by &#39;PY&#39;. You can override using the `.groups`</span></span>
+<span id="cb23-56"><a href="#cb23-56" tabindex="-1"></a><span class="do">## argument.</span></span>
+<span id="cb23-57"><a href="#cb23-57" tabindex="-1"></a><span class="do">## # A tibble: 226 x 2</span></span>
+<span id="cb23-58"><a href="#cb23-58" tabindex="-1"></a><span class="do">## # Groups:   PY [113]</span></span>
+<span id="cb23-59"><a href="#cb23-59" tabindex="-1"></a><span class="do">##       PY `cur_group_rows()[c(1, n())]`</span></span>
+<span id="cb23-60"><a href="#cb23-60" tabindex="-1"></a><span class="do">##    &lt;dbl&gt;                         &lt;int&gt;</span></span>
+<span id="cb23-61"><a href="#cb23-61" tabindex="-1"></a><span class="do">##  1  1830                        113846</span></span>
+<span id="cb23-62"><a href="#cb23-62" tabindex="-1"></a><span class="do">##  2  1830                        113846</span></span>
+<span id="cb23-63"><a href="#cb23-63" tabindex="-1"></a><span class="do">##  3  1832                        113890</span></span>
+<span id="cb23-64"><a href="#cb23-64" tabindex="-1"></a><span class="do">##  4  1832                        113890</span></span>
+<span id="cb23-65"><a href="#cb23-65" tabindex="-1"></a><span class="do">##  5  1833                        113879</span></span>
+<span id="cb23-66"><a href="#cb23-66" tabindex="-1"></a><span class="do">##  6  1833                        113879</span></span>
+<span id="cb23-67"><a href="#cb23-67" tabindex="-1"></a><span class="do">##  7  1836                        113827</span></span>
+<span id="cb23-68"><a href="#cb23-68" tabindex="-1"></a><span class="do">##  8  1836                        113888</span></span>
+<span id="cb23-69"><a href="#cb23-69" tabindex="-1"></a><span class="do">##  9  1842                        113769</span></span>
+<span id="cb23-70"><a href="#cb23-70" tabindex="-1"></a><span class="do">## 10  1842                        113885</span></span>
+<span id="cb23-71"><a href="#cb23-71" tabindex="-1"></a><span class="do">## # i 216 more rows</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1552,7 +1546,7 @@ manipulation</h2>
 <span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">list</span>(cited))</span>
-<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="do">## # A tibble: 113 × 2</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="do">## # A tibble: 113 x 2</span></span>
 <span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="do">##       PY `list(cited)`</span></span>
 <span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="do">##    &lt;dbl&gt; &lt;list&gt;       </span></span>
 <span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="do">##  1  1830 &lt;dbl [1]&gt;    </span></span>
@@ -1565,25 +1559,25 @@ manipulation</h2>
 <span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="do">##  8  1864 &lt;dbl [1]&gt;    </span></span>
 <span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="do">##  9  1874 &lt;dbl [2]&gt;    </span></span>
 <span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="do">## 10  1876 &lt;dbl [1]&gt;    </span></span>
-<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="do">## # ℹ 103 more rows</span></span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="do">## # i 103 more rows</span></span>
 <span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a></span>
 <span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb25-22"><a href="#cb25-22" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb25-23"><a href="#cb25-23" tabindex="-1"></a>  <span class="fu">group_nest</span>()</span>
-<span id="cb25-24"><a href="#cb25-24" tabindex="-1"></a><span class="do">## # A tibble: 113 × 2</span></span>
+<span id="cb25-24"><a href="#cb25-24" tabindex="-1"></a><span class="do">## # A tibble: 113 x 2</span></span>
 <span id="cb25-25"><a href="#cb25-25" tabindex="-1"></a><span class="do">##       PY                data</span></span>
 <span id="cb25-26"><a href="#cb25-26" tabindex="-1"></a><span class="do">##    &lt;dbl&gt; &lt;list&lt;tibble[,20]&gt;&gt;</span></span>
-<span id="cb25-27"><a href="#cb25-27" tabindex="-1"></a><span class="do">##  1  1830            [1 × 20]</span></span>
-<span id="cb25-28"><a href="#cb25-28" tabindex="-1"></a><span class="do">##  2  1832            [1 × 20]</span></span>
-<span id="cb25-29"><a href="#cb25-29" tabindex="-1"></a><span class="do">##  3  1833            [1 × 20]</span></span>
-<span id="cb25-30"><a href="#cb25-30" tabindex="-1"></a><span class="do">##  4  1836            [3 × 20]</span></span>
-<span id="cb25-31"><a href="#cb25-31" tabindex="-1"></a><span class="do">##  5  1842            [2 × 20]</span></span>
-<span id="cb25-32"><a href="#cb25-32" tabindex="-1"></a><span class="do">##  6  1845            [1 × 20]</span></span>
-<span id="cb25-33"><a href="#cb25-33" tabindex="-1"></a><span class="do">##  7  1857            [1 × 20]</span></span>
-<span id="cb25-34"><a href="#cb25-34" tabindex="-1"></a><span class="do">##  8  1864            [1 × 20]</span></span>
-<span id="cb25-35"><a href="#cb25-35" tabindex="-1"></a><span class="do">##  9  1874            [2 × 20]</span></span>
-<span id="cb25-36"><a href="#cb25-36" tabindex="-1"></a><span class="do">## 10  1876            [1 × 20]</span></span>
-<span id="cb25-37"><a href="#cb25-37" tabindex="-1"></a><span class="do">## # ℹ 103 more rows</span></span></code></pre></div>
+<span id="cb25-27"><a href="#cb25-27" tabindex="-1"></a><span class="do">##  1  1830            [1 x 20]</span></span>
+<span id="cb25-28"><a href="#cb25-28" tabindex="-1"></a><span class="do">##  2  1832            [1 x 20]</span></span>
+<span id="cb25-29"><a href="#cb25-29" tabindex="-1"></a><span class="do">##  3  1833            [1 x 20]</span></span>
+<span id="cb25-30"><a href="#cb25-30" tabindex="-1"></a><span class="do">##  4  1836            [3 x 20]</span></span>
+<span id="cb25-31"><a href="#cb25-31" tabindex="-1"></a><span class="do">##  5  1842            [2 x 20]</span></span>
+<span id="cb25-32"><a href="#cb25-32" tabindex="-1"></a><span class="do">##  6  1845            [1 x 20]</span></span>
+<span id="cb25-33"><a href="#cb25-33" tabindex="-1"></a><span class="do">##  7  1857            [1 x 20]</span></span>
+<span id="cb25-34"><a href="#cb25-34" tabindex="-1"></a><span class="do">##  8  1864            [1 x 20]</span></span>
+<span id="cb25-35"><a href="#cb25-35" tabindex="-1"></a><span class="do">##  9  1874            [2 x 20]</span></span>
+<span id="cb25-36"><a href="#cb25-36" tabindex="-1"></a><span class="do">## 10  1876            [1 x 20]</span></span>
+<span id="cb25-37"><a href="#cb25-37" tabindex="-1"></a><span class="do">## # i 103 more rows</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1721,7 +1715,7 @@ to include in the .SD.</p>
 <span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="co"># Summarise several columns</span></span>
 <span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(PY, cited), mean))</span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="do">##      PY cited</span></span>
 <span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="do">##   &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="do">## 1 2015.  10.9</span></span>
@@ -1731,7 +1725,7 @@ to include in the .SD.</p>
 <span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a>  <span class="fu">group_by</span>(source) <span class="sc">%&gt;%</span></span>
 <span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(PY, cited), mean))</span>
-<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="do">## # A tibble: 1 × 3</span></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="do">## # A tibble: 1 x 3</span></span>
 <span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="do">##   source    PY cited</span></span>
 <span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="do">## 1 MED    2015.  10.9</span></span>
@@ -1740,7 +1734,7 @@ to include in the .SD.</p>
 <span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb28-22"><a href="#cb28-22" tabindex="-1"></a>  <span class="fu">group_by</span>(source) <span class="sc">%&gt;%</span></span>
 <span id="cb28-23"><a href="#cb28-23" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">&#39;cited&#39;</span>), mean))</span>
-<span id="cb28-24"><a href="#cb28-24" tabindex="-1"></a><span class="do">## # A tibble: 1 × 3</span></span>
+<span id="cb28-24"><a href="#cb28-24" tabindex="-1"></a><span class="do">## # A tibble: 1 x 3</span></span>
 <span id="cb28-25"><a href="#cb28-25" tabindex="-1"></a><span class="do">##   source cited log_cited</span></span>
 <span id="cb28-26"><a href="#cb28-26" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb28-27"><a href="#cb28-27" tabindex="-1"></a><span class="do">## 1 MED     10.9      1.10</span></span>
@@ -1750,7 +1744,7 @@ to include in the .SD.</p>
 <span id="cb28-31"><a href="#cb28-31" tabindex="-1"></a>  <span class="fu">group_by</span>(source) <span class="sc">%&gt;%</span></span>
 <span id="cb28-32"><a href="#cb28-32" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(PY, cited),</span>
 <span id="cb28-33"><a href="#cb28-33" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="at">median =</span> median, <span class="at">mean =</span> mean)))</span>
-<span id="cb28-34"><a href="#cb28-34" tabindex="-1"></a><span class="do">## # A tibble: 1 × 5</span></span>
+<span id="cb28-34"><a href="#cb28-34" tabindex="-1"></a><span class="do">## # A tibble: 1 x 5</span></span>
 <span id="cb28-35"><a href="#cb28-35" tabindex="-1"></a><span class="do">##   source PY_median PY_mean cited_median cited_mean</span></span>
 <span id="cb28-36"><a href="#cb28-36" tabindex="-1"></a><span class="do">##   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;</span></span>
 <span id="cb28-37"><a href="#cb28-37" tabindex="-1"></a><span class="do">## 1 MED         2020   2015.            0       10.9</span></span>
@@ -1759,7 +1753,7 @@ to include in the .SD.</p>
 <span id="cb28-40"><a href="#cb28-40" tabindex="-1"></a>cp_tibble <span class="sc">%&gt;%</span></span>
 <span id="cb28-41"><a href="#cb28-41" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric),</span>
 <span id="cb28-42"><a href="#cb28-42" tabindex="-1"></a>                   mean))</span>
-<span id="cb28-43"><a href="#cb28-43" tabindex="-1"></a><span class="do">## # A tibble: 1 × 3</span></span>
+<span id="cb28-43"><a href="#cb28-43" tabindex="-1"></a><span class="do">## # A tibble: 1 x 3</span></span>
 <span id="cb28-44"><a href="#cb28-44" tabindex="-1"></a><span class="do">##   cited    PY log_cited</span></span>
 <span id="cb28-45"><a href="#cb28-45" tabindex="-1"></a><span class="do">##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb28-46"><a href="#cb28-46" tabindex="-1"></a><span class="do">## 1  10.9 2015.      1.10</span></span>
@@ -1768,7 +1762,7 @@ to include in the .SD.</p>
 <span id="cb28-49"><a href="#cb28-49" tabindex="-1"></a>  <span class="fu">group_by</span>(source) <span class="sc">%&gt;%</span></span>
 <span id="cb28-50"><a href="#cb28-50" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(<span class="sc">~</span> <span class="fu">is.numeric</span>(.x) <span class="sc">&amp;&amp;</span> <span class="fu">median</span>(.x)<span class="sc">&gt;</span><span class="dv">0</span>), </span>
 <span id="cb28-51"><a href="#cb28-51" tabindex="-1"></a>                        median))</span>
-<span id="cb28-52"><a href="#cb28-52" tabindex="-1"></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb28-52"><a href="#cb28-52" tabindex="-1"></a><span class="do">## # A tibble: 1 x 2</span></span>
 <span id="cb28-53"><a href="#cb28-53" tabindex="-1"></a><span class="do">##   source    PY</span></span>
 <span id="cb28-54"><a href="#cb28-54" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;dbl&gt;</span></span>
 <span id="cb28-55"><a href="#cb28-55" tabindex="-1"></a><span class="do">## 1 MED     2020</span></span></code></pre></div>
@@ -1840,7 +1834,7 @@ to include in the .SD.</p>
 <span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="co"># Modify several columns (dropping the others)</span></span>
 <span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a><span class="fu">head</span>(cp_tibble <span class="sc">%&gt;%</span> <span class="fu">transmute</span>(<span class="fu">across</span>(<span class="fu">c</span>(has_data, oa),</span>
 <span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>                 tobinary)))</span>
-<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a><span class="do">## # A tibble: 6 x 2</span></span>
 <span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a><span class="do">##   has_data    oa</span></span>
 <span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a><span class="do">##      &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span id="cb30-10"><a href="#cb30-10" tabindex="-1"></a><span class="do">## 1        0     1</span></span>
@@ -1863,7 +1857,7 @@ to include in the .SD.</p>
 <span id="cb30-27"><a href="#cb30-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character),</span>
 <span id="cb30-28"><a href="#cb30-28" tabindex="-1"></a>         toupper))</span>
 <span id="cb30-29"><a href="#cb30-29" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t</span>
-<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 3.244808 secs</span></span></code></pre></div>
+<span id="cb30-30"><a href="#cb30-30" tabindex="-1"></a><span class="do">## Time difference of 2.676745 secs</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -1889,7 +1883,7 @@ to include in the .SD.</p>
 <span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span>  <span class="fu">which</span>(<span class="fu">sapply</span>(cp_datatable, class)<span class="sc">==</span><span class="st">&#39;character&#39;</span>)){<span class="fu">set</span>(cp_datatable, <span class="at">i=</span><span class="cn">NULL</span>, <span class="at">j=</span>j, <span class="at">value=</span><span class="fu">toupper</span>(cp_datatable[[j]]))}</span>
 <span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a><span class="fu">Sys.time</span>() <span class="sc">-</span> t </span>
-<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 2.811877 secs</span></span></code></pre></div>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="do">## Time difference of 1.887051 secs</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -1917,7 +1911,7 @@ data.table has its own chaining system: cp_datatable[][][].</p>
 <span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cited_med =</span> <span class="fu">median</span>(cited)) <span class="sc">%&gt;%</span></span>
 <span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(cited_med)))</span>
-<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="do">## # A tibble: 6 x 2</span></span>
 <span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="do">##      PY cited_med</span></span>
 <span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="do">##   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="do">## 1  1933      66.5</span></span>
@@ -1931,7 +1925,7 @@ data.table has its own chaining system: cp_datatable[][][].</p>
 <span id="cb32-20"><a href="#cb32-20" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb32-21"><a href="#cb32-21" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cited_med =</span> <span class="fu">median</span>(cited)) <span class="sc">%&gt;%</span></span>
 <span id="cb32-22"><a href="#cb32-22" tabindex="-1"></a>  <span class="fu">filter</span>(cited_med <span class="sc">&gt;</span> <span class="dv">10</span>))</span>
-<span id="cb32-23"><a href="#cb32-23" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb32-23"><a href="#cb32-23" tabindex="-1"></a><span class="do">## # A tibble: 6 x 2</span></span>
 <span id="cb32-24"><a href="#cb32-24" tabindex="-1"></a><span class="do">##      PY cited_med</span></span>
 <span id="cb32-25"><a href="#cb32-25" tabindex="-1"></a><span class="do">##   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb32-26"><a href="#cb32-26" tabindex="-1"></a><span class="do">## 1  1933      66.5</span></span>
@@ -1986,7 +1980,7 @@ data.table has its own chaining system: cp_datatable[][][].</p>
 <span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">share_en =</span> <span class="fu">sum</span>(is_en)<span class="sc">/</span><span class="fu">n</span>(),</span>
 <span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>            <span class="at">share_en_oa =</span> <span class="fu">sum</span>(is_en<span class="sc">*</span>oa_int)<span class="sc">/</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
 <span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(year_pub)))</span>
-<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a><span class="do">## # A tibble: 6 × 3</span></span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a><span class="do">## # A tibble: 6 x 3</span></span>
 <span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a><span class="do">##   year_pub share_en share_en_oa</span></span>
 <span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a><span class="do">##   &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;</span></span>
 <span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a><span class="do">## 1 2021        0.989       0.884</span></span>
@@ -2050,7 +2044,7 @@ each pubtype.</p>
 <div class="r">
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># R using Tibbles</span></span>
 <span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>cp_tibble[<span class="dv">1</span>,<span class="st">&#39;pubtype&#39;</span>]</span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="do">## # A tibble: 1 × 1</span></span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
 <span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="do">##   pubtype                                                              </span></span>
 <span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                                </span></span>
 <span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a><span class="do">## 1 &quot;{\&quot;PUBTYPE\&quot;: [\&quot;REVIEWARTICLE\&quot;, \&quot;REVIEW\&quot;, \&quot;JOURNAL ARTICLE\&quot;]}&quot;</span></span>
@@ -2074,7 +2068,7 @@ each pubtype.</p>
 <span id="cb36-24"><a href="#cb36-24" tabindex="-1"></a>  <span class="fu">count</span>(pubtype)</span>
 <span id="cb36-25"><a href="#cb36-25" tabindex="-1"></a></span>
 <span id="cb36-26"><a href="#cb36-26" tabindex="-1"></a>mcp_tibble</span>
-<span id="cb36-27"><a href="#cb36-27" tabindex="-1"></a><span class="do">## # A tibble: 258,370 × 3</span></span>
+<span id="cb36-27"><a href="#cb36-27" tabindex="-1"></a><span class="do">## # A tibble: 258,370 x 3</span></span>
 <span id="cb36-28"><a href="#cb36-28" tabindex="-1"></a><span class="do">## # Groups:   pmid [113,917]</span></span>
 <span id="cb36-29"><a href="#cb36-29" tabindex="-1"></a><span class="do">##    pmid     pubtype                                  n</span></span>
 <span id="cb36-30"><a href="#cb36-30" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;chr&gt;                                &lt;int&gt;</span></span>
@@ -2088,7 +2082,7 @@ each pubtype.</p>
 <span id="cb36-38"><a href="#cb36-38" tabindex="-1"></a><span class="do">##  8 10023767 RESEARCH SUPPORT, NONU.S. GOV&#39;T          1</span></span>
 <span id="cb36-39"><a href="#cb36-39" tabindex="-1"></a><span class="do">##  9 10023767 RESEARCH SUPPORT, U.S. GOV&#39;T, P.H.S.     1</span></span>
 <span id="cb36-40"><a href="#cb36-40" tabindex="-1"></a><span class="do">## 10 10023767 RESEARCHARTICLE                          1</span></span>
-<span id="cb36-41"><a href="#cb36-41" tabindex="-1"></a><span class="do">## # ℹ 258,360 more rows</span></span></code></pre></div>
+<span id="cb36-41"><a href="#cb36-41" tabindex="-1"></a><span class="do">## # i 258,360 more rows</span></span></code></pre></div>
 </div>
 </div>
 <div class="col-md-6">
@@ -2204,7 +2198,7 @@ vector/column</h2>
 <span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A:a&quot;</span>, <span class="st">&quot;B:b&quot;</span>, <span class="st">&quot;C:c&quot;</span>)</span>
 <span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a><span class="co"># vector not handled</span></span>
 <span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="fu">tibble</span>(vec), vec, <span class="fu">c</span>(<span class="st">&quot;V1&quot;</span>, <span class="st">&quot;V2&quot;</span>))</span>
-<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a><span class="do">## # A tibble: 3 × 2</span></span>
+<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a><span class="do">## # A tibble: 3 x 2</span></span>
 <span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a><span class="do">##   V1    V2   </span></span>
 <span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a><span class="do">##   &lt;chr&gt; &lt;chr&gt;</span></span>
 <span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a><span class="do">## 1 A     a    </span></span>
@@ -2368,7 +2362,7 @@ recommended for better readability.</li>
 <span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>  <span class="fu">filter</span>(oa <span class="sc">!=</span> <span class="st">&#39;Y&#39;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>  <span class="fu">group_by</span>(PY) <span class="sc">%&gt;%</span></span>
 <span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">median</span>(cited)))</span>
-<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a><span class="do">## # A tibble: 6 × 2</span></span>
+<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a><span class="do">## # A tibble: 6 x 2</span></span>
 <span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a><span class="do">##      PY `median(cited)`</span></span>
 <span id="cb56-8"><a href="#cb56-8" tabindex="-1"></a><span class="do">##   &lt;dbl&gt;           &lt;dbl&gt;</span></span>
 <span id="cb56-9"><a href="#cb56-9" tabindex="-1"></a><span class="do">## 1  1842               0</span></span>
@@ -2485,7 +2479,7 @@ of the data.table before applying set</em>() functions.</p>
 <span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a></span>
 <span id="cb63-3"><a href="#cb63-3" tabindex="-1"></a>cp_tibble[<span class="dv">1</span>, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb63-4"><a href="#cb63-4" tabindex="-1"></a><span class="fu">head</span>(cp_tibble[,<span class="dv">2</span>])</span>
-<span id="cb63-5"><a href="#cb63-5" tabindex="-1"></a><span class="do">## # A tibble: 6 × 1</span></span>
+<span id="cb63-5"><a href="#cb63-5" tabindex="-1"></a><span class="do">## # A tibble: 6 x 1</span></span>
 <span id="cb63-6"><a href="#cb63-6" tabindex="-1"></a><span class="do">##   pmid    </span></span>
 <span id="cb63-7"><a href="#cb63-7" tabindex="-1"></a><span class="do">##   &lt;chr&gt;   </span></span>
 <span id="cb63-8"><a href="#cb63-8" tabindex="-1"></a><span class="do">## 1 &lt;NA&gt;    </span></span>
@@ -2561,7 +2555,7 @@ of the data.table before applying set</em>() functions.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="co"># R using Tibbles</span></span>
 <span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a></span>
 <span id="cb69-3"><a href="#cb69-3" tabindex="-1"></a><span class="fu">head</span>(cp_tibble <span class="sc">%&gt;%</span> <span class="fu">select</span>(PY, cited, DOI))</span>
-<span id="cb69-4"><a href="#cb69-4" tabindex="-1"></a><span class="do">## # A tibble: 6 × 3</span></span>
+<span id="cb69-4"><a href="#cb69-4" tabindex="-1"></a><span class="do">## # A tibble: 6 x 3</span></span>
 <span id="cb69-5"><a href="#cb69-5" tabindex="-1"></a><span class="do">##      PY cited DOI  </span></span>
 <span id="cb69-6"><a href="#cb69-6" tabindex="-1"></a><span class="do">##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
 <span id="cb69-7"><a href="#cb69-7" tabindex="-1"></a><span class="do">## 1  1830     0 NULL </span></span>
@@ -2721,8 +2715,8 @@ of the data.table before applying set</em>() functions.</p>
 <span id="cb78-4"><a href="#cb78-4" tabindex="-1"></a><span class="do">## [1] TRUE</span></span>
 <span id="cb78-5"><a href="#cb78-5" tabindex="-1"></a><span class="fu">all_equal</span>(x, x)</span>
 <span id="cb78-6"><a href="#cb78-6" tabindex="-1"></a><span class="do">## Warning: `all_equal()` was deprecated in dplyr 1.1.0.</span></span>
-<span id="cb78-7"><a href="#cb78-7" tabindex="-1"></a><span class="do">## ℹ Please use `all.equal()` instead.</span></span>
-<span id="cb78-8"><a href="#cb78-8" tabindex="-1"></a><span class="do">## ℹ And manually order the rows/cols as needed</span></span>
+<span id="cb78-7"><a href="#cb78-7" tabindex="-1"></a><span class="do">## i Please use `all.equal()` instead.</span></span>
+<span id="cb78-8"><a href="#cb78-8" tabindex="-1"></a><span class="do">## i And manually order the rows/cols as needed</span></span>
 <span id="cb78-9"><a href="#cb78-9" tabindex="-1"></a><span class="do">## This warning is displayed once every 8 hours.</span></span>
 <span id="cb78-10"><a href="#cb78-10" tabindex="-1"></a><span class="do">## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
 <span id="cb78-11"><a href="#cb78-11" tabindex="-1"></a><span class="do">## generated.</span></span>
@@ -3135,8 +3129,8 @@ data.tables can also be used with dplyr.</p>
 <span id="cb98-2"><a href="#cb98-2" tabindex="-1"></a></span>
 <span id="cb98-3"><a href="#cb98-3" tabindex="-1"></a><span class="fu">bind_cols</span>(x, y)</span>
 <span id="cb98-4"><a href="#cb98-4" tabindex="-1"></a><span class="do">## New names:</span></span>
-<span id="cb98-5"><a href="#cb98-5" tabindex="-1"></a><span class="do">## • `V1` -&gt; `V1...1`</span></span>
-<span id="cb98-6"><a href="#cb98-6" tabindex="-1"></a><span class="do">## • `V1` -&gt; `V1...2`</span></span>
+<span id="cb98-5"><a href="#cb98-5" tabindex="-1"></a><span class="do">## * `V1` -&gt; `V1...1`</span></span>
+<span id="cb98-6"><a href="#cb98-6" tabindex="-1"></a><span class="do">## * `V1` -&gt; `V1...2`</span></span>
 <span id="cb98-7"><a href="#cb98-7" tabindex="-1"></a><span class="do">##    V1...1 V1...2</span></span>
 <span id="cb98-8"><a href="#cb98-8" tabindex="-1"></a><span class="do">##     &lt;int&gt;  &lt;int&gt;</span></span>
 <span id="cb98-9"><a href="#cb98-9" tabindex="-1"></a><span class="do">## 1:      1      4</span></span>
@@ -3212,31 +3206,31 @@ class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb1
 <span id="cb102-3"><a href="#cb102-3" tabindex="-1"></a></span>
 <span id="cb102-4"><a href="#cb102-4" tabindex="-1"></a>covid_papers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/covid_papers.csv&quot;</span>)</span>
 <span id="cb102-5"><a href="#cb102-5" tabindex="-1"></a><span class="do">## Rows: 148916 Columns: 19</span></span>
-<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a><span class="do">## ── Column specification ───────────────────────────────────────────────────</span></span>
+<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a><span class="do">## -- Column specification --------------------------------------------------------</span></span>
 <span id="cb102-7"><a href="#cb102-7" tabindex="-1"></a><span class="do">## Delimiter: &quot;,&quot;</span></span>
 <span id="cb102-8"><a href="#cb102-8" tabindex="-1"></a><span class="do">## chr  (17): _id, pmid, pmcid, doi, title, source, year_pub, month_pub, author...</span></span>
 <span id="cb102-9"><a href="#cb102-9" tabindex="-1"></a><span class="do">## dbl   (1): cited</span></span>
 <span id="cb102-10"><a href="#cb102-10" tabindex="-1"></a><span class="do">## date  (1): creation</span></span>
 <span id="cb102-11"><a href="#cb102-11" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb102-12"><a href="#cb102-12" tabindex="-1"></a><span class="do">## ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb102-13"><a href="#cb102-13" tabindex="-1"></a><span class="do">## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span id="cb102-12"><a href="#cb102-12" tabindex="-1"></a><span class="do">## i Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb102-13"><a href="#cb102-13" tabindex="-1"></a><span class="do">## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
 <span id="cb102-14"><a href="#cb102-14" tabindex="-1"></a></span>
 <span id="cb102-15"><a href="#cb102-15" tabindex="-1"></a>covid_papers</span>
-<span id="cb102-16"><a href="#cb102-16" tabindex="-1"></a><span class="do">## # A tibble: 148,916 × 19</span></span>
+<span id="cb102-16"><a href="#cb102-16" tabindex="-1"></a><span class="do">## # A tibble: 148,916 x 19</span></span>
 <span id="cb102-17"><a href="#cb102-17" tabindex="-1"></a><span class="do">##    `_id`            pmid  pmcid doi   title source year_pub month_pub creation  </span></span>
 <span id="cb102-18"><a href="#cb102-18" tabindex="-1"></a><span class="do">##    &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;     &lt;date&gt;    </span></span>
-<span id="cb102-19"><a href="#cb102-19" tabindex="-1"></a><span class="do">##  1 5f69d6fa65a250f… 3283… PMC7… 10.1… The … MED    2020     null      2020-08-25</span></span>
-<span id="cb102-20"><a href="#cb102-20" tabindex="-1"></a><span class="do">##  2 5f69d6fa65a250f… 3219… PMC7… 10.1… Hypo… MED    2020     null      2020-03-21</span></span>
-<span id="cb102-21"><a href="#cb102-21" tabindex="-1"></a><span class="do">##  3 5f69d6fa65a250f… 3277… PMC7… 10.1… The … MED    2020     null      2020-08-12</span></span>
-<span id="cb102-22"><a href="#cb102-22" tabindex="-1"></a><span class="do">##  4 5f69d6fa65a250f… 3273… PMC7… 10.1… A co… MED    2020     null      2020-07-31</span></span>
-<span id="cb102-23"><a href="#cb102-23" tabindex="-1"></a><span class="do">##  5 5f69d6fa65a250f… null  null  10.2… Viri… PPR    2020     null      2020-08-16</span></span>
-<span id="cb102-24"><a href="#cb102-24" tabindex="-1"></a><span class="do">##  6 5f69d6fa65a250f… null  PMC7… null  Inte… PMC    2020     null      2020-09-13</span></span>
-<span id="cb102-25"><a href="#cb102-25" tabindex="-1"></a><span class="do">##  7 5f69d6fa65a250f… 3239… PMC7… 10.1… A gl… MED    2020     null      2020-05-13</span></span>
-<span id="cb102-26"><a href="#cb102-26" tabindex="-1"></a><span class="do">##  8 5f69d6fa65a250f… 3225… PMC7… 10.1… COVI… MED    2020     null      2020-04-08</span></span>
-<span id="cb102-27"><a href="#cb102-27" tabindex="-1"></a><span class="do">##  9 5f69d6fa65a250f… 3272… PMC7… 10.1… The … MED    2020     null      2020-07-29</span></span>
-<span id="cb102-28"><a href="#cb102-28" tabindex="-1"></a><span class="do">## 10 5f69d6fa65a250f… 3219… PMC7… 10.1… Labo… MED    2020     null      2020-03-21</span></span>
-<span id="cb102-29"><a href="#cb102-29" tabindex="-1"></a><span class="do">## # ℹ 148,906 more rows</span></span>
-<span id="cb102-30"><a href="#cb102-30" tabindex="-1"></a><span class="do">## # ℹ 10 more variables: authors_gender &lt;chr&gt;, journal &lt;chr&gt;, language &lt;chr&gt;,</span></span>
+<span id="cb102-19"><a href="#cb102-19" tabindex="-1"></a><span class="do">##  1 5f69d6fa65a250f~ 3283~ PMC7~ 10.1~ The ~ MED    2020     null      2020-08-25</span></span>
+<span id="cb102-20"><a href="#cb102-20" tabindex="-1"></a><span class="do">##  2 5f69d6fa65a250f~ 3219~ PMC7~ 10.1~ Hypo~ MED    2020     null      2020-03-21</span></span>
+<span id="cb102-21"><a href="#cb102-21" tabindex="-1"></a><span class="do">##  3 5f69d6fa65a250f~ 3277~ PMC7~ 10.1~ The ~ MED    2020     null      2020-08-12</span></span>
+<span id="cb102-22"><a href="#cb102-22" tabindex="-1"></a><span class="do">##  4 5f69d6fa65a250f~ 3273~ PMC7~ 10.1~ A co~ MED    2020     null      2020-07-31</span></span>
+<span id="cb102-23"><a href="#cb102-23" tabindex="-1"></a><span class="do">##  5 5f69d6fa65a250f~ null  null  10.2~ Viri~ PPR    2020     null      2020-08-16</span></span>
+<span id="cb102-24"><a href="#cb102-24" tabindex="-1"></a><span class="do">##  6 5f69d6fa65a250f~ null  PMC7~ null  Inte~ PMC    2020     null      2020-09-13</span></span>
+<span id="cb102-25"><a href="#cb102-25" tabindex="-1"></a><span class="do">##  7 5f69d6fa65a250f~ 3239~ PMC7~ 10.1~ A gl~ MED    2020     null      2020-05-13</span></span>
+<span id="cb102-26"><a href="#cb102-26" tabindex="-1"></a><span class="do">##  8 5f69d6fa65a250f~ 3225~ PMC7~ 10.1~ COVI~ MED    2020     null      2020-04-08</span></span>
+<span id="cb102-27"><a href="#cb102-27" tabindex="-1"></a><span class="do">##  9 5f69d6fa65a250f~ 3272~ PMC7~ 10.1~ The ~ MED    2020     null      2020-07-29</span></span>
+<span id="cb102-28"><a href="#cb102-28" tabindex="-1"></a><span class="do">## 10 5f69d6fa65a250f~ 3219~ PMC7~ 10.1~ Labo~ MED    2020     null      2020-03-21</span></span>
+<span id="cb102-29"><a href="#cb102-29" tabindex="-1"></a><span class="do">## # i 148,906 more rows</span></span>
+<span id="cb102-30"><a href="#cb102-30" tabindex="-1"></a><span class="do">## # i 10 more variables: authors_gender &lt;chr&gt;, journal &lt;chr&gt;, language &lt;chr&gt;,</span></span>
 <span id="cb102-31"><a href="#cb102-31" tabindex="-1"></a><span class="do">## #   pubmodel &lt;chr&gt;, pubtype &lt;chr&gt;, mesh &lt;chr&gt;, keywords &lt;chr&gt;, cited &lt;dbl&gt;,</span></span>
 <span id="cb102-32"><a href="#cb102-32" tabindex="-1"></a><span class="do">## #   has_data &lt;chr&gt;, oa &lt;chr&gt;</span></span></code></pre></div>
 </div>
@@ -3494,6 +3488,64 @@ Can you redo the exercice using the data.table library?
 -->
 </div>
 
+<!-- Small UX helpers: reading progress, back-to-top, copy buttons on code -->
+<div id="read-progress"></div>
+<button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+<script>
+(function () {
+  var bar = document.getElementById('read-progress');
+  var top = document.getElementById('back-to-top');
+
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    top.classList.toggle('show', h.scrollTop > 600);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  // Phones: the TOC is stacked above the title, so collapse it behind a button
+  var toc = document.getElementById('TOC');
+  if (toc) {
+    var phone = window.matchMedia('(max-width: 767.98px)');
+    var toggle = document.createElement('button');
+    toggle.id = 'toc-toggle';
+    toggle.type = 'button';
+    toggle.textContent = 'Contents';
+    toggle.setAttribute('aria-controls', 'TOC');
+    toggle.setAttribute('aria-expanded', 'false');
+    toc.parentNode.insertBefore(toggle, toc);
+    toggle.addEventListener('click', function () {
+      toggle.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+    });
+    // close it again once a section is picked
+    toc.addEventListener('click', function (e) {
+      if (phone.matches && e.target.closest('.tocify-item')) toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // Copy button on source code blocks only (not on printed output)
+  document.querySelectorAll('pre.sourceCode, pre.r, pre.python').forEach(function (pre) {
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', function () {
+      // collapse = TRUE merges output (## ...) into the block: strip it
+      var text = pre.querySelector('code').innerText
+        .split('\n').filter(function (l) { return !/^## /.test(l); }).join('\n');
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+      });
+    });
+    pre.appendChild(btn);
+  });
+})();
+</script>
 
 
 </div>

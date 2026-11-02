@@ -1,4 +1,5 @@
 name: "Data Analysis (3 ETCS)"
+output_dir: "."
 
 author:  "Pierre Pelletier"
 email: "[p.pelletier@unistra.fr]"
@@ -22,15 +23,26 @@ navbar:
       href: https://github.com/master-ds2e/
 output:
   html_document:
-    theme: united
+    theme:
+      version: 5
+      bootswatch: united
+      primary: "#E95420"
+      base_font:
+        google: "Inter"
+      heading_font:
+        google: "Inter"
+      code_font:
+        google: "JetBrains Mono"
+      font-size-base: "1rem"
     highlight: haddock
     toc: true
     number_sections: true
-    toc_float: 
+    toc_float:
       collapsed: false
       smooth_scroll: true
       number_sections: true
       toc_depth: 3
     _disableToc: true
     css: custom.css
-        
+    includes:
+      after_body: _extras.html
